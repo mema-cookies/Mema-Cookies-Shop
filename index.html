@@ -21,188 +21,133 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        .instagram-float {
-            position: fixed;
-            top: 70px;
-            left: 20px;
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            z-index: 2001;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            text-decoration: none;
-        }
+        header { background-color: var(--soft-pink); background-image: url('logo.jpg'); background-size: contain; background-position: center top; background-repeat: no-repeat; width: 100%; height: 260px; border-bottom: 3px solid var(--main-pink); }
+        
+        .marquee-container { background-color: var(--main-pink); color: white; overflow: hidden; padding: 12px 0; font-size: 14px; font-weight: bold; position: sticky; top: 0; z-index: 1001; text-align: center; }
+        .marquee-text { display: inline-block; white-space: nowrap; animation: bounce-slide 10s ease-in-out infinite; }
+        @keyframes bounce-slide { 0%, 100% { transform: translateX(-5%); } 50% { transform: translateX(5%); } }
 
-        .whatsapp-float {
-            position: fixed;
-            top: 130px;
-            left: 20px;
-            background-color: #25d366;
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            z-index: 2001;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            text-decoration: none;
-        }
-
-        .marquee-container { 
-            background-color: var(--main-pink); 
-            color: white; 
-            overflow: hidden; 
-            padding: 12px 0; 
-            font-size: 14px; 
-            font-weight: bold; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1001; 
-            text-align: center;
-        }
-
-        .marquee-text { 
-            display: inline-block; 
-            white-space: nowrap;
-            animation: bounce-slide 10s ease-in-out infinite; 
-        }
-
-        @keyframes bounce-slide { 
-            0%, 100% { transform: translateX(-5%); } 
-            50% { transform: translateX(5%); } 
-        }
-
-        header { 
-            background-color: var(--soft-pink); 
-            background-image: url('logo.jpg');
-            background-size: contain; 
-            background-position: center top; 
-            background-repeat: no-repeat;
-            width: 100%;
-            height: 260px; 
-            display: flex;
-            align-items: flex-end; 
-            justify-content: center;
-            border-bottom: 3px solid var(--main-pink); 
-            position: relative;
-        }
-
-        .bottom-love-text {
-            text-align: center;
-            padding: 20px 0;
-            color: var(--main-brown);
-            font-weight: bold;
-            font-size: 14px;
-        }
+        .instagram-float { position: fixed; top: 70px; left: 20px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; z-index: 2001; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-decoration: none; }
+        .whatsapp-float { position: fixed; top: 130px; left: 20px; background-color: #25d366; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; z-index: 2001; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-decoration: none; }
 
         .categories-nav { position: sticky; top: 43px; background: #fff; padding: 12px; display: flex; gap: 10px; overflow-x: auto; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .cat-btn { border: 2px solid var(--main-pink); background: transparent; color: var(--main-pink); padding: 8px 20px; border-radius: 25px; white-space: nowrap; font-weight: bold; cursor: pointer; }
         .cat-btn.active { background: var(--main-pink); color: #fff; }
+        
         .section-title { background: var(--main-brown); color: white; padding: 8px 20px; margin: 25px 15px 10px; border-radius: 8px; display: inline-block; font-size: 15px; }
         .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; }
         
         .product-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; flex-direction: column; border: 1px solid #fce4ec; }
         
-        .highlight-cake { 
-            color: var(--main-brown); 
-            font-weight: bold; 
-            font-size: 10px; 
-            display: inline-block;
-        }
-
-        .image-container { width: 100%; height: 150px; overflow: hidden; position: relative; background: #f9f9f9; }
-        .image-container img { width: 100%; height: 100%; object-fit: cover; position: absolute; opacity:0; transition: opacity 1s ease-in-out; }
+        .image-container { width: 100%; height: 150px; overflow: hidden; position: relative; background: #f9f9f9; cursor: pointer; }
+        .image-container img { width: 100%; height: 100%; object-fit: cover; position: absolute; opacity:0; transition: opacity 0.5s ease; }
         .image-container img.active { opacity: 1; }
         
-        .product-info { padding: 10px; text-align: center; }
+        .product-info { padding: 10px; text-align: center; cursor: pointer; }
         .product-info h3 { margin: 0 0 5px 0; font-size: 13px; color: var(--main-brown); font-weight: bold; }
-        .product-desc { font-size: 10px; color: #d63384; margin-bottom: 8px; font-weight: bold; line-height: 1.3; }
+        .product-desc { font-size: 10px; color: #d63384; margin-bottom: 5px; font-weight: bold; line-height: 1.3; }
         .price-text { color: var(--main-pink); font-weight: 800; font-size: 14px; display: block; margin-bottom: 5px; }
-        
+
+        /* تنسيق الإضافات في القائمة الرئيسية والداخلية */
         .extras-container { background: #fff9fa; padding: 5px; border-top: 1px dashed #ffd1dc; }
         .extra-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; padding: 0 4px; }
         .extra-name { font-size: 9px; color: #666; font-weight: bold; flex: 1; text-align: right; }
         .extra-ctrl { display: flex; align-items: center; gap: 4px; }
-        .btn-extra { background: #fff; border: 1px solid var(--main-pink); color: var(--main-pink); width: 20px; height: 20px; border-radius: 4px; font-size: 12px; cursor: pointer; }
-        .extra-qty { font-size: 10px; min-width: 10px; text-align: center; font-weight: bold; }
-        
-        .note-box { width: 90%; margin: 5px auto; padding: 4px; border: 1px solid #ddd; border-radius: 4px; font-size: 9px; display: none; }
-        .main-controls { display: flex; align-items: center; justify-content: space-around; padding: 10px; background: #fafafa; border-top: 1px solid #eee; }
-        .btn-main { background: var(--main-pink); color: white; border: none; width: 30px; height: 30px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 18px; }
+        .btn-extra { background: #fff; border: 1px solid var(--main-pink); color: var(--main-pink); width: 22px; height: 22px; border-radius: 5px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .extra-qty { font-size: 11px; min-width: 10px; text-align: center; font-weight: bold; }
+        .note-box { width: 90%; margin: 5px auto; padding: 6px; border: 1px solid #ddd; border-radius: 6px; font-size: 10px; box-sizing: border-box; display: block; }
+
+        .main-controls { display: flex; align-items: center; justify-content: space-around; padding: 10px; background: #fafafa; border-top: 1px solid #eee; margin-top: auto; }
+        .btn-main { background: var(--main-pink); color: white; border: none; width: 32px; height: 32px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 18px; }
         .main-qty { font-weight: bold; color: var(--main-brown); font-size: 16px; }
+
+        /* صفحة المنتج المنفصلة */
+        #productPage { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 3000; overflow-y: auto; padding-bottom: 120px; }
+        .back-nav { padding: 15px; background: white; position: sticky; top: 0; display: flex; align-items: center; gap: 10px; z-index: 10; border-bottom: 1px solid #eee; }
+        .btn-back { background: var(--soft-pink); border: none; padding: 10px 15px; border-radius: 12px; color: var(--main-pink); font-weight: bold; cursor: pointer; }
         
-        .cart-bar { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); width: 85%; max-width: 400px; background: var(--main-pink); color: white; padding: 20px; border-radius: 50px; display: none; justify-content: space-between; align-items: center; z-index: 2000; cursor: pointer; }
+        .page-slider { width: 100%; height: 350px; position: relative; background: #000; overflow: hidden; }
+        .page-slider img { width: 100%; height: 100%; object-fit: contain; position: absolute; opacity: 0; transition: 0.5s; }
+        .page-slider img.active { opacity: 1; }
+        .slider-nav { position: absolute; bottom: 15px; width: 100%; display: flex; justify-content: center; gap: 5px; }
+        .dot { width: 8px; height: 8px; background: rgba(255,255,255,0.5); border-radius: 50%; }
+        .dot.active { background: white; width: 20px; border-radius: 10px; }
+
+        .cart-bar { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); width: 85%; max-width: 400px; background: var(--main-pink); color: white; padding: 20px; border-radius: 50px; display: none; justify-content: space-between; align-items: center; z-index: 4000; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 5000; overflow-y: auto; }
+        .modal-body { background: white; width: 90%; max-width: 450px; margin: 40px auto; border-radius: 20px; padding: 20px; direction: rtl; }
     </style>
 </head>
 <body>
 
-    <div class="marquee-container">
-        <div class="marquee-text">📢 سياسة الطلب: الطلب قبل بيوم او يومين - الطلب للكميات البسيطة بنفس اليوم 📢</div>
+    <div id="mainView">
+        <div class="marquee-container">
+            <div class="marquee-text">📢 سياسة الطلب: الطلب قبل بيوم او يومين - الطلب للكميات البسيطة بنفس اليوم 📢</div>
+        </div>
+        <a href="https://www.instagram.com/cookies_mema70/" class="instagram-float" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/966502509910" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <header></header>
+        <nav class="categories-nav" id="catNav">
+            <button class="cat-btn active" onclick="filterMenu('all', this)">الكل</button>
+            <button class="cat-btn" onclick="filterMenu('cookies', this)">كوكيز</button>
+            <button class="cat-btn" onclick="filterMenu('pudding', this)">بودينق</button>
+            <button class="cat-btn" onclick="filterMenu('cakes', this)">كيكات</button>
+            <button class="cat-btn" onclick="filterMenu('boxes', this)">بوكسات</button>
+        </nav>
+        <div id="menuContent"></div>
+        <div style="text-align: center; padding: 30px 0; color: var(--main-brown); font-weight: bold;">يُصنع بكل حُب | MADE WITH LOVE💕</div>
     </div>
 
-    <a href="https://www.instagram.com/cookies_mema70/" class="instagram-float" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://wa.me/966502509910" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <div id="productPage">
+        <div class="back-nav">
+            <button class="btn-back" onclick="closeProductPage()"><i class="fas fa-arrow-right"></i> عودة للمتجر</button>
+            <span id="pageHeaderTitle" style="font-weight:bold; color:var(--main-brown)"></span>
+        </div>
+        <div id="pageContent"></div>
+    </div>
 
-    <header></header>
-
-    <nav class="categories-nav">
-        <button class="cat-btn active" onclick="filterMenu('all', this)">الكل</button>
-        <button class="cat-btn" onclick="filterMenu('cookies', this)">كوكيز</button>
-        <button class="cat-btn" onclick="filterMenu('pudding', this)">بودينق</button>
-        <button class="cat-btn" onclick="filterMenu('cakes', this)">كيكات</button>
-        <button class="cat-btn" onclick="filterMenu('boxes', this)">بوكسات</button>
-    </nav>
-
-    <div id="menuContent"></div>
-
-    <div class="bottom-love-text">يُصنع بكل حُب | MADE WITH LOVE💕</div>
-
-    <div id="cartBar" class="cart-bar" onclick="sendWhatsApp()">
+    <div id="cartBar" class="cart-bar" onclick="openReview()">
         <span>🛒 عرض الطلب (<span id="itemsCount">0</span>)</span>
         <span id="totalPrice">0 ريال</span>
     </div>
 
-    <script>
-        const cookieExtraList = [{ name: "اضافة شوكلاتة بلجيكية", price: 2 }, { name: "اضافة فستق", price: 2 }, { name: "اضافة كيندر", price: 2 }, { name: "اضافة شوكلاتة بيضاء", price: 2 }, { name: "اضافة مارشميلو", price: 2 }];
-        const bitesSauceList = [{ name: "صوص شوكلاتة بلجيكية", price: 2 }, { name: "صوص فستق", price: 2 }, { name: "صوص كيندر", price: 2 }, { name: "صوص شوكلاتة بيضاء", price: 2 }];
-        const puddingSauceList = [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 2 }, { name: "اضافة كيندر", price: 2 }, { name: "اضافة شوكلاتة بيضاء", price: 2 }, { name: "مارشميلو", price: 2 }];
-        const cakeExtras = [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 4 }, { name: "اضافة كيندر", price: 4 }, { name: "اضافة شوكلاتة بيضاء", price: 4 }, { name: "كتابة على الكيك", price: 5, hasNote: true }, { name: "شمعة", price: 1 }];
-        const diyDonutExtras = [{ name: "زيادة فستق", price: 4 }, { name: "زيادة كيندر", price: 4 }, { name: "زيادة سبرنكلز", price: 1 }, { name: "زيادة دونات كوكيز", price: 5 }];
+    <div id="reviewModal" class="modal-overlay">
+        <div class="modal-body">
+            <h3 style="text-align:center; color:var(--main-pink)">مراجعة سلتك</h3>
+            <div id="reviewItems"></div>
+            <div style="text-align:center; font-weight:bold; margin-top:15px; font-size:18px;">الإجمالي: <span id="modalTotal">0</span> ريال</div>
+            <button onclick="sendWhatsApp()" style="background: #25d366; color: white; border: none; width: 100%; padding: 15px; border-radius: 12px; font-weight: bold; margin-top: 15px; cursor: pointer;">إرسال الطلب واتساب ✅</button>
+            <button onclick="closeReview()" style="background: #eee; width: 100%; padding: 10px; border: none; border-radius: 12px; margin-top: 10px; cursor: pointer;">العودة للمتجر</button>
+        </div>
+    </div>
 
+    <script>
         const products = [
-            { id: "c1", name: "كوكيز ميما", cat: "cookies", price: 5, desc: "(طراوة ولذة -بشوكلت بلجيكي فاخر )", imgs: ["3.jpg", "51.jpg", "52.jpg", "53.jpg"] },
-            { id: "c2", name: "بايتس كوكيز", cat: "cookies", price: 1, desc: "(صغيرة بالحجم -كبيره بالطعم تذوب وتخليك تبتسم )", imgs: ["8.jpg", "56.jpg", "57.jpg", "58.jpg", "59.jpg", "60.jpg"], extras: bitesSauceList },
-            { id: "c3", name: "كوكيز حساوي", cat: "cookies", price: 6, desc: "(نكهة تراثية-بلمسة عصرية)", imgs: ["9.jpg", "40.jpg", "41.jpg", "42.jpg", "43.jpg", "44.jpg"] },
-            { id: "c4", name: "سكوب كوكيز", cat: "cookies", price: 23, desc: "(سكوب كوكيز مع الفيوتن والقرمشه والشوكلاتة ..تجربة لذيذة ما تُنسى !)", imgs: ["22.jpg", "73.jpg"], extras: [{name:"زيادة شوكلاتة بلجيكية", price:2}, {name:"زيادة فيوتين", price:2}] },
-            { id: "c5", name: "سكوب كوكيز ميما وسط", cat: "cookies", price: 33, desc: "(سكوب كوكيز مع الفيوتن والقرمشه والشوكلاتة ..تجربة لذيذة ما تُنسى !)", imgs: ["73.jpg"], extras: [{name:"زيادة شوكلاتة بلجيكية", price:2}, {name:"زيادة فيوتين", price:2}] },
-            { id: "p1", name: "بودينق ميما ميني", cat: "pudding", price: 10, desc: "(طبقات من الكوكيز والفيوتن المقرمش والشوكلاته البلجيكية الفاخرة)", imgs: ["5.jpg", "72.jpg"], extras: puddingSauceList },
-            { id: "p2", name: "بودينق ميما وسط", cat: "pudding", price: 20, desc: "(طبقات من الكوكيز والفيوتن المقرمش والشوكلاته البلجيكية الفاخرة)", imgs: ["4.jpg", "70.jpg", "71.jpg"], extras: puddingSauceList },
-            { id: "p3", name: "بودينق ميما كبير", cat: "pudding", price: 30, desc: "(طبقات من الكوكيز والفيوتن المقرمش والشوكلاته البلجيكية الفاخرة)", imgs: ["6.jpg", "66.jpg"], extras: puddingSauceList },
-            { id: "p4", name: "بودينق مكس ميني", cat: "pudding", price: 11, desc: "(مكس <span class='highlight-cake'>الكيك</span> والكوكيز !! طبقات من الكوكيز و<span class='highlight-cake'>الكيك</span> والفيوتن المقرمش والشوكولاته البلجيكية الفاخرة )", imgs: ["13.jpg", "45.jpg"], extras: puddingSauceList },
-            { id: "p5", name: "بودينق مكس صغير", cat: "pudding", price: 19, desc: "(مكس <span class='highlight-cake'>الكيك</span> والكوكيز !! طبقات من الكوكيز و<span class='highlight-cake'>الكيك</span> والفيوتن المقرمش والشوكولاته البلجيكية الفاخرة )", imgs: ["21.jpg", "48.jpg", "49.jpg"], extras: puddingSauceList },
-            { id: "p6", name: "بودينق مكس وسط", cat: "pudding", price: 21, desc: "(مكس <span class='highlight-cake'>الكيك</span> والكوكيز !! طبقات من الكوكيز و<span class='highlight-cake'>الكيك</span> والفيوتن المقرمش والشوكولاته البلجيكية الفاخرة )", imgs: ["12.jpg", "46.jpg", "47.jpg"], extras: puddingSauceList },
-            { id: "k1", name: "كيكة 5 انش (دائرية)", cat: "cakes", price: 40, desc: "(كيكات محشيه ومغطاة بالشوكولاته البلجيكي-متعة لكل لقمة )", imgs: ["7.jpg", "19.jpg", "23.jpg", "24.jpg"], extras: cakeExtras },
-            { id: "k2", name: "كيكة 8 انش (دائرية)", cat: "cakes", price: 85, desc: "(كيكات محشيه ومغطاة بالشوكولاته البلجيكي-متعة لكل لقمة )", imgs: ["1.jpg", "15.jpg", "61.jpg"], extras: cakeExtras },
-            { id: "k3", name: "كيكة 5 انش (قلب)", cat: "cakes", price: 45, desc: "(كيكات محشيه ومغطاة بالشوكولاته البلجيكي-متعة لكل لقمة )", imgs: ["10.jpg", "29.jpg", "30.jpg"], extras: cakeExtras },
-            { id: "k4", name: "كيكة 10 انش (قلب)", cat: "cakes", price: 120, desc: "(كيكات محشيه ومغطاة بالشوكولاته البلجيكي-متعة لكل لقمة )", imgs: ["2.jpg", "67.jpg"], extras: cakeExtras },
-            { id: "b1", name: "بوكس دونات كوكيز (6 حبات)", cat: "boxes", price: 38, desc: "(كوكيز بطابع الدونات -لذة مزدوجة)", imgs: ["11.jpg", "18.jpg"] },
-            { id: "b2", name: "بوكس دونات كوكيز (12 حبة)", cat: "boxes", price: 76, desc: "(كوكيز بطابع الدونات -لذة مزدوجة)", imgs: ["18.jpg", "55.jpg"] },
-            { id: "b1-diy", name: "بوكس دونات اصنعها بنفسك (6 حبات)", cat: "boxes", price: 38, desc: "(كل الأدوات بيدك والابداع عليك )", imgs: ["11.jpg", "54.jpg"], extras: diyDonutExtras },
-            { id: "b2-diy", name: "بوكس دونات اصنعها بنفسك (12 حبة)", cat: "boxes", price: 76, desc: "(كل الأدوات بيدك والابداع عليك )", imgs: ["18.jpg", "55.jpg"], extras: diyDonutExtras },
-            { id: "b3", name: "بوكس المرح (5 حبات)", cat: "boxes", price: 55, desc: "(كل الأدوات بيدك والابداع عليك )", imgs: ["20.jpg"], extras: [{name:"زيادة كريمة", price:5}, {name:"زيادة كوكيز", price:6}, {name:"زيادة سبرنكلز", price:1}] },
-            { id: "b4", name: "بوكس المرح (8 حبات)", cat: "boxes", price: 88, desc: "(كل الأدوات بيدك والابداع عليك )", imgs: ["20.jpg"], extras: [{name:"زيادة كريمة", price:5}, {name:"زيادة كوكيز", price:6}, {name:"زيادة سبرنكلز", price:1}] }
+            { id: "c1", name: "كوكيز ميما", cat: "cookies", price: 5, desc: "(طراوة ولذة - بشوكلت بلجيكي فاخر)", imgs: ["3.jpg", "51.jpg", "52.jpg", "53.jpg"] },
+            { id: "c2", name: "بايتس كوكيز", cat: "cookies", price: 1, desc: "(صغيرة بالحجم - كبيره بالطعم تذوب وتخليك تبتسم)", imgs: ["8.jpg", "56.jpg", "57.jpg", "58.jpg", "59.jpg", "60.jpg"], extras: [{ name: "صوص شوكلاتة بلجيكية", price: 2 }, { name: "صوص فستق", price: 2 }, { name: "صوص كيندر", price: 2 }, { name: "صوص شوكلاتة بيضاء", price: 2 }] },
+            { id: "c3", name: "كوكيز حساوي", cat: "cookies", price: 6, desc: "(نكهة تراثية - بلمسة عصرية)", imgs: ["9.jpg", "40.jpg", "41.jpg", "42.jpg", "43.jpg", "44.jpg"] },
+            { id: "c4", name: "سكوب كوكيز", cat: "cookies", price: 23, desc: "(سكوب كوكيز مع الفيوتن والقرمشه والشوكلاتة .. تجربة لذيذة ما تُنسى!)", imgs: ["22.jpg", "73.jpg"], extras: [{name:"زيادة شوكلاتة بلجيكية", price:2}, {name:"زيادة فيوتين", price:2}] },
+            { id: "c5", name: "سكوب كوكيز ميما وسط", cat: "cookies", price: 33, desc: "(سكوب كوكيز مع الفيوتن والقرمشه والشوكلاتة .. تجربة لذيذة ما تُنسى!)", imgs: ["73.jpg"], extras: [{name:"زيادة شوكلاتة بلجيكية", price:2}, {name:"زيادة فيوتين", price:2}] },
+            { id: "p1", name: "بودينق ميما ميني", cat: "pudding", price: 10, desc: "(طبقات من الكوكيز والفيوتن المقرمش والشوكلاته البلجيكية الفاخرة)", imgs: ["5.jpg", "72.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 2 }, { name: "اضافة كيندر", price: 2 }, { name: "اضافة شوكلاتة بيضاء", price: 2 }, { name: "مارشميلو", price: 2 }] },
+            { id: "p2", name: "بودينق ميما وسط", cat: "pudding", price: 20, desc: "(طبقات من الكوكيز والفيوتن المقرمش والشوكلاته البلجيكية الفاخرة)", imgs: ["4.jpg", "70.jpg", "71.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 2 }, { name: "اضافة كيندر", price: 2 }, { name: "اضافة شوكلاتة بيضاء", price: 2 }, { name: "مارشميلو", price: 2 }] },
+            { id: "p3", name: "بودينق ميما كبير", cat: "pudding", price: 30, desc: "(طبقات من الكوكيز والفيوتن المقرمش والشوكلاته البلجيكية الفاخرة)", imgs: ["6.jpg", "66.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 2 }, { name: "اضافة كيندر", price: 2 }, { name: "اضافة شوكلاتة بيضاء", price: 2 }, { name: "مارشميلو", price: 2 }] },
+            { id: "p4", name: "بودينق مكس ميني", cat: "pudding", price: 11, desc: "(مكس <span class='highlight-cake'>الكيك</span> والكوكيز !! طبقات من الكوكيز و <span class='highlight-cake'>الكيك</span> والفيوتن المقرمش والشوكولاته البلجيكية الفاخرة)", imgs: ["13.jpg", "45.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 2 }, { name: "اضافة كيندر", price: 2 }, { name: "اضافة شوكلاتة بيضاء", price: 2 }, { name: "مارشميلو", price: 2 }] },
+            { id: "p5", name: "بودينق مكس صغير", cat: "pudding", price: 19, desc: "(مكس <span class='highlight-cake'>الكيك</span> والكوكيز !! طبقات من الكوكيز و <span class='highlight-cake'>الكيك</span> والفيوتن المقرمش والشوكولاته البلجيكية الفاخرة)", imgs: ["21.jpg", "48.jpg", "49.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 2 }, { name: "اضافة كيندر", price: 2 }, { name: "اضافة شوكلاتة بيضاء", price: 2 }, { name: "مارشميلو", price: 2 }] },
+            { id: "p6", name: "بودينق مكس وسط", cat: "pudding", price: 21, desc: "(مكس <span class='highlight-cake'>الكيك</span> والكوكيز !! طبقات من الكوكيز و <span class='highlight-cake'>الكيك</span> والفيوتن المقرمش والشوكولاته البلجيكية الفاخرة)", imgs: ["12.jpg", "46.jpg", "47.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 2 }, { name: "اضافة كيندر", price: 2 }, { name: "اضافة شوكلاتة بيضاء", price: 2 }, { name: "مارشميلو", price: 2 }] },
+            { id: "k1", name: "كيكة 5 انش (دائرية)", cat: "cakes", price: 40, desc: "(كيكات محشيه ومغطاة بالشوكولاته البلجيكي - متعة لكل لقمة)", imgs: ["7.jpg", "19.jpg", "23.jpg", "24.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 4 }, { name: "اضافة كيندر", price: 4 }, { name: "اضافة شوكلاتة بيضاء", price: 4 }, { name: "كتابة على الكيك", price: 5, hasNote: true }, { name: "شمعة", price: 1 }] },
+            { id: "k2", name: "كيكة 8 انش (دائرية)", cat: "cakes", price: 85, desc: "(كيكات محشيه ومغطاة بالشوكولاته البلجيكي - متعة لكل لقمة)", imgs: ["1.jpg", "15.jpg", "61.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 4 }, { name: "اضافة كيندر", price: 4 }, { name: "اضافة شوكلاتة بيضاء", price: 4 }, { name: "كتابة على الكيك", price: 5, hasNote: true }, { name: "شمعة", price: 1 }] },
+            { id: "k3", name: "كيكة 5 انش (قلب)", cat: "cakes", price: 45, desc: "(كيكات محشيه ومغطاة بالشوكولاته البلجيكي - متعة لكل لقمة)", imgs: ["10.jpg", "29.jpg", "30.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 4 }, { name: "اضافة كيندر", price: 4 }, { name: "اضافة شوكلاتة بيضاء", price: 4 }, { name: "كتابة على الكيك", price: 5, hasNote: true }, { name: "شمعة", price: 1 }] },
+            { id: "k4", name: "كيكة 10 انش (قلب)", cat: "cakes", price: 120, desc: "(كيكات محشيه ومغطاة بالشوكولاته البلجيكي - متعة لكل لقمة)", imgs: ["2.jpg", "67.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 4 }, { name: "اضافة كيندر", price: 4 }, { name: "اضافة شوكلاتة بيضاء", price: 4 }, { name: "كتابة على الكيك", price: 5, hasNote: true }, { name: "شمعة", price: 1 }] },
+            { id: "b1", name: "بوكس دونات كوكيز (6 حبات)", cat: "boxes", price: 38, desc: "(كوكيز بطابع الدونات - لذة مزدوجة)", imgs: ["11.jpg", "18.jpg"] },
+            { id: "b2", name: "بوكس دونات كوكيز (12 حبة)", cat: "boxes", price: 76, desc: "(كوكيز بطابع الدونات - لذة مزدوجة)", imgs: ["18.jpg", "55.jpg"] },
+            { id: "b1-diy", name: "بوكس دونات اصنعها بنفسك (6 حبات)", cat: "boxes", price: 38, desc: "(كل الأدوات بيدك والابداع عليك)", imgs: ["11.jpg", "54.jpg"], extras: [{ name: "زيادة فستق", price: 4 }, { name: "زيادة كيندر", price: 4 }, { name: "زيادة سبرنكلز", price: 1 }, { name: "زيادة دونات كوكيز", price: 5 }] },
+            { id: "b2-diy", name: "بوكس دونات اصنعها بنفسك (12 حبة)", cat: "boxes", price: 76, desc: "(كل الأدوات بيدك والابداع عليك)", imgs: ["18.jpg", "55.jpg"], extras: [{ name: "زيادة فستق", price: 4 }, { name: "زيادة كيندر", price: 4 }, { name: "زيادة سبرنكلز", price: 1 }, { name: "زيادة دونات كوكيز", price: 5 }] },
+            { id: "b3", name: "بوكس المرح (5 حبات)", cat: "boxes", price: 55, desc: "(كل الأدوات بيدك والابداع عليك)", imgs: ["20.jpg"], extras: [{name:"زيادة كريمة", price:5}, {name:"زيادة كوكيز", price:6}, {name:"زيادة سبرنكلز", price:1}] },
+            { id: "b4", name: "بوكس المرح (8 حبات)", cat: "boxes", price: 88, desc: "(كل الأدوات بيدك والابداع عليك)", imgs: ["20.jpg"], extras: [{name:"زيادة كريمة", price:5}, {name:"زيادة كوكيز", price:6}, {name:"زيادة سبرنكلز", price:1}] }
         ];
 
         let cart = {};
+
         function renderMenu(items) {
             const container = document.getElementById('menuContent');
             container.innerHTML = "";
@@ -219,12 +164,34 @@
                             extrasHtml = `<div class="extras-container">`;
                             item.extras.forEach(ex => {
                                 const exId = `ex_${item.id}_${ex.name.replace(/\s/g, '')}`;
-                                extrasHtml += `<div class="extra-item"><span class="extra-name">${ex.name} (+${ex.price})</span><div class="extra-ctrl"><button class="btn-extra" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, 1)">+</button><span class="extra-qty">${cart[exId]?.qty || 0}</span><button class="btn-extra" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, -1)">-</button></div></div>`;
-                                if(ex.hasNote) { extrasHtml += `<input type="text" class="note-box" id="note-${exId}" style="display:${(cart[exId]?.qty > 0) ? 'block' : 'none'}" oninput="updateNote('${exId}', this.value)" placeholder="اكتب النص هنا..." value="${cart[exId]?.note || ''}">`; }
+                                extrasHtml += `
+                                <div class="extra-item">
+                                    <span class="extra-name">${ex.name} (+${ex.price})</span>
+                                    <div class="extra-ctrl">
+                                        <button class="btn-extra" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, 1, '${item.id}')">+</button>
+                                        <span class="extra-qty" id="mq-${exId}">${cart[exId]?.qty || 0}</span>
+                                        <button class="btn-extra" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, -1, '${item.id}')">-</button>
+                                    </div>
+                                </div>`;
+                                if(ex.hasNote) extrasHtml += `<input type="text" id="note-${exId}" class="note-box" style="display:${(cart[exId]?.qty > 0) ? 'block' : 'none'}" oninput="updateNote('${exId}', this.value)" placeholder="اكتب ملاحظتك هنا..." value="${cart[exId]?.note || ''}">`;
                             });
                             extrasHtml += `</div>`;
                         }
-                        grid += `<div class="product-card"><div class="image-container">${imgsHtml}</div><div class="product-info"><h3>${item.name}</h3><div class="product-desc">${item.desc}</div><span class="price-text">${item.price} ريال</span></div>${extrasHtml}<div class="main-controls"><button class="btn-main" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, 1)">+</button><span class="main-qty">${cart[item.id]?.qty || 0}</span><button class="btn-main" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, -1)">-</button></div></div>`;
+                        grid += `
+                        <div class="product-card">
+                            <div class="image-container" onclick="openProductPage('${item.id}')">${imgsHtml}</div>
+                            <div class="product-info" onclick="openProductPage('${item.id}')">
+                                <h3>${item.name}</h3>
+                                <div class="product-desc">${item.desc}</div>
+                                <span class="price-text">${item.price} ريال</span>
+                            </div>
+                            ${extrasHtml}
+                            <div class="main-controls">
+                                <button class="btn-main" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, 1)">+</button>
+                                <span class="main-qty" id="mq-${item.id}">${cart[item.id]?.qty || 0}</span>
+                                <button class="btn-main" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, -1)">-</button>
+                            </div>
+                        </div>`;
                     });
                     container.innerHTML += grid + '</div>';
                 }
@@ -232,12 +199,159 @@
             startSliders();
         }
 
-        function changeQty(id, name, price, delta) { if (!cart[id]) cart[id] = { name: name, price: price, qty: 0, note: "" }; cart[id].qty += delta; if (cart[id].qty <= 0) delete cart[id]; updateCartUI(); renderMenu(products); }
-        function updateNote(id, val) { if(cart[id]) cart[id].note = val; }
-        function updateCartUI() { let count = 0, total = 0; for (let id in cart) { count += cart[id].qty; total += (cart[id].qty * cart[id].price); } document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none'; document.getElementById('itemsCount').innerText = count; document.getElementById('totalPrice').innerText = total + " ريال"; }
-        function startSliders() { document.querySelectorAll('.product-card').forEach(card => { const imgs = card.querySelectorAll('.image-container img'); if (imgs.length > 1 && !card.dataset.sliderSet) { let idx = 0; setInterval(() => { imgs.forEach(img => img.classList.remove('active')); idx = (idx + 1) % imgs.length; imgs[idx].classList.add('active'); }, 3500); card.dataset.sliderSet = "true"; } }); }
-        function sendWhatsApp() { let msg = "أهلاً كوكيز ميما، طلب جديد 🍪:\n\n"; let grandTotal = 0; for (let id in cart) { let item = cart[id]; msg += `• ${item.name.replace(/<[^>]*>/g, '')} (${item.qty} حبة) = ${item.qty * item.price} ريال\n`; if(item.note) msg += `  - ملاحظة: ${item.note}\n`; grandTotal += (item.qty * item.price); } msg += `\n💰 الإجمالي: ${grandTotal} ريال`; window.open(`https://wa.me/966502509910?text=${encodeURIComponent(msg)}`); }
-        function filterMenu(cat, btn) { document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderMenu(cat === 'all' ? products : products.filter(p => p.cat === cat)); }
+        function openProductPage(productId) {
+            const item = products.find(p => p.id === productId);
+            document.getElementById('pageHeaderTitle').innerText = item.name;
+            let imgsHtml = item.imgs.map((img, idx) => `<img src="${img}" class="${idx===0?'active':''}" id="pimg-${idx}">`).join('');
+            let dotsHtml = item.imgs.map((_, idx) => `<div class="dot ${idx===0?'active':''}" id="pdot-${idx}"></div>`).join('');
+            
+            let extrasHtml = '';
+            if (item.extras) {
+                extrasHtml = `<div class="page-extras"><h3 style="font-size:14px; color:var(--main-brown)">الإضافات:</h3>`;
+                item.extras.forEach(ex => {
+                    const exId = `ex_${item.id}_${ex.name.replace(/\s/g, '')}`;
+                    extrasHtml += `
+                    <div class="page-extra-item">
+                        <span style="font-size:12px">${ex.name} (+${ex.price} ريال)</span>
+                        <div style="display:flex; align-items:center; gap:8px">
+                            <button class="btn-main" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, -1, '${item.id}')" style="width:25px;height:25px">-</button>
+                            <span id="q-${exId}" style="font-weight:bold">${cart[exId]?.qty || 0}</span>
+                            <button class="btn-main" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, 1, '${item.id}')" style="width:25px;height:25px">+</button>
+                        </div>
+                    </div>`;
+                    if(ex.hasNote) extrasHtml += `<input type="text" id="pnote-${exId}" class="note-box" style="display:${(cart[exId]?.qty > 0) ? 'block' : 'none'}" oninput="updateNote('${exId}', this.value)" placeholder="اكتب ملاحظتك هنا..." value="${cart[exId]?.note || ''}">`;
+                });
+                extrasHtml += `</div>`;
+            }
+
+            document.getElementById('pageContent').innerHTML = `
+                <div class="page-slider" onclick="nextImg(${item.imgs.length})">
+                    ${imgsHtml}
+                    <div class="slider-nav">${dotsHtml}</div>
+                </div>
+                <div class="details-section">
+                    <h2 style="color:var(--main-brown); margin:0">${item.name}</h2>
+                    <p style="color:var(--main-pink); font-size:13px; font-weight:bold">${item.desc}</p>
+                    <span style="font-size:18px; font-weight:800; color:var(--main-pink)">${item.price} ريال</span>
+                    ${extrasHtml}
+                    <div style="margin-top:20px; background:var(--main-brown); color:white; padding:15px; border-radius:12px; display:flex; justify-content:space-between; align-items:center">
+                        <span>الكمية:</span>
+                        <div style="display:flex; align-items:center; gap:12px">
+                            <button class="btn-main" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, -1)" style="background:white; color:var(--main-brown)">-</button>
+                            <span id="q-${item.id}" style="font-weight:bold; font-size:18px">${cart[item.id]?.qty || 0}</span>
+                            <button class="btn-main" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, 1)" style="background:white; color:var(--main-brown)">+</button>
+                        </div>
+                    </div>
+                </div>`;
+            document.getElementById('mainView').style.display = 'none';
+            document.getElementById('productPage').style.display = 'block';
+            window.scrollTo(0,0);
+        }
+
+        let currentImgIdx = 0;
+        function nextImg(total) {
+            document.getElementById(`pimg-${currentImgIdx}`).classList.remove('active');
+            document.getElementById(`pdot-${currentImgIdx}`).classList.remove('active');
+            currentImgIdx = (currentImgIdx + 1) % total;
+            document.getElementById(`pimg-${currentImgIdx}`).classList.add('active');
+            document.getElementById(`pdot-${currentImgIdx}`).classList.add('active');
+        }
+
+        function closeProductPage() {
+            document.getElementById('productPage').style.display = 'none';
+            document.getElementById('mainView').style.display = 'block';
+            currentImgIdx = 0;
+            renderMenu(products); // تحديث الأرقام في القائمة الرئيسية عند العودة
+        }
+
+        function changeQty(id, name, price, delta, parentId = null) { 
+            if (!cart[id]) cart[id] = { name: name, price: price, qty: 0, note: "", parentId: parentId }; 
+            cart[id].qty += delta; 
+            if (cart[id].qty <= 0) {
+                if(!parentId) { for (let key in cart) { if(cart[key].parentId === id) delete cart[key]; } }
+                delete cart[id];
+            }
+            // تحديث العناصر في كل مكان (الصفحة الرئيسية والداخلية)
+            const qElem = document.getElementById(`q-${id}`); if(qElem) qElem.innerText = cart[id]?.qty || 0;
+            const mqElem = document.getElementById(`mq-${id}`); if(mqElem) mqElem.innerText = cart[id]?.qty || 0;
+            
+            // تحديث الملاحظات في الجهتين
+            const nElem = document.getElementById(`note-${id}`); if(nElem) nElem.style.display = (cart[id]?.qty > 0) ? 'block' : 'none';
+            const pnElem = document.getElementById(`pnote-${id}`); if(pnElem) pnElem.style.display = (cart[id]?.qty > 0) ? 'block' : 'none';
+            
+            updateCartUI();
+        }
+
+        function updateNote(id, val) { 
+            if(cart[id]) cart[id].note = val; 
+            // مزامنة النص بين الداخل والخارج
+            const nElem = document.getElementById(`note-${id}`);
+            const pnElem = document.getElementById(`pnote-${id}`);
+            if(nElem) nElem.value = val;
+            if(pnElem) pnElem.value = val;
+        }
+        
+        function updateCartUI() { 
+            let count = 0, total = 0; 
+            for (let id in cart) { count += cart[id].qty; total += (cart[id].qty * cart[id].price); } 
+            document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none'; 
+            document.getElementById('itemsCount').innerText = count; 
+            document.getElementById('totalPrice').innerText = total + " ريال"; 
+        }
+
+        function startSliders() { 
+            document.querySelectorAll('.product-card').forEach(card => { 
+                const imgs = card.querySelectorAll('.image-container img'); 
+                if (imgs.length > 1 && !card.dataset.sliderSet) { 
+                    setInterval(() => { 
+                        let activeIdx = Array.from(imgs).findIndex(img => img.classList.contains('active'));
+                        if(activeIdx !== -1) {
+                            imgs[activeIdx].classList.remove('active'); 
+                            imgs[(activeIdx + 1) % imgs.length].classList.add('active'); 
+                        }
+                    }, 4000); card.dataset.sliderSet = "true"; 
+                } 
+            }); 
+        }
+
+        function openReview() {
+            const list = document.getElementById('reviewItems');
+            list.innerHTML = ""; let total = 0;
+            for (let id in cart) {
+                let item = cart[id];
+                if(!item.parentId) {
+                    let details = "";
+                    for(let exId in cart) { if(cart[exId].parentId === id) details += `<div style="font-size:11px; color:#d63384; margin-right:15px;">+ ${cart[exId].name} (${cart[exId].qty}) ${cart[exId].note ? '- الملاحظة: ' + cart[exId].note : ''}</div>`; }
+                    list.innerHTML += `<div style="border-bottom:1px dashed #ddd; padding:10px 0"><b>${item.name} (${item.qty})</b> - ${item.qty * item.price} ريال ${details}</div>`;
+                    total += (item.qty * item.price);
+                }
+            }
+            document.getElementById('modalTotal').innerText = total;
+            document.getElementById('reviewModal').style.display = 'block';
+        }
+
+        function closeReview() { document.getElementById('reviewModal').style.display = 'none'; }
+
+        function sendWhatsApp() { 
+            let msg = "أهلاً كوكيز ميما، طلب جديد 🍪:\n\n"; 
+            let grandTotal = 0; 
+            for (let id in cart) { 
+                let item = cart[id];
+                if(!item.parentId) {
+                    msg += `• *${item.name}* (${item.qty} حبة)\n`;
+                    for(let exId in cart) { if(cart[exId].parentId === id) msg += `  - ${cart[exId].name} (${cart[exId].qty}) ${cart[exId].note ? '['+cart[exId].note+']' : ''}\n`; }
+                    grandTotal += (item.qty * item.price);
+                }
+            } 
+            msg += `\n💰 الإجمالي: ${grandTotal} ريال`; 
+            window.open(`https://wa.me/966502509910?text=${encodeURIComponent(msg)}`); 
+        }
+
+        function filterMenu(cat, btn) { 
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active')); 
+            btn.classList.add('active'); 
+            renderMenu(cat === 'all' ? products : products.filter(p => p.cat === cat)); 
+        }
         renderMenu(products);
     </script>
 </body>
