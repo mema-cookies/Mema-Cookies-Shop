@@ -60,8 +60,7 @@
         .btn-main { background: var(--main-pink); color: white; border: none; width: 32px; height: 32px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 18px; }
         .main-qty { font-weight: bold; color: var(--main-brown); font-size: 16px; }
 
-        /* صفحة المنتج المنفصلة */
-        #productPage { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 3000; overflow-y: auto; padding-bottom: 180px; }
+        #productPage { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 3000; overflow-y: auto; padding-bottom: 120px; }
         .back-nav { padding: 15px; background: white; position: sticky; top: 0; display: flex; align-items: center; gap: 10px; z-index: 10; border-bottom: 1px solid #eee; }
         .btn-back { background: var(--soft-pink); border: none; padding: 10px 15px; border-radius: 12px; color: var(--main-pink); font-weight: bold; cursor: pointer; }
         
@@ -69,7 +68,6 @@
         .page-slider img { width: 100%; height: 100%; object-fit: contain; position: absolute; opacity: 0; transition: 0.5s; }
         .page-slider img.active { opacity: 1; }
         
-        /* أسهم التنقل */
         .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.3); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 20px; z-index: 5; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .arrow-left { left: 10px; }
         .arrow-right { right: 10px; }
@@ -82,12 +80,18 @@
         .page-extras { background: #fffcfd; border-radius: 15px; padding: 15px; border: 1px solid #fce4ec; margin-top: 20px; }
         .page-extra-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f9e2e7; }
         
-        /* تقليص زر الإضافة البني لعدم التغطية */
-        .sticky-control { position: sticky; bottom: 85px; margin: 0 20px; background: var(--main-brown); color: white; padding: 10px 20px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; z-index: 3500; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
+        /* زر الإضافة البني يظهر بشكل طبيعي تحت الإضافات */
+        .page-action-btn { margin: 20px; background: var(--main-brown); color: white; padding: 15px 25px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; }
 
         .cart-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 85%; max-width: 400px; background: var(--main-pink); color: white; padding: 18px; border-radius: 50px; display: none; justify-content: space-between; align-items: center; z-index: 4000; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 5000; overflow-y: auto; }
         .modal-body { background: white; width: 90%; max-width: 450px; margin: 40px auto; border-radius: 20px; padding: 20px; direction: rtl; }
+        
+        /* تنسيق أزرار الحذف والزيادة داخل السلة */
+        .cart-item-row { display: flex; flex-direction: column; border-bottom: 1px dashed #ddd; padding: 12px 0; }
+        .cart-item-header { display: flex; justify-content: space-between; align-items: center; }
+        .cart-item-ctrl { display: flex; align-items: center; gap: 10px; }
+        .btn-cart-qty { background: #f8d7da; border: 1px solid var(--main-pink); color: var(--main-pink); width: 28px; height: 28px; border-radius: 50%; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -249,7 +253,7 @@
                     <span style="font-size:22px; font-weight:800; color:var(--main-pink); display:block; margin:15px 0">${item.price} ريال</span>
                     ${extrasHtml}
                 </div>
-                <div class="sticky-control">
+                <div class="page-action-btn">
                     <span style="font-size:14px">إضافة المنتج:</span>
                     <div style="display:flex; align-items:center; gap:12px">
                         <button class="btn-main" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, 1)" style="background:white; color:var(--main-brown)">+</button>
@@ -298,6 +302,7 @@
             const nElem = document.getElementById(`note-${id}`); if(nElem) nElem.style.display = (cart[id]?.qty > 0) ? 'block' : 'none';
             const pnElem = document.getElementById(`pnote-${id}`); if(pnElem) pnElem.style.display = (cart[id]?.qty > 0) ? 'block' : 'none';
             updateCartUI();
+            if(document.getElementById('reviewModal').style.display === 'block') openReview();
         }
 
         function updateNote(id, val) { 
@@ -338,8 +343,32 @@
                 let item = cart[id];
                 if(!item.parentId) {
                     let details = "";
-                    for(let exId in cart) { if(cart[exId].parentId === id) details += `<div style="font-size:11px; color:#d63384; margin-right:15px; text-align:center;">+ ${cart[exId].name} (${cart[exId].qty}) ${cart[exId].note ? '- الملاحظة: ' + cart[exId].note : ''}</div>`; }
-                    list.innerHTML += `<div style="border-bottom:1px dashed #ddd; padding:10px 0; text-align:center;"><b>${item.name} (${item.qty})</b> - ${item.qty * item.price} ريال ${details}</div>`;
+                    for(let exId in cart) { 
+                        if(cart[exId].parentId === id) {
+                            details += `
+                            <div class="cart-item-header" style="margin-right:20px; color:#d63384; font-size:11px;">
+                                <span>+ ${cart[exId].name} ${cart[exId].note ? '['+cart[exId].note+']' : ''}</span>
+                                <div class="cart-item-ctrl">
+                                    <button class="btn-cart-qty" onclick="changeQty('${exId}', '${cart[exId].name}', ${cart[exId].price}, 1, '${id}')">+</button>
+                                    <span>${cart[exId].qty}</span>
+                                    <button class="btn-cart-qty" onclick="changeQty('${exId}', '${cart[exId].name}', ${cart[exId].price}, -1, '${id}')">-</button>
+                                </div>
+                            </div>`;
+                        }
+                    }
+                    list.innerHTML += `
+                    <div class="cart-item-row">
+                        <div class="cart-item-header">
+                            <b>${item.name}</b>
+                            <div class="cart-item-ctrl">
+                                <button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, 1)">+</button>
+                                <span>${item.qty}</span>
+                                <button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, -1)">-</button>
+                            </div>
+                        </div>
+                        <div style="text-align:left; font-size:12px; color:var(--main-pink); margin-top:5px;">${item.qty * item.price} ريال</div>
+                        ${details}
+                    </div>`;
                     total += (item.qty * item.price);
                 }
             }
