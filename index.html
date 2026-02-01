@@ -17,21 +17,20 @@
             font-family: 'Segoe UI', Tahoma, sans-serif; 
             margin: 0; 
             background-color: var(--soft-pink); 
-            padding-bottom: 100px; /* مساحة لضمان عدم تغطية الشريط الوردي للمحتوى */
+            /* زيادة المساحة السفلية للموقع ككل لضمان حرية الحركة */
+            padding-bottom: 180px; 
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* الهيدر والقوائم */
         header { background-color: var(--soft-pink); background-image: url('logo.jpg'); background-size: contain; background-position: center top; background-repeat: no-repeat; width: 100%; height: 260px; border-bottom: 3px solid var(--main-pink); }
+        
         .marquee-container { background-color: var(--main-pink); color: white; overflow: hidden; padding: 12px 0; font-size: 14px; font-weight: bold; position: sticky; top: 0; z-index: 1001; text-align: center; }
         .marquee-text { display: inline-block; white-space: nowrap; animation: bounce-slide 10s ease-in-out infinite; }
         @keyframes bounce-slide { 0%, 100% { transform: translateX(-5%); } 50% { transform: translateX(5%); } }
 
-        /* أزرار التواصل */
         .instagram-float { position: fixed; top: 70px; left: 20px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; z-index: 2001; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-decoration: none; }
         .whatsapp-float { position: fixed; top: 130px; left: 20px; background-color: #25d366; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; z-index: 2001; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-decoration: none; }
 
-        /* التصنيفات */
         .categories-nav { position: sticky; top: 43px; background: #fff; padding: 12px; display: flex; gap: 10px; overflow-x: auto; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .cat-btn { border: 2px solid var(--main-pink); background: transparent; color: var(--main-pink); padding: 8px 20px; border-radius: 25px; white-space: nowrap; font-weight: bold; cursor: pointer; }
         .cat-btn.active { background: var(--main-pink); color: #fff; }
@@ -39,17 +38,17 @@
         .section-title { background: var(--main-brown); color: white; padding: 8px 20px; margin: 25px 15px 10px; border-radius: 8px; display: inline-block; font-size: 15px; }
         .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; }
         
-        /* كرت المنتج */
         .product-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; flex-direction: column; border: 1px solid #fce4ec; }
+        
         .image-container { width: 100%; height: 150px; overflow: hidden; position: relative; background: #f9f9f9; cursor: pointer; }
         .image-container img { width: 100%; height: 100%; object-fit: cover; position: absolute; opacity:0; transition: opacity 0.5s ease; }
         .image-container img.active { opacity: 1; }
+        
         .product-info { padding: 10px; text-align: center; cursor: pointer; }
         .product-info h3 { margin: 0 0 5px 0; font-size: 13px; color: var(--main-brown); font-weight: bold; }
         .product-desc { font-size: 10px; color: #d63384; margin-bottom: 5px; font-weight: bold; line-height: 1.3; }
         .price-text { color: var(--main-pink); font-weight: 800; font-size: 14px; display: block; margin-bottom: 5px; }
 
-        /* الإضافات داخل الكرت */
         .extras-container { background: #fff9fa; padding: 5px; border-top: 1px dashed #ffd1dc; }
         .extra-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; padding: 0 4px; }
         .extra-name { font-size: 9px; color: #666; font-weight: bold; flex: 1; text-align: center; }
@@ -62,15 +61,32 @@
         .btn-main { background: var(--main-pink); color: white; border: none; width: 32px; height: 32px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 18px; }
         .main-qty { font-weight: bold; color: var(--main-brown); font-size: 16px; }
 
-        /* صفحة تفاصيل المنتج */
-        #productPage { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 3000; overflow-y: auto; padding-bottom: 150px; }
+        /* صفحة تفاصيل المنتج المحدثة */
+        #productPage { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: white; 
+            z-index: 3000; 
+            overflow-y: auto; 
+            /* زيادة المسافة الداخلية السفلية لضمان ظهور الزر البني كاملاً */
+            padding-bottom: 220px; 
+        }
+        
         .back-nav { padding: 15px; background: white; position: sticky; top: 0; display: flex; align-items: center; gap: 10px; z-index: 10; border-bottom: 1px solid #eee; }
         .btn-back { background: var(--soft-pink); border: none; padding: 10px 15px; border-radius: 12px; color: var(--main-pink); font-weight: bold; cursor: pointer; }
+        
         .page-slider { width: 100%; height: 350px; position: relative; background: #000; overflow: hidden; }
         .page-slider img { width: 100%; height: 100%; object-fit: contain; position: absolute; opacity: 0; transition: 0.5s; }
         .page-slider img.active { opacity: 1; }
-        .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.3); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; z-index: 5; display: flex; align-items: center; justify-content: center; }
-        .arrow-left { left: 10px; } .arrow-right { right: 10px; }
+        
+        .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.3); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 20px; z-index: 5; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .arrow-left { left: 10px; }
+        .arrow-right { right: 10px; }
+
         .slider-nav { position: absolute; bottom: 15px; width: 100%; display: flex; justify-content: center; gap: 5px; }
         .dot { width: 8px; height: 8px; background: rgba(255,255,255,0.5); border-radius: 50%; }
         .dot.active { background: white; width: 20px; border-radius: 10px; }
@@ -78,18 +94,18 @@
         .details-section { padding: 20px; text-align: center; }
         .page-extras { background: #fffcfd; border-radius: 15px; padding: 15px; border: 1px solid #fce4ec; margin: 20px; text-align: right; }
         .page-extra-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f9e2e7; }
+        
+        /* زر الإضافة البني في صفحة التفاصيل */
+        .page-action-container { padding: 0 20px; margin-bottom: 50px; }
+        .btn-add-product { background: var(--main-brown); color: white; padding: 18px 25px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; width: 100%; border: none; font-size: 16px; font-family: inherit; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
-        /* تعديل احترافي: زر الإضافة البني مدمج في محتوى الصفحة وليس عائماً */
-        .page-action-container { padding: 0 20px; margin-bottom: 30px; }
-        .btn-add-product { background: var(--main-brown); color: white; padding: 18px 25px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; width: 100%; border: none; font-size: 16px; font-family: inherit; }
-
-        /* تعديل احترافي: شريط عرض الطلب الوردي ثابت في أسفل الشاشة تماماً */
+        /* شريط عرض الطلب الوردي الثابت */
         .cart-fixed-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--main-pink); color: white; padding: 20px 0; display: none; justify-content: center; align-items: center; z-index: 4000; box-shadow: 0 -4px 15px rgba(0,0,0,0.1); border-radius: 25px 25px 0 0; cursor: pointer; }
         .cart-content-wrapper { display: flex; justify-content: space-between; width: 85%; max-width: 500px; font-weight: bold; font-size: 16px; }
 
-        /* نافذة مراجعة السلة */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 5000; overflow-y: auto; }
         .modal-body { background: white; width: 90%; max-width: 450px; margin: 40px auto; border-radius: 20px; padding: 20px; direction: rtl; }
+        
         .cart-item-row { display: flex; flex-direction: column; border-bottom: 1px dashed #ddd; padding: 12px 0; }
         .cart-item-header { display: flex; justify-content: space-between; align-items: center; }
         .cart-item-ctrl { display: flex; align-items: center; gap: 10px; }
@@ -142,7 +158,6 @@
     </div>
 
     <script>
-        // داتا المنتجات (بدون تغيير)
         const products = [
             { id: "c1", name: "كوكيز ميما", cat: "cookies", price: 5, desc: "(طراوة ولذة - بشوكلت بلجيكي فاخر)", imgs: ["3.jpg", "51.jpg", "52.jpg", "53.jpg"] },
             { id: "c2", name: "بايتس كوكيز", cat: "cookies", price: 1, desc: "(صغيرة بالحجم - كبيره بالطعم تذوب وتخليك تبتسم)", imgs: ["8.jpg", "56.jpg", "57.jpg", "58.jpg", "59.jpg", "60.jpg"], extras: [{ name: "صوص شوكلاتة بلجيكية", price: 2 }, { name: "صوص فستق", price: 2 }, { name: "صوص كيندر", price: 2 }, { name: "صوص شوكلاتة بيضاء", price: 2 }] },
@@ -259,8 +274,8 @@
                 </div>
                 ${extrasHtml}
                 <div class="page-action-container">
-                    <button class="btn-add-product">
-                        <span>إضافة للمنتج الحالي:</span>
+                    <button class="btn-add-product" onclick="closeProductPage()">
+                        <span>إضافة المنتج الحالي للطلب</span>
                         <div style="display:flex; align-items:center; gap:15px">
                             <div class="btn-main" onclick="event.stopPropagation(); changeQty('${item.id}', '${item.name}', ${item.price}, 1)" style="background:white; color:var(--main-brown); display:flex; align-items:center; justify-content:center;">+</div>
                             <span id="q-${item.id}" style="font-weight:bold; font-size:20px">${cart[item.id]?.qty || 0}</span>
@@ -273,7 +288,6 @@
             window.scrollTo(0,0);
         }
 
-        // منطق السلايدر (بدون تغيير)
         let currentImgIdx = 0;
         function nextImg(total) {
             document.getElementById(`pimg-${currentImgIdx}`).classList.remove('active');
@@ -303,7 +317,6 @@
                 if(!parentId) { for (let key in cart) { if(cart[key].parentId === id) delete cart[key]; } }
                 delete cart[id];
             }
-            // تحديث العناصر في الواجهة إن وجدت
             ['q-'+id, 'mq-'+id].forEach(eid => {
                 const el = document.getElementById(eid);
                 if(el) el.innerText = cart[id]?.qty || 0;
