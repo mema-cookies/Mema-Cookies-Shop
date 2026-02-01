@@ -17,7 +17,6 @@
             font-family: 'Segoe UI', Tahoma, sans-serif; 
             margin: 0; 
             background-color: var(--soft-pink); 
-            /* زيادة المساحة السفلية للموقع ككل لضمان حرية الحركة */
             padding-bottom: 180px; 
             -webkit-tap-highlight-color: transparent;
         }
@@ -39,7 +38,6 @@
         .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; }
         
         .product-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; flex-direction: column; border: 1px solid #fce4ec; }
-        
         .image-container { width: 100%; height: 150px; overflow: hidden; position: relative; background: #f9f9f9; cursor: pointer; }
         .image-container img { width: 100%; height: 100%; object-fit: cover; position: absolute; opacity:0; transition: opacity 0.5s ease; }
         .image-container img.active { opacity: 1; }
@@ -61,32 +59,14 @@
         .btn-main { background: var(--main-pink); color: white; border: none; width: 32px; height: 32px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 18px; }
         .main-qty { font-weight: bold; color: var(--main-brown); font-size: 16px; }
 
-        /* صفحة تفاصيل المنتج المحدثة */
-        #productPage { 
-            display: none; 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: white; 
-            z-index: 3000; 
-            overflow-y: auto; 
-            /* زيادة المسافة الداخلية السفلية لضمان ظهور الزر البني كاملاً */
-            padding-bottom: 220px; 
-        }
-        
+        #productPage { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 3000; overflow-y: auto; padding-bottom: 220px; }
         .back-nav { padding: 15px; background: white; position: sticky; top: 0; display: flex; align-items: center; gap: 10px; z-index: 10; border-bottom: 1px solid #eee; }
         .btn-back { background: var(--soft-pink); border: none; padding: 10px 15px; border-radius: 12px; color: var(--main-pink); font-weight: bold; cursor: pointer; }
-        
         .page-slider { width: 100%; height: 350px; position: relative; background: #000; overflow: hidden; }
         .page-slider img { width: 100%; height: 100%; object-fit: contain; position: absolute; opacity: 0; transition: 0.5s; }
         .page-slider img.active { opacity: 1; }
-        
         .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.3); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 20px; z-index: 5; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .arrow-left { left: 10px; }
-        .arrow-right { right: 10px; }
-
+        .arrow-left { left: 10px; } .arrow-right { right: 10px; }
         .slider-nav { position: absolute; bottom: 15px; width: 100%; display: flex; justify-content: center; gap: 5px; }
         .dot { width: 8px; height: 8px; background: rgba(255,255,255,0.5); border-radius: 50%; }
         .dot.active { background: white; width: 20px; border-radius: 10px; }
@@ -94,18 +74,14 @@
         .details-section { padding: 20px; text-align: center; }
         .page-extras { background: #fffcfd; border-radius: 15px; padding: 15px; border: 1px solid #fce4ec; margin: 20px; text-align: right; }
         .page-extra-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f9e2e7; }
-        
-        /* زر الإضافة البني في صفحة التفاصيل */
         .page-action-container { padding: 0 20px; margin-bottom: 50px; }
         .btn-add-product { background: var(--main-brown); color: white; padding: 18px 25px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; width: 100%; border: none; font-size: 16px; font-family: inherit; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
-        /* شريط عرض الطلب الوردي الثابت */
         .cart-fixed-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--main-pink); color: white; padding: 20px 0; display: none; justify-content: center; align-items: center; z-index: 4000; box-shadow: 0 -4px 15px rgba(0,0,0,0.1); border-radius: 25px 25px 0 0; cursor: pointer; }
         .cart-content-wrapper { display: flex; justify-content: space-between; width: 85%; max-width: 500px; font-weight: bold; font-size: 16px; }
 
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 5000; overflow-y: auto; }
         .modal-body { background: white; width: 90%; max-width: 450px; margin: 40px auto; border-radius: 20px; padding: 20px; direction: rtl; }
-        
         .cart-item-row { display: flex; flex-direction: column; border-bottom: 1px dashed #ddd; padding: 12px 0; }
         .cart-item-header { display: flex; justify-content: space-between; align-items: center; }
         .cart-item-ctrl { display: flex; align-items: center; gap: 10px; }
@@ -310,13 +286,16 @@
             renderMenu(products);
         }
 
+        // تم تعديل هذه الوظيفة لضمان دخول الإضافات في الحساب فوراً
         function changeQty(id, name, price, delta, parentId = null) { 
             if (!cart[id]) cart[id] = { name: name, price: price, qty: 0, note: "", parentId: parentId }; 
             cart[id].qty += delta; 
             if (cart[id].qty <= 0) {
+                // إذا كان منتج أساسي، احذف إضافاته معه. إذا كانت إضافة، احذفها هي فقط.
                 if(!parentId) { for (let key in cart) { if(cart[key].parentId === id) delete cart[key]; } }
                 delete cart[id];
             }
+            
             ['q-'+id, 'mq-'+id].forEach(eid => {
                 const el = document.getElementById(eid);
                 if(el) el.innerText = cart[id]?.qty || 0;
@@ -337,9 +316,13 @@
             });
         }
         
+        // تعديل منطق الحساب الإجمالي
         function updateCartUI() { 
             let count = 0, total = 0; 
-            for (let id in cart) { count += cart[id].qty; total += (cart[id].qty * cart[id].price); } 
+            for (let id in cart) { 
+                count += cart[id].qty; 
+                total += (cart[id].qty * cart[id].price); 
+            } 
             document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none'; 
             document.getElementById('itemsCount').innerText = count; 
             document.getElementById('totalPrice').innerText = total + " ريال"; 
@@ -363,6 +346,7 @@
         function openReview() {
             const list = document.getElementById('reviewItems');
             list.innerHTML = ""; let total = 0;
+            // عرض المنتجات الأساسية أولاً
             for (let id in cart) {
                 let item = cart[id];
                 if(!item.parentId) {
@@ -370,11 +354,10 @@
                     for(let exId in cart) { 
                         if(cart[exId].parentId === id) {
                             details += `
-                            <div class="cart-item-header" style="margin-right:20px; color:#d63384; font-size:11px;">
-                                <span>+ ${cart[exId].name} ${cart[exId].note ? '['+cart[exId].note+']' : ''}</span>
+                            <div class="cart-item-header" style="margin-right:20px; color:#d63384; font-size:12px; margin-top:5px;">
+                                <span>+ ${cart[exId].name} (${cart[exId].qty}) ${cart[exId].note ? '['+cart[exId].note+']' : ''}</span>
                                 <div class="cart-item-ctrl">
                                     <button class="btn-cart-qty" onclick="changeQty('${exId}', '${cart[exId].name}', ${cart[exId].price}, 1, '${id}')">+</button>
-                                    <span>${cart[exId].qty}</span>
                                     <button class="btn-cart-qty" onclick="changeQty('${exId}', '${cart[exId].name}', ${cart[exId].price}, -1, '${id}')">-</button>
                                 </div>
                             </div>`;
@@ -390,14 +373,24 @@
                                 <button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, -1)">-</button>
                             </div>
                         </div>
-                        <div style="text-align:left; font-size:12px; color:var(--main-pink); margin-top:5px;">${item.qty * item.price} ريال</div>
                         ${details}
+                        <div style="text-align:left; font-size:12px; color:var(--main-pink); margin-top:5px; border-bottom: 1px solid #eee; padding-bottom: 5px;">سعر المنتج ومجموع إضافاته: ${(item.qty * item.price) + getExtrasTotal(id)} ريال</div>
                     </div>`;
-                    total += (item.qty * item.price);
+                    total += (item.qty * item.price) + getExtrasTotal(id);
                 }
             }
             document.getElementById('modalTotal').innerText = total;
             document.getElementById('reviewModal').style.display = 'block';
+        }
+
+        function getExtrasTotal(parentId) {
+            let total = 0;
+            for(let id in cart) {
+                if(cart[id].parentId === parentId) {
+                    total += (cart[id].qty * cart[id].price);
+                }
+            }
+            return total;
         }
 
         function closeReview() { document.getElementById('reviewModal').style.display = 'none'; }
@@ -408,12 +401,19 @@
             for (let id in cart) { 
                 let item = cart[id];
                 if(!item.parentId) {
+                    let itemTotal = (item.qty * item.price);
                     msg += `• *${item.name}* (${item.qty} حبة)\n`;
-                    for(let exId in cart) { if(cart[exId].parentId === id) msg += `  - ${cart[exId].name} (${cart[exId].qty}) ${cart[exId].note ? '['+cart[exId].note+']' : ''}\n`; }
-                    grandTotal += (item.qty * item.price);
+                    for(let exId in cart) { 
+                        if(cart[exId].parentId === id) {
+                            msg += `  - ${cart[exId].name} (${cart[exId].qty}) ${cart[exId].note ? '['+cart[exId].note+']' : ''}\n`;
+                            itemTotal += (cart[exId].qty * cart[exId].price);
+                        }
+                    }
+                    msg += `  المجموع للمنتج: ${itemTotal} ريال\n\n`;
+                    grandTotal += itemTotal;
                 }
             } 
-            msg += `\n💰 الإجمالي: ${grandTotal} ريال`; 
+            msg += `\n💰 *الإجمالي النهائي: ${grandTotal} ريال*`; 
             window.open(`https://wa.me/966502509910?text=${encodeURIComponent(msg)}`); 
         }
 
