@@ -92,6 +92,7 @@
         .page-extras { background: #fffcfd; border-radius: 15px; padding: 15px; border: 1px solid #fce4ec; margin: 20px; text-align: right; }
         .page-action-container { padding: 0 20px; margin-bottom: 50px; }
         .btn-add-product { background: var(--main-brown); color: white; padding: 18px 25px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; width: 100%; border: none; font-size: 16px; font-family: inherit; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .btn-cart-qty { background: #eee; border: none; width: 28px; height: 28px; border-radius: 6px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -131,11 +132,11 @@
 
     <div id="reviewModal" class="modal-overlay">
         <div class="modal-body">
-            <h3 style="text-align:center; color:var(--main-pink); margin-bottom:20px;">مراجعة تفاصيل طلبك 🍪</h3>
+            <h3 style="text-align:center; color:var(--main-pink); margin-bottom:20px;">🍪 مراجعة طلبك 🍪</h3>
             <div id="reviewItems"></div>
             <div style="text-align:center; font-weight:800; margin:20px 0; font-size:22px; color:var(--main-brown);">الإجمالي: <span id="modalTotal" style="color:var(--main-pink)">0</span> ريال</div>
             <button onclick="sendWhatsApp()" style="background: #25d366; color: white; border: none; width: 100%; padding: 18px; border-radius: 15px; font-weight: bold; font-size: 18px; cursor: pointer; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);"><i class="fab fa-whatsapp"></i> إرسال عبر واتساب</button>
-            <button onclick="closeReview()" style="background: #f0f0f0; width: 100%; padding: 12px; border: none; border-radius: 15px; margin-top: 15px; cursor: pointer; font-weight: bold; color: #666;">إغلاق</button>
+            <button onclick="closeReview()" style="background: #f0f0f0; width: 100%; padding: 12px; border: none; border-radius: 15px; margin-top: 15px; cursor: pointer; font-weight: bold; color: #666;">العودة للمتجر</button>
         </div>
     </div>
 
@@ -179,6 +180,7 @@
                         let imgsHtml = item.imgs.map((img, idx) => `<img src="${img}" class="${idx===0?'active':''}">`).join('');
                         let extrasHtml = '';
                         if (item.extras) {
+                            // التعديل الرابع: إرجاع كلمة الاضافات
                             extrasHtml = `<div class="extras-container">`;
                             item.extras.forEach(ex => {
                                 const exId = `ex_${item.id}_${ex.name.replace(/\s/g, '')}`;
@@ -226,7 +228,8 @@
             
             let extrasHtml = '';
             if (item.extras) {
-                extrasHtml = `<div class="page-extras"><h3 style="font-size:16px; color:var(--main-brown); margin-bottom:15px;">خصّص طلبك ✨</h3>`;
+                // التعديل الرابع: إرجاع كلمة الاضافات في صفحة المنتج
+                extrasHtml = `<div class="page-extras"><h3 style="font-size:16px; color:var(--main-brown); margin-bottom:15px;">الاضافات</h3>`;
                 item.extras.forEach(ex => {
                     const exId = `ex_${item.id}_${ex.name.replace(/\s/g, '')}`;
                     extrasHtml += `
@@ -250,7 +253,7 @@
                     <button class="slider-arrow arrow-right" onclick="nextImg(${item.imgs.length})"><i class="fas fa-chevron-left"></i></button>
                     <div class="slider-nav">${dotsHtml}</div>
                 </div>
-                <div class="details-section">
+                <div class="details-section" style="padding:20px; text-align:center">
                     <h2 style="color:var(--main-brown); margin:0; font-size:22px;">${item.name}</h2>
                     <p style="color:var(--main-pink); font-size:14px; font-weight:bold; margin:10px 0">${item.desc}</p>
                     <span style="font-size:28px; font-weight:900; color:var(--main-pink);">${item.price} ريال</span>
@@ -273,17 +276,13 @@
         let currentImgIdx = 0;
         function nextImg(total) {
             document.getElementById(`pimg-${currentImgIdx}`).classList.remove('active');
-            document.getElementById(`pdot-${currentImgIdx}`).classList.remove('active');
             currentImgIdx = (currentImgIdx + 1) % total;
             document.getElementById(`pimg-${currentImgIdx}`).classList.add('active');
-            document.getElementById(`pdot-${currentImgIdx}`).classList.add('active');
         }
         function prevImg(total) {
             document.getElementById(`pimg-${currentImgIdx}`).classList.remove('active');
-            document.getElementById(`pdot-${currentImgIdx}`).classList.remove('active');
             currentImgIdx = (currentImgIdx - 1 + total) % total;
             document.getElementById(`pimg-${currentImgIdx}`).classList.add('active');
-            document.getElementById(`pdot-${currentImgIdx}`).classList.add('active');
         }
 
         function closeProductPage() {
@@ -360,7 +359,7 @@
                             let exCost = cart[exId].qty * cart[exId].price;
                             extrasTotal += exCost;
                             extrasDetails += `
-                            <div class="extra-row-invoice" style="border-bottom:none">
+                            <div class="extra-row-invoice">
                                 <span>+ ${cart[exId].name} (${cart[exId].qty}) ${cart[exId].note ? '<br><small>📝 '+cart[exId].note+'</small>' : ''}</span>
                                 <div class="cart-item-ctrl">
                                     <button class="btn-cart-qty" onclick="changeQty('${exId}', '${cart[exId].name}', ${cart[exId].price}, 1, '${id}')">+</button>
@@ -371,7 +370,7 @@
                         }
                     }
                     list.innerHTML += `
-                    <div class="cart-item-row" style="border-bottom: 2px solid #f0f0f0;">
+                    <div class="cart-item-row">
                         <div class="cart-item-header">
                             <b style="color:var(--main-brown); font-size:16px;">${item.name}</b>
                             <div class="cart-item-ctrl">
