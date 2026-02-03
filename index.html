@@ -27,7 +27,6 @@
         .marquee-text { display: inline-block; white-space: nowrap; animation: bounce-slide 10s ease-in-out infinite; }
         @keyframes bounce-slide { 0%, 100% { transform: translateX(-5%); } 50% { transform: translateX(5%); } }
 
-        /* العناصر التفاعلية Floating Buttons */
         .instagram-float { position: fixed; top: 70px; left: 20px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; z-index: 2001; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-decoration: none; transition: transform 0.2s; }
         .instagram-float:active { transform: scale(1.2); }
         
@@ -51,7 +50,6 @@
         .product-desc { font-size: 10px; color: #d63384; margin-bottom: 5px; font-weight: bold; line-height: 1.3; }
         .price-text { color: var(--main-pink); font-weight: 800; font-size: 14px; display: block; margin-bottom: 5px; }
 
-        /* تحويل الإضافات لعناصر تفاعلية */
         .extras-container { background: #fff9fa; padding: 8px; border-top: 1px dashed #ffd1dc; display: flex; flex-direction: column; gap: 8px; }
         .extra-interactive-item { background: white; border: 1px solid #eee; border-radius: 12px; padding: 8px; display: flex; justify-content: space-between; align-items: center; transition: 0.2s; }
         .extra-interactive-item.selected { border-color: var(--main-pink); background: #fff0f3; box-shadow: 0 2px 5px rgba(214, 51, 132, 0.1); }
@@ -68,7 +66,6 @@
         .btn-main:active { transform: scale(0.9); }
         .main-qty { font-weight: 800; color: var(--main-brown); font-size: 18px; }
 
-        /* صفحة المنتج التفاعلية */
         #productPage { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 3000; overflow-y: auto; padding-bottom: 220px; animation: slideUp 0.4s ease; }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
         
@@ -88,10 +85,13 @@
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 5000; overflow-y: auto; backdrop-filter: blur(5px); }
         .modal-body { background: white; width: 92%; max-width: 450px; margin: 30px auto; border-radius: 25px; padding: 25px; direction: rtl; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         
-        /* تصميم الفاتورة المنفصلة التفاعلي */
         .cart-item-row { background: #fff; border: 1px solid #f0f0f0; border-radius: 15px; padding: 15px; margin-bottom: 12px; }
         .cart-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .extra-row-invoice { background: #fef1f4; border-right: 3px solid var(--main-pink); margin: 5px 0; padding: 8px 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
+        
+        .page-extras { background: #fffcfd; border-radius: 15px; padding: 15px; border: 1px solid #fce4ec; margin: 20px; text-align: right; }
+        .page-action-container { padding: 0 20px; margin-bottom: 50px; }
+        .btn-add-product { background: var(--main-brown); color: white; padding: 18px 25px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; width: 100%; border: none; font-size: 16px; font-family: inherit; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
@@ -124,14 +124,14 @@
 
     <div id="cartBar" class="cart-fixed-bar" onclick="openReview()">
         <div class="cart-content-wrapper">
-            <span>🛒 عرض الطلب (<span id="itemsCount">0</span>)</span>
+            <span>🛒 مراجعة تفاصيل طلبك 🍪 (<span id="itemsCount">0</span>)</span>
             <span id="totalPrice" style="margin-right:20px; background:rgba(255,255,255,0.2); padding:5px 15px; border-radius:15px;">0 ريال</span>
         </div>
     </div>
 
     <div id="reviewModal" class="modal-overlay">
         <div class="modal-body">
-            <h3 style="text-align:center; color:var(--main-pink); margin-bottom:20px;">📦 تفاصيل طلبك</h3>
+            <h3 style="text-align:center; color:var(--main-pink); margin-bottom:20px;">مراجعة تفاصيل طلبك 🍪</h3>
             <div id="reviewItems"></div>
             <div style="text-align:center; font-weight:800; margin:20px 0; font-size:22px; color:var(--main-brown);">الإجمالي: <span id="modalTotal" style="color:var(--main-pink)">0</span> ريال</div>
             <button onclick="sendWhatsApp()" style="background: #25d366; color: white; border: none; width: 100%; padding: 18px; border-radius: 15px; font-weight: bold; font-size: 18px; cursor: pointer; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);"><i class="fab fa-whatsapp"></i> إرسال عبر واتساب</button>
@@ -140,7 +140,6 @@
     </div>
 
     <script>
-        // مصفوفة المنتجات - لا تغيير هنا
         const products = [
             { id: "c1", name: "كوكيز ميما", cat: "cookies", price: 5, desc: "(طراوة ولذة - بشوكلت بلجيكي فاخر)", imgs: ["3.jpg", "51.jpg", "52.jpg", "53.jpg"] },
             { id: "c2", name: "بايتس كوكيز", cat: "cookies", price: 1, desc: "(صغيرة بالحجم - كبيره بالطعم تذوب وتخليك تبتسم)", imgs: ["8.jpg", "56.jpg", "57.jpg", "58.jpg", "59.jpg", "60.jpg"], extras: [{ name: "صوص شوكلاتة بلجيكية", price: 2 }, { name: "صوص فستق", price: 2 }, { name: "صوص كيندر", price: 2 }, { name: "صوص شوكلاتة بيضاء", price: 2 }] },
@@ -219,7 +218,6 @@
             startSliders();
         }
 
-        // نفس وظيفة فتح الصفحة السابقة
         function openProductPage(productId) {
             const item = products.find(p => p.id === productId);
             document.getElementById('pageHeaderTitle').innerText = item.name;
@@ -240,7 +238,7 @@
                             <button class="btn-extra" style="background:#ddd; color:#666" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, -1, '${item.id}')">-</button>
                         </div>
                     </div>`;
-                    if(ex.hasNote) extrasHtml += `<input type="text" id="pnote-${exId}" class="note-box" style="display:${(cart[exId]?.qty > 0) ? 'block' : 'none'}" oninput="updateNote('${exId}', this.value)" placeholder="الملاحظة (مثلاً الاسم)..." value="${cart[exId]?.note || ''}">`;
+                    if(ex.hasNote) extrasHtml += `<input type="text" id="pnote-${exId}" class="note-box" style="display:${(cart[exId]?.qty > 0) ? 'block' : 'none'}" oninput="updateNote('${exId}', this.value)" placeholder="الملاحظة..." value="${cart[exId]?.note || ''}">`;
                 });
                 extrasHtml += `</div>`;
             }
@@ -250,7 +248,7 @@
                     <button class="slider-arrow arrow-left" onclick="prevImg(${item.imgs.length})"><i class="fas fa-chevron-right"></i></button>
                     ${imgsHtml}
                     <button class="slider-arrow arrow-right" onclick="nextImg(${item.imgs.length})"><i class="fas fa-chevron-left"></i></button>
-                    <div class="slider-nav" style="position:absolute; bottom:15px; width:100%; display:flex; justify-content:center; gap:5px;">${dotsHtml}</div>
+                    <div class="slider-nav">${dotsHtml}</div>
                 </div>
                 <div class="details-section">
                     <h2 style="color:var(--main-brown); margin:0; font-size:22px;">${item.name}</h2>
@@ -259,7 +257,7 @@
                 </div>
                 ${extrasHtml}
                 <div class="page-action-container">
-                    <button class="btn-add-product" style="padding: 20px;">
+                    <button class="btn-add-product">
                         <span>أضف للطلب</span>
                         <div style="display:flex; align-items:center; gap:20px">
                             <div class="btn-main" onclick="event.stopPropagation(); changeQty('${item.id}', '${item.name}', ${item.price}, 1)" style="background:white; color:var(--main-brown);">+</div >
@@ -294,7 +292,6 @@
             renderMenu(products);
         }
 
-        // الوظيفة الأساسية للكميات والحسابات
         function changeQty(id, name, price, delta, parentId = null) { 
             if (!cart[id]) cart[id] = { name: name, price: price, qty: 0, note: "", parentId: parentId }; 
             cart[id].qty += delta; 
@@ -302,8 +299,6 @@
                 if(!parentId) { for (let key in cart) { if(cart[key].parentId === id) delete cart[key]; } }
                 delete cart[id];
             }
-            
-            // تحديث العناصر البصرية فوراً
             ['q-'+id, 'mq-'+id].forEach(eid => {
                 const el = document.getElementById(eid);
                 if(el) el.innerText = cart[id]?.qty || 0;
@@ -313,7 +308,6 @@
                 if(cart[id]?.qty > 0) card.classList.add('selected');
                 else card.classList.remove('selected');
             }
-
             ['note-'+id, 'pnote-'+id].forEach(eid => {
                 const el = document.getElementById(eid);
                 if(el) el.style.display = (cart[id]?.qty > 0) ? 'block' : 'none';
@@ -352,7 +346,6 @@
             }); 
         }
 
-        // الفاتورة المنفصلة التفاعلية
         function openReview() {
             const list = document.getElementById('reviewItems');
             list.innerHTML = ""; let total = 0;
@@ -362,13 +355,12 @@
                     let productBaseTotal = item.qty * item.price;
                     let extrasDetails = "";
                     let extrasTotal = 0;
-
                     for(let exId in cart) { 
                         if(cart[exId].parentId === id) {
                             let exCost = cart[exId].qty * cart[exId].price;
                             extrasTotal += exCost;
                             extrasDetails += `
-                            <div class="extra-row-invoice">
+                            <div class="extra-row-invoice" style="border-bottom:none">
                                 <span>+ ${cart[exId].name} (${cart[exId].qty}) ${cart[exId].note ? '<br><small>📝 '+cart[exId].note+'</small>' : ''}</span>
                                 <div class="cart-item-ctrl">
                                     <button class="btn-cart-qty" onclick="changeQty('${exId}', '${cart[exId].name}', ${cart[exId].price}, 1, '${id}')">+</button>
@@ -378,9 +370,8 @@
                             </div>`;
                         }
                     }
-
                     list.innerHTML += `
-                    <div class="cart-item-row">
+                    <div class="cart-item-row" style="border-bottom: 2px solid #f0f0f0;">
                         <div class="cart-item-header">
                             <b style="color:var(--main-brown); font-size:16px;">${item.name}</b>
                             <div class="cart-item-ctrl">
@@ -408,27 +399,26 @@
                 let item = cart[id];
                 if(!item.parentId) {
                     let baseTotal = item.qty * item.price;
-                    msg += `📦 *${item.name}*\n`;
+                    msg += `*${item.name}*\n`;
                     msg += `العدد: ${item.qty} | السعر: ${baseTotal} ريال\n`;
-                    
                     let extrasMsg = "";
                     let extrasTotal = 0;
                     for(let exId in cart) { 
                         if(cart[exId].parentId === id) {
                             let exCost = cart[exId].qty * cart[exId].price;
                             extrasTotal += exCost;
-                            extrasMsg += `  ➕ ${cart[exId].name} (${cart[exId].qty}) [${exCost} ريال] ${cart[exId].note ? '\n     ملاحظة: '+cart[exId].note : ''}\n`;
+                            extrasMsg += `  + ${cart[exId].name} (${cart[exId].qty}) [${exCost} ريال] ${cart[exId].note ? '\n     ملاحظة: '+cart[exId].note : ''}\n`;
                         }
                     }
                     if(extrasMsg) {
                         msg += extrasMsg;
                         msg += `💰 مجموع الإضافات: ${extrasTotal} ريال\n`;
                     }
-                    msg += `--------------------------\n`;
+                    msg += `\n`;
                     grandTotal += (baseTotal + extrasTotal);
                 }
             } 
-            msg += `\n✨ *الإجمالي النهائي للطلب: ${grandTotal} ريال*`; 
+            msg += `✨ *الإجمالي النهائي للطلب: ${grandTotal} ريال*`; 
             window.open(`https://wa.me/966502509910?text=${encodeURIComponent(msg)}`); 
         }
 
