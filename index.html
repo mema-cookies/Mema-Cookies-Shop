@@ -27,17 +27,21 @@
         .marquee-text { display: inline-block; white-space: nowrap; animation: bounce-slide 10s ease-in-out infinite; }
         @keyframes bounce-slide { 0%, 100% { transform: translateX(-5%); } 50% { transform: translateX(5%); } }
 
-        .instagram-float { position: fixed; top: 70px; left: 20px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; z-index: 2001; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-decoration: none; }
-        .whatsapp-float { position: fixed; top: 130px; left: 20px; background-color: #25d366; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; z-index: 2001; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-decoration: none; }
+        /* العناصر التفاعلية Floating Buttons */
+        .instagram-float { position: fixed; top: 70px; left: 20px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; z-index: 2001; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-decoration: none; transition: transform 0.2s; }
+        .instagram-float:active { transform: scale(1.2); }
+        
+        .whatsapp-float { position: fixed; top: 130px; left: 20px; background-color: #25d366; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; z-index: 2001; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-decoration: none; transition: transform 0.2s; }
+        .whatsapp-float:active { transform: scale(1.2); }
 
-        .categories-nav { position: sticky; top: 43px; background: #fff; padding: 12px; display: flex; gap: 10px; overflow-x: auto; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .cat-btn { border: 2px solid var(--main-pink); background: transparent; color: var(--main-pink); padding: 8px 20px; border-radius: 25px; white-space: nowrap; font-weight: bold; cursor: pointer; }
-        .cat-btn.active { background: var(--main-pink); color: #fff; }
+        .categories-nav { position: sticky; top: 43px; background: #fff; padding: 12px; display: flex; gap: 10px; overflow-x: auto; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); scrollbar-width: none; }
+        .cat-btn { border: 2px solid var(--main-pink); background: transparent; color: var(--main-pink); padding: 8px 20px; border-radius: 25px; white-space: nowrap; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .cat-btn.active { background: var(--main-pink); color: #fff; transform: scale(1.05); }
         
         .section-title { background: var(--main-brown); color: white; padding: 8px 20px; margin: 25px 15px 10px; border-radius: 8px; display: inline-block; font-size: 15px; }
         .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; }
         
-        .product-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; flex-direction: column; border: 1px solid #fce4ec; }
+        .product-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; flex-direction: column; border: 1px solid #fce4ec; transition: 0.3s; }
         .image-container { width: 100%; height: 150px; overflow: hidden; position: relative; background: #f9f9f9; cursor: pointer; }
         .image-container img { width: 100%; height: 100%; object-fit: cover; position: absolute; opacity:0; transition: opacity 0.5s ease; }
         .image-container img.active { opacity: 1; }
@@ -47,45 +51,47 @@
         .product-desc { font-size: 10px; color: #d63384; margin-bottom: 5px; font-weight: bold; line-height: 1.3; }
         .price-text { color: var(--main-pink); font-weight: 800; font-size: 14px; display: block; margin-bottom: 5px; }
 
-        .extras-container { background: #fff9fa; padding: 5px; border-top: 1px dashed #ffd1dc; }
-        .extra-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; padding: 0 4px; }
-        .extra-name { font-size: 9px; color: #666; font-weight: bold; flex: 1; text-align: center; }
-        .extra-ctrl { display: flex; align-items: center; gap: 4px; }
-        .btn-extra { background: #fff; border: 1px solid var(--main-pink); color: var(--main-pink); width: 22px; height: 22px; border-radius: 5px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .extra-qty { font-size: 11px; min-width: 10px; text-align: center; font-weight: bold; }
-        .note-box { width: 90%; margin: 5px auto; padding: 6px; border: 1px solid #ddd; border-radius: 6px; font-size: 10px; box-sizing: border-box; display: block; text-align: center; }
+        /* تحويل الإضافات لعناصر تفاعلية */
+        .extras-container { background: #fff9fa; padding: 8px; border-top: 1px dashed #ffd1dc; display: flex; flex-direction: column; gap: 8px; }
+        .extra-interactive-item { background: white; border: 1px solid #eee; border-radius: 12px; padding: 8px; display: flex; justify-content: space-between; align-items: center; transition: 0.2s; }
+        .extra-interactive-item.selected { border-color: var(--main-pink); background: #fff0f3; box-shadow: 0 2px 5px rgba(214, 51, 132, 0.1); }
+        .extra-name { font-size: 10px; color: #444; font-weight: bold; }
+        .extra-ctrl { display: flex; align-items: center; gap: 6px; }
+        .btn-extra { background: var(--main-pink); color: white; border: none; width: 24px; height: 24px; border-radius: 6px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .extra-qty { font-size: 12px; min-width: 12px; text-align: center; font-weight: bold; color: var(--main-pink); }
+        
+        .note-box { width: 90%; margin: 5px auto; padding: 8px; border: 1px solid #ffd1dc; border-radius: 8px; font-size: 10px; box-sizing: border-box; display: block; text-align: center; outline: none; transition: 0.3s; }
+        .note-box:focus { border-color: var(--main-pink); box-shadow: 0 0 5px rgba(214, 51, 132, 0.2); }
 
-        .main-controls { display: flex; align-items: center; justify-content: space-around; padding: 10px; background: #fafafa; border-top: 1px solid #eee; margin-top: auto; }
-        .btn-main { background: var(--main-pink); color: white; border: none; width: 32px; height: 32px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 18px; }
-        .main-qty { font-weight: bold; color: var(--main-brown); font-size: 16px; }
+        .main-controls { display: flex; align-items: center; justify-content: space-around; padding: 12px; background: #fdfdfd; border-top: 1px solid #eee; margin-top: auto; }
+        .btn-main { background: var(--main-brown); color: white; border: none; width: 35px; height: 35px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 20px; transition: transform 0.1s; }
+        .btn-main:active { transform: scale(0.9); }
+        .main-qty { font-weight: 800; color: var(--main-brown); font-size: 18px; }
 
-        #productPage { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 3000; overflow-y: auto; padding-bottom: 220px; }
+        /* صفحة المنتج التفاعلية */
+        #productPage { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 3000; overflow-y: auto; padding-bottom: 220px; animation: slideUp 0.4s ease; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        
         .back-nav { padding: 15px; background: white; position: sticky; top: 0; display: flex; align-items: center; gap: 10px; z-index: 10; border-bottom: 1px solid #eee; }
         .btn-back { background: var(--soft-pink); border: none; padding: 10px 15px; border-radius: 12px; color: var(--main-pink); font-weight: bold; cursor: pointer; }
-        .page-slider { width: 100%; height: 350px; position: relative; background: #000; overflow: hidden; }
-        .page-slider img { width: 100%; height: 100%; object-fit: contain; position: absolute; opacity: 0; transition: 0.5s; }
+        
+        .page-slider { width: 100%; height: 350px; position: relative; background: #fdfdfd; overflow: hidden; }
+        .page-slider img { width: 100%; height: 100%; object-fit: contain; position: absolute; opacity: 0; transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .page-slider img.active { opacity: 1; }
-        .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.3); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 20px; z-index: 5; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .arrow-left { left: 10px; } .arrow-right { right: 10px; }
-        .slider-nav { position: absolute; bottom: 15px; width: 100%; display: flex; justify-content: center; gap: 5px; }
-        .dot { width: 8px; height: 8px; background: rgba(255,255,255,0.5); border-radius: 50%; }
-        .dot.active { background: white; width: 20px; border-radius: 10px; }
+        
+        .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.7); color: var(--main-pink); border: none; width: 45px; height: 45px; border-radius: 50%; font-size: 20px; z-index: 5; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .arrow-left { left: 15px; } .arrow-right { right: 15px; }
 
-        .details-section { padding: 20px; text-align: center; }
-        .page-extras { background: #fffcfd; border-radius: 15px; padding: 15px; border: 1px solid #fce4ec; margin: 20px; text-align: right; }
-        .page-extra-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f9e2e7; }
-        .page-action-container { padding: 0 20px; margin-bottom: 50px; }
-        .btn-add-product { background: var(--main-brown); color: white; padding: 18px 25px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; width: 100%; border: none; font-size: 16px; font-family: inherit; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .cart-fixed-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--main-pink); color: white; padding: 22px 0; display: none; justify-content: center; align-items: center; z-index: 4000; box-shadow: 0 -5px 20px rgba(214, 51, 132, 0.3); border-radius: 30px 30px 0 0; cursor: pointer; transition: 0.3s; }
+        .cart-fixed-bar:active { transform: scale(0.98); }
 
-        .cart-fixed-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--main-pink); color: white; padding: 20px 0; display: none; justify-content: center; align-items: center; z-index: 4000; box-shadow: 0 -4px 15px rgba(0,0,0,0.1); border-radius: 25px 25px 0 0; cursor: pointer; }
-        .cart-content-wrapper { display: flex; justify-content: space-between; width: 85%; max-width: 500px; font-weight: bold; font-size: 16px; }
-
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 5000; overflow-y: auto; }
-        .modal-body { background: white; width: 90%; max-width: 450px; margin: 40px auto; border-radius: 20px; padding: 20px; direction: rtl; }
-        .cart-item-row { display: flex; flex-direction: column; border-bottom: 1px dashed #ddd; padding: 12px 0; }
-        .cart-item-header { display: flex; justify-content: space-between; align-items: center; }
-        .cart-item-ctrl { display: flex; align-items: center; gap: 10px; }
-        .btn-cart-qty { background: #f8d7da; border: 1px solid var(--main-pink); color: var(--main-pink); width: 30px; height: 30px; border-radius: 50%; font-weight: bold; cursor: pointer; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 5000; overflow-y: auto; backdrop-filter: blur(5px); }
+        .modal-body { background: white; width: 92%; max-width: 450px; margin: 30px auto; border-radius: 25px; padding: 25px; direction: rtl; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        
+        /* تصميم الفاتورة المنفصلة التفاعلي */
+        .cart-item-row { background: #fff; border: 1px solid #f0f0f0; border-radius: 15px; padding: 15px; margin-bottom: 12px; }
+        .cart-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .extra-row-invoice { background: #fef1f4; border-right: 3px solid var(--main-pink); margin: 5px 0; padding: 8px 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
     </style>
 </head>
 <body>
@@ -105,12 +111,12 @@
             <button class="cat-btn" onclick="filterMenu('boxes', this)">بوكسات</button>
         </nav>
         <div id="menuContent"></div>
-        <div style="text-align: center; padding: 30px 0; color: var(--main-brown); font-weight: bold;">يُصنع بكل حُب | MADE WITH LOVE💕</div>
+        <div style="text-align: center; padding: 40px 0; color: var(--main-brown); font-weight: bold; font-size: 18px;">يُصنع بكل حُب | MADE WITH LOVE💕</div>
     </div>
 
     <div id="productPage">
         <div class="back-nav">
-            <button class="btn-back" onclick="closeProductPage()"><i class="fas fa-arrow-right"></i> العودة للمتجر</button>
+            <button class="btn-back" onclick="closeProductPage()"><i class="fas fa-arrow-right"></i> العودة</button>
             <span id="pageHeaderTitle" style="font-weight:bold; color:var(--main-brown)"></span>
         </div>
         <div id="pageContent"></div>
@@ -119,21 +125,22 @@
     <div id="cartBar" class="cart-fixed-bar" onclick="openReview()">
         <div class="cart-content-wrapper">
             <span>🛒 عرض الطلب (<span id="itemsCount">0</span>)</span>
-            <span id="totalPrice">0 ريال</span>
+            <span id="totalPrice" style="margin-right:20px; background:rgba(255,255,255,0.2); padding:5px 15px; border-radius:15px;">0 ريال</span>
         </div>
     </div>
 
     <div id="reviewModal" class="modal-overlay">
         <div class="modal-body">
-            <h3 style="text-align:center; color:var(--main-pink)">مراجعة سلتك</h3>
+            <h3 style="text-align:center; color:var(--main-pink); margin-bottom:20px;">📦 تفاصيل طلبك</h3>
             <div id="reviewItems"></div>
-            <div style="text-align:center; font-weight:bold; margin-top:15px; font-size:18px;">الإجمالي: <span id="modalTotal">0</span> ريال</div>
-            <button onclick="sendWhatsApp()" style="background: #25d366; color: white; border: none; width: 100%; padding: 15px; border-radius: 12px; font-weight: bold; margin-top: 15px; cursor: pointer;">إرسال الطلب واتساب ✅</button>
-            <button onclick="closeReview()" style="background: #eee; width: 100%; padding: 10px; border: none; border-radius: 12px; margin-top: 10px; cursor: pointer;">إغلاق</button>
+            <div style="text-align:center; font-weight:800; margin:20px 0; font-size:22px; color:var(--main-brown);">الإجمالي: <span id="modalTotal" style="color:var(--main-pink)">0</span> ريال</div>
+            <button onclick="sendWhatsApp()" style="background: #25d366; color: white; border: none; width: 100%; padding: 18px; border-radius: 15px; font-weight: bold; font-size: 18px; cursor: pointer; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);"><i class="fab fa-whatsapp"></i> إرسال عبر واتساب</button>
+            <button onclick="closeReview()" style="background: #f0f0f0; width: 100%; padding: 12px; border: none; border-radius: 15px; margin-top: 15px; cursor: pointer; font-weight: bold; color: #666;">إغلاق</button>
         </div>
     </div>
 
     <script>
+        // مصفوفة المنتجات - لا تغيير هنا
         const products = [
             { id: "c1", name: "كوكيز ميما", cat: "cookies", price: 5, desc: "(طراوة ولذة - بشوكلت بلجيكي فاخر)", imgs: ["3.jpg", "51.jpg", "52.jpg", "53.jpg"] },
             { id: "c2", name: "بايتس كوكيز", cat: "cookies", price: 1, desc: "(صغيرة بالحجم - كبيره بالطعم تذوب وتخليك تبتسم)", imgs: ["8.jpg", "56.jpg", "57.jpg", "58.jpg", "59.jpg", "60.jpg"], extras: [{ name: "صوص شوكلاتة بلجيكية", price: 2 }, { name: "صوص فستق", price: 2 }, { name: "صوص كيندر", price: 2 }, { name: "صوص شوكلاتة بيضاء", price: 2 }] },
@@ -176,13 +183,14 @@
                             extrasHtml = `<div class="extras-container">`;
                             item.extras.forEach(ex => {
                                 const exId = `ex_${item.id}_${ex.name.replace(/\s/g, '')}`;
+                                const isSelected = cart[exId]?.qty > 0;
                                 extrasHtml += `
-                                <div class="extra-item">
+                                <div class="extra-interactive-item ${isSelected ? 'selected' : ''}" id="card-${exId}">
                                     <span class="extra-name">${ex.name} (+${ex.price})</span>
                                     <div class="extra-ctrl">
                                         <button class="btn-extra" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, 1, '${item.id}')">+</button>
                                         <span class="extra-qty" id="mq-${exId}">${cart[exId]?.qty || 0}</span>
-                                        <button class="btn-extra" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, -1, '${item.id}')">-</button>
+                                        <button class="btn-extra" style="background:#ddd; color:#666" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, -1, '${item.id}')">-</button>
                                     </div>
                                 </div>`;
                                 if(ex.hasNote) extrasHtml += `<input type="text" id="note-${exId}" class="note-box" style="display:${(cart[exId]?.qty > 0) ? 'block' : 'none'}" oninput="updateNote('${exId}', this.value)" placeholder="اكتب ملاحظتك هنا..." value="${cart[exId]?.note || ''}">`;
@@ -201,7 +209,7 @@
                             <div class="main-controls">
                                 <button class="btn-main" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, 1)">+</button>
                                 <span class="main-qty" id="mq-${item.id}">${cart[item.id]?.qty || 0}</span>
-                                <button class="btn-main" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, -1)">-</button>
+                                <button class="btn-main" style="background:#eee; color:#333" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, -1)">-</button>
                             </div>
                         </div>`;
                     });
@@ -211,6 +219,7 @@
             startSliders();
         }
 
+        // نفس وظيفة فتح الصفحة السابقة
         function openProductPage(productId) {
             const item = products.find(p => p.id === productId);
             document.getElementById('pageHeaderTitle').innerText = item.name;
@@ -219,49 +228,48 @@
             
             let extrasHtml = '';
             if (item.extras) {
-                extrasHtml = `<div class="page-extras"><h3 style="font-size:14px; color:var(--main-brown); margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:5px;">الإضافات المتوفرة:</h3>`;
+                extrasHtml = `<div class="page-extras"><h3 style="font-size:16px; color:var(--main-brown); margin-bottom:15px;">خصّص طلبك ✨</h3>`;
                 item.extras.forEach(ex => {
                     const exId = `ex_${item.id}_${ex.name.replace(/\s/g, '')}`;
                     extrasHtml += `
-                    <div class="page-extra-item">
-                        <span style="font-size:12px; font-weight:bold">${ex.name} (+${ex.price} ريال)</span>
-                        <div style="display:flex; align-items:center; gap:8px">
+                    <div class="extra-interactive-item ${cart[exId]?.qty > 0 ? 'selected' : ''}" style="margin-bottom:10px; padding:12px;">
+                        <span style="font-size:13px; font-weight:bold">${ex.name} (+${ex.price} ريال)</span>
+                        <div style="display:flex; align-items:center; gap:10px">
                             <button class="btn-extra" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, 1, '${item.id}')">+</button>
-                            <span id="q-${exId}" style="font-weight:bold">${cart[exId]?.qty || 0}</span>
-                            <button class="btn-extra" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, -1, '${item.id}')">-</button>
+                            <span id="q-${exId}" style="font-weight:bold; color:var(--main-pink)">${cart[exId]?.qty || 0}</span>
+                            <button class="btn-extra" style="background:#ddd; color:#666" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, -1, '${item.id}')">-</button>
                         </div>
                     </div>`;
-                    if(ex.hasNote) extrasHtml += `<input type="text" id="pnote-${exId}" class="note-box" style="display:${(cart[exId]?.qty > 0) ? 'block' : 'none'}" oninput="updateNote('${exId}', this.value)" placeholder="اكتب ملاحظتك هنا..." value="${cart[exId]?.note || ''}">`;
+                    if(ex.hasNote) extrasHtml += `<input type="text" id="pnote-${exId}" class="note-box" style="display:${(cart[exId]?.qty > 0) ? 'block' : 'none'}" oninput="updateNote('${exId}', this.value)" placeholder="الملاحظة (مثلاً الاسم)..." value="${cart[exId]?.note || ''}">`;
                 });
                 extrasHtml += `</div>`;
             }
 
             document.getElementById('pageContent').innerHTML = `
                 <div class="page-slider">
-                    <button class="slider-arrow arrow-left" onclick="prevImg(${item.imgs.length})"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-arrow arrow-left" onclick="prevImg(${item.imgs.length})"><i class="fas fa-chevron-right"></i></button>
                     ${imgsHtml}
-                    <button class="slider-arrow arrow-right" onclick="nextImg(${item.imgs.length})"><i class="fas fa-chevron-right"></i></button>
-                    <div class="slider-nav">${dotsHtml}</div>
+                    <button class="slider-arrow arrow-right" onclick="nextImg(${item.imgs.length})"><i class="fas fa-chevron-left"></i></button>
+                    <div class="slider-nav" style="position:absolute; bottom:15px; width:100%; display:flex; justify-content:center; gap:5px;">${dotsHtml}</div>
                 </div>
                 <div class="details-section">
-                    <h2 style="color:var(--main-brown); margin:0">${item.name}</h2>
-                    <p style="color:var(--main-pink); font-size:14px; font-weight:bold; margin-top:10px">${item.desc}</p>
-                    <span style="font-size:24px; font-weight:800; color:var(--main-pink); display:block; margin:15px 0">${item.price} ريال</span>
+                    <h2 style="color:var(--main-brown); margin:0; font-size:22px;">${item.name}</h2>
+                    <p style="color:var(--main-pink); font-size:14px; font-weight:bold; margin:10px 0">${item.desc}</p>
+                    <span style="font-size:28px; font-weight:900; color:var(--main-pink);">${item.price} ريال</span>
                 </div>
                 ${extrasHtml}
                 <div class="page-action-container">
-                    <button class="btn-add-product" onclick="closeProductPage()">
-                        <span>إضافة المنتج الحالي للطلب</span>
-                        <div style="display:flex; align-items:center; gap:15px">
-                            <div class="btn-main" onclick="event.stopPropagation(); changeQty('${item.id}', '${item.name}', ${item.price}, 1)" style="background:white; color:var(--main-brown); display:flex; align-items:center; justify-content:center;">+</div>
-                            <span id="q-${item.id}" style="font-weight:bold; font-size:20px">${cart[item.id]?.qty || 0}</span>
-                            <div class="btn-main" onclick="event.stopPropagation(); changeQty('${item.id}', '${item.name}', ${item.price}, -1)" style="background:white; color:var(--main-brown); display:flex; align-items:center; justify-content:center;">-</div>
+                    <button class="btn-add-product" style="padding: 20px;">
+                        <span>أضف للطلب</span>
+                        <div style="display:flex; align-items:center; gap:20px">
+                            <div class="btn-main" onclick="event.stopPropagation(); changeQty('${item.id}', '${item.name}', ${item.price}, 1)" style="background:white; color:var(--main-brown);">+</div >
+                            <span id="q-${item.id}" style="font-weight:800; font-size:24px">${cart[item.id]?.qty || 0}</span>
+                            <div class="btn-main" onclick="event.stopPropagation(); changeQty('${item.id}', '${item.name}', ${item.price}, -1)" style="background:white; color:var(--main-brown);">-</div>
                         </div>
                     </button>
                 </div>`;
             document.getElementById('mainView').style.display = 'none';
             document.getElementById('productPage').style.display = 'block';
-            window.scrollTo(0,0);
         }
 
         let currentImgIdx = 0;
@@ -286,6 +294,7 @@
             renderMenu(products);
         }
 
+        // الوظيفة الأساسية للكميات والحسابات
         function changeQty(id, name, price, delta, parentId = null) { 
             if (!cart[id]) cart[id] = { name: name, price: price, qty: 0, note: "", parentId: parentId }; 
             cart[id].qty += delta; 
@@ -294,10 +303,17 @@
                 delete cart[id];
             }
             
+            // تحديث العناصر البصرية فوراً
             ['q-'+id, 'mq-'+id].forEach(eid => {
                 const el = document.getElementById(eid);
                 if(el) el.innerText = cart[id]?.qty || 0;
             });
+            const card = document.getElementById('card-'+id);
+            if(card) {
+                if(cart[id]?.qty > 0) card.classList.add('selected');
+                else card.classList.remove('selected');
+            }
+
             ['note-'+id, 'pnote-'+id].forEach(eid => {
                 const el = document.getElementById(eid);
                 if(el) el.style.display = (cart[id]?.qty > 0) ? 'block' : 'none';
@@ -308,10 +324,6 @@
 
         function updateNote(id, val) { 
             if(cart[id]) cart[id].note = val; 
-            ['note-'+id, 'pnote-'+id].forEach(eid => {
-                const el = document.getElementById(eid);
-                if(el) el.value = val;
-            });
         }
         
         function updateCartUI() { 
@@ -340,6 +352,7 @@
             }); 
         }
 
+        // الفاتورة المنفصلة التفاعلية
         function openReview() {
             const list = document.getElementById('reviewItems');
             list.innerHTML = ""; let total = 0;
@@ -355,12 +368,12 @@
                             let exCost = cart[exId].qty * cart[exId].price;
                             extrasTotal += exCost;
                             extrasDetails += `
-                            <div style="margin-right:20px; color:#d63384; font-size:12px; margin-top:5px; display:flex; justify-content:space-between; align-items:center; background:#fff5f7; padding:5px 10px; border-radius:8px;">
-                                <span>+ ${cart[exId].name} (${cart[exId].qty}) ${cart[exId].note ? '['+cart[exId].note+']' : ''}</span>
+                            <div class="extra-row-invoice">
+                                <span>+ ${cart[exId].name} (${cart[exId].qty}) ${cart[exId].note ? '<br><small>📝 '+cart[exId].note+'</small>' : ''}</span>
                                 <div class="cart-item-ctrl">
                                     <button class="btn-cart-qty" onclick="changeQty('${exId}', '${cart[exId].name}', ${cart[exId].price}, 1, '${id}')">+</button>
+                                    <span style="font-weight:bold; margin:0 5px">${exCost} ر.س</span>
                                     <button class="btn-cart-qty" onclick="changeQty('${exId}', '${cart[exId].name}', ${cart[exId].price}, -1, '${id}')">-</button>
-                                    <span style="margin-right:10px; font-weight:bold;">${exCost} ريال</span>
                                 </div>
                             </div>`;
                         }
@@ -369,12 +382,12 @@
                     list.innerHTML += `
                     <div class="cart-item-row">
                         <div class="cart-item-header">
-                            <b style="color:var(--main-brown)">${item.name}</b>
+                            <b style="color:var(--main-brown); font-size:16px;">${item.name}</b>
                             <div class="cart-item-ctrl">
                                 <button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, 1)">+</button>
-                                <span>${item.qty}</span>
+                                <span style="font-weight:bold; width:20px; text-align:center">${item.qty}</span>
                                 <button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, -1)">-</button>
-                                <span style="margin-right:10px; font-weight:bold;">${productBaseTotal} ريال</span>
+                                <span style="margin-right:10px; font-weight:900; color:var(--main-pink)">${productBaseTotal} ر.س</span>
                             </div>
                         </div>
                         ${extrasDetails}
@@ -396,7 +409,7 @@
                 if(!item.parentId) {
                     let baseTotal = item.qty * item.price;
                     msg += `📦 *${item.name}*\n`;
-                    msg += `الكمية: ${item.qty} | السعر: ${baseTotal} ريال\n`;
+                    msg += `العدد: ${item.qty} | السعر: ${baseTotal} ريال\n`;
                     
                     let extrasMsg = "";
                     let extrasTotal = 0;
@@ -404,14 +417,13 @@
                         if(cart[exId].parentId === id) {
                             let exCost = cart[exId].qty * cart[exId].price;
                             extrasTotal += exCost;
-                            extrasMsg += `  - ${cart[exId].name} (${cart[exId].qty}) [${exCost} ريال] ${cart[exId].note ? '\n    ملاحظة: '+cart[exId].note : ''}\n`;
+                            extrasMsg += `  ➕ ${cart[exId].name} (${cart[exId].qty}) [${exCost} ريال] ${cart[exId].note ? '\n     ملاحظة: '+cart[exId].note : ''}\n`;
                         }
                     }
                     if(extrasMsg) {
-                        msg += `➕ الإضافات:\n${extrasMsg}`;
+                        msg += extrasMsg;
                         msg += `💰 مجموع الإضافات: ${extrasTotal} ريال\n`;
                     }
-                    
                     msg += `--------------------------\n`;
                     grandTotal += (baseTotal + extrasTotal);
                 }
