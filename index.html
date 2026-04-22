@@ -23,51 +23,6 @@
 
         header { background-color: var(--soft-pink); background-image: url('logo.jpg'); background-size: contain; background-position: center top; background-repeat: no-repeat; width: 100%; height: 260px; border-bottom: 3px solid var(--main-pink); }
         
-        /* تنسيق الإعلان الترحيبي */
-        .welcome-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(8px);
-        }
-        .welcome-content {
-            position: relative;
-            width: 85%;
-            max-width: 400px;
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .welcome-content img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 3px solid white;
-        }
-        .close-welcome {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            background: var(--main-pink);
-            color: white;
-            border: none;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-        @keyframes popIn {
-            from { transform: scale(0.5); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
         .marquee-container { background-color: var(--main-pink); color: white; overflow: hidden; padding: 12px 0; font-size: 14px; font-weight: bold; position: sticky; top: 0; z-index: 1001; text-align: center; }
         .marquee-text { display: inline-block; white-space: nowrap; animation: bounce-slide 10s ease-in-out infinite; }
         @keyframes bounce-slide { 0%, 100% { transform: translateX(-5%); } 50% { transform: translateX(5%); } }
@@ -134,12 +89,6 @@
         .cart-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .extra-row-invoice { background: #fef1f4; border-right: 3px solid var(--main-pink); margin: 5px 0; padding: 8px 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
         
-        .discount-section { background: #f9f9f9; padding: 15px; border-radius: 15px; margin: 15px 0; border: 1px dashed #ccc; }
-        .discount-input-group { display: flex; gap: 8px; margin-top: 10px; }
-        .discount-input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 10px; outline: none; text-align: center; font-weight: bold; }
-        .btn-apply-discount { background: var(--main-brown); color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; font-weight: bold; }
-        .discount-msg { font-size: 11px; margin-top: 5px; display: block; }
-
         .page-extras { background: #fffcfd; border-radius: 15px; padding: 15px; border: 1px solid #fce4ec; margin: 20px; text-align: right; }
         .page-action-container { padding: 0 20px; margin-bottom: 50px; }
         .btn-add-product { background: var(--main-brown); color: white; padding: 18px 25px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; width: 100%; border: none; font-size: 16px; font-family: inherit; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
@@ -149,13 +98,6 @@
     </style>
 </head>
 <body>
-
-    <div id="welcomePopup" class="welcome-overlay">
-        <div class="welcome-content">
-            <button class="close-welcome" onclick="closeWelcome()">X</button>
-            <img src="2222.jpg" alt="Welcome Offer">
-        </div>
-    </div>
 
     <div id="mainView">
         <div class="marquee-container">
@@ -197,18 +139,7 @@
             <h3 style="text-align:center; color:var(--main-pink); margin-top:35px; margin-bottom:20px;">🍪 مراجعة طلبك 🍪</h3>
             <div id="reviewItems"></div>
 
-            <div class="discount-section">
-                <label style="font-size: 12px; font-weight: bold; color: var(--main-brown);">هل لديك كوبون تخفيض ؟</label>
-                <div class="discount-input-group">
-                    <input type="text" id="couponInput" class="discount-input" placeholder="ادخل رمز الكوبون">
-                    <button class="btn-apply-discount" onclick="applyCoupon()">تطبيق</button>
-                </div>
-                <span id="couponMsg" class="discount-msg"></span>
-            </div>
-
             <div id="priceDetails" style="text-align:center; margin:20px 0; border-top:1px solid #eee; padding-top:15px;">
-                <div id="subtotalRow" style="display:none; color:#777; font-size:14px; margin-bottom:5px;">الإجمالي قبل الخصم: <span id="modalSubtotal">0</span> ريال</div>
-                <div id="discountRow" style="display:none; color:green; font-size:14px; margin-bottom:5px;">قيمة الخصم (22%): -<span id="modalDiscountVal">0</span> ريال</div>
                 <div style="font-weight:800; font-size:22px; color:var(--main-brown);">الإجمالي النهائي: <span id="modalTotal" style="color:var(--main-pink)">0</span> ريال</div>
             </div>
 
@@ -243,12 +174,6 @@
         ];
 
         let cart = {};
-        let isDiscountApplied = false;
-
-        // وظائف الإعلان الترحيبي
-        function closeWelcome() {
-            document.getElementById('welcomePopup').style.display = 'none';
-        }
 
         function renderMenu(items) {
             const container = document.getElementById('menuContent');
@@ -431,21 +356,6 @@
             }); 
         }
 
-        function applyCoupon() {
-            const input = document.getElementById('couponInput').value.trim();
-            const msg = document.getElementById('couponMsg');
-            if(input === "22") {
-                isDiscountApplied = true;
-                msg.innerText = "✅ تم تطبيق خصم 22% بنجاح!";
-                msg.style.color = "green";
-            } else {
-                isDiscountApplied = false;
-                msg.innerText = "❌ كود غير صحيح";
-                msg.style.color = "red";
-            }
-            openReview();
-        }
-
         function openReview() {
             const list = document.getElementById('reviewItems');
             list.innerHTML = ""; let subtotal = 0;
@@ -487,20 +397,7 @@
                 }
             }
 
-            let finalTotal = subtotal;
-            if(isDiscountApplied) {
-                let discountAmount = subtotal * 0.22;
-                finalTotal = subtotal - discountAmount;
-                document.getElementById('subtotalRow').style.display = "block";
-                document.getElementById('discountRow').style.display = "block";
-                document.getElementById('modalSubtotal').innerText = subtotal.toFixed(2);
-                document.getElementById('modalDiscountVal').innerText = discountAmount.toFixed(2);
-            } else {
-                document.getElementById('subtotalRow').style.display = "none";
-                document.getElementById('discountRow').style.display = "none";
-            }
-
-            document.getElementById('modalTotal').innerText = finalTotal.toFixed(2);
+            document.getElementById('modalTotal').innerText = subtotal.toFixed(2);
             document.getElementById('reviewModal').style.display = 'block';
         }
 
@@ -529,18 +426,7 @@
                     subtotal += (baseTotal + extrasTotal);
                 }
             } 
-
-            if(isDiscountApplied) {
-                let discountVal = subtotal * 0.22;
-                let final = subtotal - discountVal;
-                msg += `--------------------------\n`;
-                msg += `💰 الإجمالي قبل الخصم: ${subtotal.toFixed(2)} ريال\n`;
-                msg += `🎟️ كود الخصم (22): -${discountVal.toFixed(2)} ريال\n`;
-                msg += `✨ *الإجمالي النهائي للطلب: ${final.toFixed(2)} ريال*`;
-            } else {
-                msg += `✨ *الإجمالي النهائي للطلب: ${subtotal.toFixed(2)} ريال*`;
-            }
-
+            msg += `✨ *الإجمالي النهائي للطلب: ${subtotal.toFixed(2)} ريال*`;
             window.open(`https://wa.me/966502509910?text=${encodeURIComponent(msg)}`); 
         }
 
