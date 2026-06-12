@@ -22,6 +22,10 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease; }
+        /* تم التعديل هنا لكي لا تملأ الصورة الشاشة بالكامل وتظهر بشكل متناسق */
+        #welcome-screen img { max-width: 80%; max-height: 80%; object-fit: contain; }
+
         header { background-color: var(--soft-pink); background-image: url('logo.jpg'); background-size: contain; background-position: center top; background-repeat: no-repeat; width: 100%; height: 260px; border-bottom: 3px solid var(--main-pink); }
         
         .marquee-container { background-color: var(--main-pink); color: white; overflow: hidden; padding: 12px 0; font-size: 14px; font-weight: bold; position: sticky; top: 0; z-index: 1001; text-align: center; }
@@ -109,6 +113,10 @@
 </head>
 <body>
 
+    <div id="welcome-screen" onclick="hideWelcome()">
+        <img src="5000.jpg" alt="Welcome">
+    </div>
+
     <div id="mainView">
         <div class="marquee-container">
             <div class="marquee-text">📢 سياسة الطلب: الطلب قبل بيوم او يومين - الطلب للكميات البسيطة بنفس اليوم 📢</div>
@@ -121,6 +129,7 @@
             <button class="cat-btn" onclick="filterMenu('cookies', this)">كوكيز</button>
             <button class="cat-btn" onclick="filterMenu('pudding', this)">بودينق</button>
             <button class="cat-btn" onclick="filterMenu('cakes', this)">كيكات</button>
+            <button class="cat-btn" onclick="filterMenu('areeka', this)">عريكة كوكيز</button>
             <button class="cat-btn" onclick="filterMenu('boxes', this)">بوكسات</button>
             <button class="cat-btn glow" onclick="filterMenu('glow', this)">✨ لمسات مضيئة</button>
         </nav>
@@ -171,6 +180,16 @@
     </div>
 
     <script>
+        // إخفاء شاشة الترحيب بعد 3 ثواني
+        setTimeout(hideWelcome, 3000);
+        function hideWelcome() {
+            const screen = document.getElementById('welcome-screen');
+            if(screen) {
+                screen.style.opacity = '0';
+                setTimeout(() => screen.style.display = 'none', 500);
+            }
+        }
+
         const products = [
             { id: "c1", name: "كوكيز ميما", cat: "cookies", price: 5, desc: "طراوة ولذة - بشوكلت بلجيكي فاخر", imgs: ["3.jpg", "51.jpg", "52.jpg", "53.jpg"] },
             { id: "c2", name: "بايتس كوكيز", cat: "cookies", price: 1, desc: "صغيرة بالحجم - كبيره بالطعم تذوب وتخليك تبتسم", imgs: ["8.jpg", "56.jpg", "57.jpg", "58.jpg", "59.jpg", "60.jpg"], extras: [{ name: "صوص شوكلاتة بلجيكية", price: 2 }, { name: "صوص فستق", price: 2 }, { name: "صوص كيندر", price: 2 }, { name: "صوص شوكلاتة بيضاء", price: 2 }] },
@@ -187,6 +206,13 @@
             { id: "k2", name: "كيكة 8 انش (دائرية)", cat: "cakes", price: 85, desc: "كيكات محشيه ومغطاة بالشوكولاته البلجيكي - متعة لكل لقمة", imgs: ["1.jpg", "15.jpg", "61.jpg", "105.jpg", "106.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 4 }, { name: "اضافة كيندر", price: 4 }, { name: "اضافة شوكلاتة بيضاء", price: 4 }, { name: "كتابة على الكيكة", price: 5, hasNote: true }, { name: "الطباعة على الكيكة", price: 5, hasNote: true, hasWarning: true, noteLabel: "إرفاق الصورة واتساب" }, { name: "شمعة", price: 1 }] },
             { id: "k3", name: "كيكة 5 انش (قلب)", cat: "cakes", price: 40, desc: "كيكات محشيه ومغطاة بالشوكولاته البلجيكي - متعة لكل لقمة", imgs: ["10.jpg", "29.jpg", "30.jpg", "93.jpg", "94.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 4 }, { name: "اضافة كيندر", price: 4 }, { name: "اضافة شوكلاتة بيضاء", price: 4 }, { name: "كتابة على الكيكة", price: 5, hasNote: true }, { name: "الطباعة على الكيكة", price: 5, hasNote: true, hasWarning: true, noteLabel: "إرفاق الصورة واتساب" }, { name: "شمعة", price: 1 }] },
             { id: "k4", name: "كيكة 10 انش (قلب)", cat: "cakes", price: 120, desc: "كيكات محشيه ومغطاة بالشوكولاته البلجيكي - متعة لكل لقمة", imgs: ["2.jpg", "67.jpg", "90.jpg", "91.jpg", "92.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 4 }, { name: "اضافة كيندر", price: 4 }, { name: "اضافة شوكلاتة بيضاء", price: 4 }, { name: "كتابة على الكيكة", price: 5, hasNote: true }, { name: "الطباعة على الكيكة", price: 5, hasNote: true, hasWarning: true, noteLabel: "إرفاق الصورة واتساب" }, { name: "شمعة", price: 1 }] },
+            
+            // بداية قسم عريكة كوكيز الجديد
+            { id: "ar1", name: "عريكة كوكيز مقاس 8 إنش", cat: "areeka", price: 85, desc: "عريكة الكوكيز .. حيث يلتقي التراث الجنوبي بالفخامة العصرية", imgs: ["5001.jpg"] },
+            { id: "ar2", name: "عريكة كوكيز مقاس صغير", cat: "areeka", price: 23, desc: "نكهة الأصالة الجنوبية بلمسة كوكيز ميما المميزة", imgs: ["5002.jpg"] },
+            { id: "ar3", name: "عريكة كوكيز مقاس 5 إنش", cat: "areeka", price: 40, desc: "الأصالة الجنوبية بطابع حديث ومذاق استثنائي", imgs: ["5003.jpg"] },
+            // نهاية قسم عريكة كوكيز الجديد
+
             { id: "b1", name: "بوكس دونات كوكيز (6 حبات)", cat: "boxes", price: 38, desc: "كوكيز بطابع الدونات - لذة مزدوجة", imgs: ["11.jpg", "18.jpg"] },
             { id: "b2", name: "بوكس دونات كوكيز (12 حبة)", cat: "boxes", price: 76, desc: "كوكيز بطابع الدونات - لذة مزدوجة", imgs: ["18.jpg", "55.jpg"] },
             { id: "b1-diy", name: "بوكس دونات اصنعها بنفسك (6 حبات)", cat: "boxes", price: 38, desc: "كل الأدوات بيدك والابداع عليك", imgs: ["11.jpg", "54.jpg"], extras: [{ name: "زيادة فستق", price: 4 }, { name: "زيادة كيندر", price: 4 }, { name: "زيادة سبرنكلز", price: 1 }, { name: "زيادة دونات كوكيز", price: 5 }] },
@@ -219,7 +245,8 @@
         function renderMenu(items) {
             const container = document.getElementById('menuContent');
             container.innerHTML = "";
-            const cats = { cookies: "الكوكيز", pudding: "البودينق", cakes: "الكيكات", boxes: "البوكسات", glow: "✨ لمسات مضيئة" };
+            // تم إضافة قسم عريكة كوكيز هنا ليكون بين الكيكات والبوكسات
+            const cats = { cookies: "الكوكيز", pudding: "البودينق", cakes: "الكيكات", areeka: "عريكة كوكيز", boxes: "البوكسات", glow: "✨ لمسات مضيئة" };
             for (let key in cats) {
                 const filtered = items.filter(i => i.cat === key);
                 if (filtered.length > 0) {
