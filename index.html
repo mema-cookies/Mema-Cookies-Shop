@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -14,17 +15,11 @@
             --glow-gold: #ffd700;
         }
 
-        body { 
-            font-family: 'Segoe UI', Tahoma, sans-serif; 
-            margin: 0; 
-            background-color: var(--soft-pink); 
-            padding-bottom: 180px; 
-            -webkit-tap-highlight-color: transparent;
-        }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background-color: var(--soft-pink); padding-bottom: 180px; -webkit-tap-highlight-color: transparent; }
 
+        /* تعديل الصورة 5000 لتظهر بنفس تنسيق العرض الاحترافي */
         #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease; }
-        /* تم التعديل هنا لكي لا تملأ الصورة الشاشة بالكامل وتظهر بشكل متناسق */
-        #welcome-screen img { max-width: 80%; max-height: 80%; object-fit: contain; }
+        #welcome-screen img { max-width: 90%; max-height: 85%; object-fit: contain; border-radius: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
 
         header { background-color: var(--soft-pink); background-image: url('logo.jpg'); background-size: contain; background-position: center top; background-repeat: no-repeat; width: 100%; height: 260px; border-bottom: 3px solid var(--main-pink); }
         
@@ -113,6 +108,7 @@
 </head>
 <body>
 
+    <!-- الصورة المحدثة بتنسيقها الجديد -->
     <div id="welcome-screen" onclick="hideWelcome()">
         <img src="5000.jpg" alt="Welcome">
     </div>
@@ -180,7 +176,6 @@
     </div>
 
     <script>
-        // إخفاء شاشة الترحيب بعد 3 ثواني
         setTimeout(hideWelcome, 3000);
         function hideWelcome() {
             const screen = document.getElementById('welcome-screen');
@@ -207,11 +202,9 @@
             { id: "k3", name: "كيكة 5 انش (قلب)", cat: "cakes", price: 40, desc: "كيكات محشيه ومغطاة بالشوكولاته البلجيكي - متعة لكل لقمة", imgs: ["10.jpg", "29.jpg", "30.jpg", "93.jpg", "94.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 4 }, { name: "اضافة كيندر", price: 4 }, { name: "اضافة شوكلاتة بيضاء", price: 4 }, { name: "كتابة على الكيكة", price: 5, hasNote: true }, { name: "الطباعة على الكيكة", price: 5, hasNote: true, hasWarning: true, noteLabel: "إرفاق الصورة واتساب" }, { name: "شمعة", price: 1 }] },
             { id: "k4", name: "كيكة 10 انش (قلب)", cat: "cakes", price: 120, desc: "كيكات محشيه ومغطاة بالشوكولاته البلجيكي - متعة لكل لقمة", imgs: ["2.jpg", "67.jpg", "90.jpg", "91.jpg", "92.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 4 }, { name: "اضافة كيندر", price: 4 }, { name: "اضافة شوكلاتة بيضاء", price: 4 }, { name: "كتابة على الكيكة", price: 5, hasNote: true }, { name: "الطباعة على الكيكة", price: 5, hasNote: true, hasWarning: true, noteLabel: "إرفاق الصورة واتساب" }, { name: "شمعة", price: 1 }] },
             
-            // بداية قسم عريكة كوكيز الجديد
             { id: "ar1", name: "عريكة كوكيز مقاس 8 إنش", cat: "areeka", price: 85, desc: "عريكة الكوكيز .. حيث يلتقي التراث الجنوبي بالفخامة العصرية", imgs: ["5001.jpg"] },
             { id: "ar2", name: "عريكة كوكيز مقاس صغير", cat: "areeka", price: 23, desc: "نكهة الأصالة الجنوبية بلمسة كوكيز ميما المميزة", imgs: ["5002.jpg"] },
             { id: "ar3", name: "عريكة كوكيز مقاس 5 إنش", cat: "areeka", price: 40, desc: "الأصالة الجنوبية بطابع حديث ومذاق استثنائي", imgs: ["5003.jpg"] },
-            // نهاية قسم عريكة كوكيز الجديد
 
             { id: "b1", name: "بوكس دونات كوكيز (6 حبات)", cat: "boxes", price: 38, desc: "كوكيز بطابع الدونات - لذة مزدوجة", imgs: ["11.jpg", "18.jpg"] },
             { id: "b2", name: "بوكس دونات كوكيز (12 حبة)", cat: "boxes", price: 76, desc: "كوكيز بطابع الدونات - لذة مزدوجة", imgs: ["18.jpg", "55.jpg"] },
@@ -245,7 +238,6 @@
         function renderMenu(items) {
             const container = document.getElementById('menuContent');
             container.innerHTML = "";
-            // تم إضافة قسم عريكة كوكيز هنا ليكون بين الكيكات والبوكسات
             const cats = { cookies: "الكوكيز", pudding: "البودينق", cakes: "الكيكات", areeka: "عريكة كوكيز", boxes: "البوكسات", glow: "✨ لمسات مضيئة" };
             for (let key in cats) {
                 const filtered = items.filter(i => i.cat === key);
