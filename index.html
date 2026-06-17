@@ -343,8 +343,15 @@
         let cart = {};
         let isDiscountApplied = false;
         let discountRate = 0;
+        let sliderIntervals = []; // مصفوفة لتتبع وتنظيف المؤقتات القديمة منعاً للتشنج
+
+        function clearAllSliders() {
+            sliderIntervals.forEach(interval => clearInterval(interval));
+            sliderIntervals = [];
+        }
 
         function renderMenu(items) {
+            clearAllSliders(); // تنظيف المؤقتات فوراً قبل بناء الـ DOM من جديد لإنهاء التعليق
             const container = document.getElementById('menuContent');
             container.innerHTML = "";
             const cats = { cookies: "الكوكيز", pudding: "البودينق", cakes: "الكيكات", areeka: "عريكة كوكيز", boxes: "البوكسات", glow: "✨ لمسات مضيئة" };
@@ -370,13 +377,13 @@
                                         <button class="btn-extra" style="background:#ddd; color:#666" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, -1, '${item.id}')">-</button>
                                     </div>
                                 </div>`;
-                                if(ex.hasWarning) extrasHtml += `<span id="warn-${exId}" class="warning-text" style="display:${(cart[exId]?.qty > 0) ? 'block' : 'none'}">* هذا الورق غير قابل للأكل</span>`;
-                                if(ex.hasNote) extrasHtml += `<input type="text" id="note-${exId}" class="note-box" style="display:${(cart[exId]?.qty > 0) ? 'block' : 'none'}" oninput="updateNote('${exId}', this.value)" placeholder="${ex.noteLabel || 'اكتب ملاحظتك هنا...'}" value="${cart[exId]?.note || ''}">`;
+                                extrasHtml += `<span id="warn-${exId}" class="warning-text" style="display:${isSelected && ex.hasWarning ? 'block' : 'none'}">* هذا الورق غير قابل للأكل</span>`;
+                                extrasHtml += `<input type="text" id="note-${exId}" class="note-box" style="display:${isSelected && ex.hasNote ? 'block' : 'none'}" oninput="updateNote('${exId}', this.value)" placeholder="${ex.noteLabel || 'اكتب ملاحظتك هنا...'}" value="${cart[exId]?.note || ''}">`;
                             });
                             extrasHtml += `</div>`;
                         }
                         grid += `
-                        <div class="product-card">
+                        <div class="product-card" data-product-id="${item.id}">
                             <div class="image-container" onclick="openProductPage('${item.id}')">${imgsHtml}</div>
                             <div class="product-info" onclick="openProductPage('${item.id}')">
                                 <h3>${item.name}</h3>
@@ -407,8 +414,9 @@
                 extrasHtml = `<div class="page-extras"><h3 style="font-size:16px; color:var(--main-brown); margin-bottom:15px;">الاضافات</h3>`;
                 item.extras.forEach(ex => {
                     const exId = `ex_${item.id}_${ex.name.replace(/\s/g, '')}`;
+                    const isSelected = cart[exId]?.qty > 0;
                     extrasHtml += `
-                    <div class="extra-interactive-item ${cart[exId]?.qty > 0 ? 'selected' : ''}" style="margin-bottom:10px; padding:12px;">
+                    <div class="extra-interactive-item ${isSelected ? 'selected' : ''}" id="pcard-${exId}" style="margin-bottom:10px; padding:12px;">
                         <span style="font-size:13px; font-weight:bold">${ex.name} (+${ex.price} ريال)</span>
                         <div style="display:flex; align-items:center; gap:10px">
                             <button class="btn-extra" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, 1, '${item.id}')">+</button>
@@ -416,8 +424,8 @@
                             <button class="btn-extra" style="background:#ddd; color:#666" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, -1, '${item.id}')">-</button>
                         </div>
                     </div>`;
-                    if(ex.hasWarning) extrasHtml += `<span id="pwarn-${exId}" class="warning-text" style="display:${(cart[exId]?.qty > 0) ? 'block' : 'none'}; text-align:right; margin-top:-5px; margin-bottom:5px;">* هذا الورق غير قابل للأكل</span>`;
-                    if(ex.hasNote) extrasHtml += `<input type="text" id="pnote-${exId}" class="note-box" style="display:${(cart[exId]?.qty > 0) ? 'block' : 'none'}" oninput="updateNote('${exId}', this.value)" placeholder="${ex.noteLabel || 'الملاحظة...'}" value="${cart[exId]?.note || ''}">`;
+                    extrasHtml += `<span id="pwarn-${exId}" class="warning-text" style="display:${isSelected && ex.hasWarning ? 'block' : 'none'}; text-align:right; margin-top:-5px; margin-bottom:5px;">* هذا الورق غير قابل للأكل</span>`;
+                    extrasHtml += `<input type="text" id="pnote-${exId}" class="note-box" style="display:${isSelected && ex.hasNote ? 'block' : 'none'}" oninput="updateNote('${exId}', this.value)" placeholder="${ex.noteLabel || 'الملاحظة...'}" value="${cart[exId]?.note || ''}">`;
                 });
                 extrasHtml += `</div>`;
             }
@@ -435,14 +443,14 @@
                 </div>
                 ${extrasHtml}
                 <div class="page-action-container">
-                    <button class="btn-add-product" onclick="event.stopPropagation(); changeQty('${item.id}', '${item.name}', ${item.price}, 1)">
-                        <span>أضف للطلب</span>
+                    <div class="btn-add-product">
+                        <span>التحكم بالطلب</span>
                         <div style="display:flex; align-items:center; gap:20px">
-                            <div class="btn-main" onclick="event.stopPropagation(); changeQty('${item.id}', '${item.name}', ${item.price}, 1)" style="background:white; color:var(--main-brown);">+</div >
+                            <button class="btn-main" onclick="event.stopPropagation(); changeQty('${item.id}', '${item.name}', ${item.price}, 1)" style="background:white; color:var(--main-brown);">+</button>
                             <span id="q-${item.id}" style="font-weight:800; font-size:24px">${cart[item.id]?.qty || 0}</span>
-                            <div class="btn-main" onclick="event.stopPropagation(); changeQty('${item.id}', '${item.name}', ${item.price}, -1)" style="background:white; color:var(--main-brown);">-</div>
+                            <button class="btn-main" onclick="event.stopPropagation(); changeQty('${item.id}', '${item.name}', ${item.price}, -1)" style="background:white; color:var(--main-brown);">-</button>
                         </div>
-                    </button>
+                    </div>
                 </div>`;
             document.getElementById('mainView').style.display = 'none';
             document.getElementById('productPage').style.display = 'block';
@@ -468,7 +476,11 @@
         function closeProductPage() {
             document.getElementById('productPage').style.display = 'none';
             document.getElementById('mainView').style.display = 'block';
-            renderMenu(products);
+            renderMenu(products.filter(p => {
+                const activeBtn = document.querySelector('.cat-btn.active');
+                if(!activeBtn || activeBtn.innerText.includes('الكل')) return true;
+                return p.cat === activeBtn.getAttribute('onclick').match(/'([^']+)'/)[1];
+            }));
         }
 
         function changeQty(id, name, price, delta, parentId = null) { 
@@ -478,31 +490,55 @@
                 if(!parentId) { for (let key in cart) { if(cart[key].parentId === id) delete cart[key]; } }
                 delete cart[id];
             }
+            
+            // تحديث العدادات المتطابقة في كل واجهات المتجر
             ['q-'+id, 'mq-'+id].forEach(eid => {
                 const el = document.getElementById(eid);
                 if(el) el.innerText = cart[id]?.qty || 0;
             });
+            
             const card = document.getElementById('card-'+id);
             if(card) {
                 if(cart[id]?.qty > 0) card.classList.add('selected');
                 else card.classList.remove('selected');
             }
+            
+            const pcard = document.getElementById('pcard-'+id);
+            if(pcard) {
+                if(cart[id]?.qty > 0) pcard.classList.add('selected');
+                else pcard.classList.remove('selected');
+            }
+
             ['note-'+id, 'pnote-'+id, 'warn-'+id, 'pwarn-'+id].forEach(eid => {
                 const el = document.getElementById(eid);
-                if(el) el.style.display = (cart[id]?.qty > 0) ? 'block' : 'none';
+                if(el) {
+                    const linkedProduct = products.find(p => p.id === (parentId || id)) || {};
+                    const baseExtra = (linkedProduct.extras || []).find(e => `ex_${linkedProduct.id}_${e.name.replace(/\s/g, '')}` === id) || {};
+                    if(eid.includes('warn') && !baseExtra.hasWarning) el.style.display = 'none';
+                    else if(eid.includes('note') && !baseExtra.hasNote) el.style.display = 'none';
+                    else el.style.display = (cart[id]?.qty > 0) ? 'block' : 'none';
+                }
             });
+            
             updateCartUI();
             if(document.getElementById('reviewModal').style.display === 'block') updateReviewOnly();
         }
 
         function updateNote(id, val) { 
             if(cart[id]) cart[id].note = val; 
+            // مزامنة حقول الإدخال بين واجهة المتجر الرئيسية وواجهة صفحة المنتج الفرعية
+            ['note-'+id, 'pnote-'+id].forEach(eid => {
+                const el = document.getElementById(eid);
+                if(el && el.value !== val) el.value = val;
+            });
         }
         
         function updateCartUI() { 
             let count = 0, total = 0; 
             for (let id in cart) { 
-                count += cart[id].qty; 
+                if(!cart[id].parentId) {
+                    count += cart[id].qty; 
+                }
                 total += (cart[id].qty * cart[id].price); 
             } 
             document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none'; 
@@ -513,8 +549,8 @@
         function startSliders() { 
             document.querySelectorAll('.product-card').forEach(card => { 
                 const imgs = card.querySelectorAll('.image-container img'); 
-                if (imgs.length > 1 && !card.dataset.sliderSet) { 
-                    setInterval(() => { 
+                if (imgs.length > 1) { 
+                    const interval = setInterval(() => { 
                         let activeImg = card.querySelector('.image-container img.active');
                         if (activeImg) {
                             activeImg.classList.remove('active');
@@ -522,7 +558,7 @@
                             nextImg.classList.add('active');
                         }
                     }, 4000); 
-                    card.dataset.sliderSet = "true"; 
+                    sliderIntervals.push(interval); // حفظ المرجع لإلغائه لاحقاً من الذاكرة
                 } 
             }); 
         }
@@ -558,9 +594,12 @@
         function updateReviewOnly() {
             const list = document.getElementById('reviewItems');
             list.innerHTML = ""; let subtotal = 0;
+            let hasItems = false;
+
             for (let id in cart) {
                 let item = cart[id];
                 if(!item.parentId) {
+                    hasItems = true;
                     let productBaseTotal = item.qty * item.price;
                     let extrasDetails = "";
                     let extrasTotal = 0;
@@ -596,8 +635,12 @@
                 }
             }
 
+            if(!hasItems) {
+                list.innerHTML = `<div style="text-align:center; padding:20px; color:#999;">سلة المشتريات فارغة حالياً 🛒</div>`;
+            }
+
             let finalTotal = subtotal;
-            if(isDiscountApplied) {
+            if(isDiscountApplied && subtotal > 0) {
                 let discountAmount = subtotal * discountRate;
                 finalTotal = subtotal - discountAmount;
                 document.getElementById('subtotalRow').style.display = "block";
@@ -618,9 +661,11 @@
         function sendWhatsApp() { 
             let msg = "أهلاً كوكيز ميما، طلب جديد 🍪:\n\n"; 
             let subtotal = 0; 
+            let hasItems = false;
             for (let id in cart) { 
                 let item = cart[id];
                 if(!item.parentId) {
+                    hasItems = true;
                     let baseTotal = item.qty * item.price;
                     msg += `*${item.name}*\n`;
                     msg += `العدد: ${item.qty} | السعر: ${baseTotal} ريال\n`;
@@ -639,6 +684,11 @@
                 }
             } 
 
+            if(!hasItems) {
+                alert('الرجاء إضافة منتجات أولاً قبل الإرسال!');
+                return;
+            }
+
             if(isDiscountApplied) {
                 let discountVal = subtotal * discountRate;
                 let final = subtotal - discountVal;
@@ -653,7 +703,13 @@
             window.open(`https://wa.me/966502509910?text=${encodeURIComponent(msg)}`); 
         }
 
-        function filterMenu(cat, btn) { document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderMenu(cat === 'all' ? products : products.filter(p => p.cat === cat)); }
+        function filterMenu(cat, btn) { 
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active')); 
+            btn.classList.add('active'); 
+            renderMenu(cat === 'all' ? products : products.filter(p => p.cat === cat)); 
+        }
+        
+        // التشغيل المبدئي للموقع عند أول تحميل للملف
         renderMenu(products);
     </script>
 </body>
