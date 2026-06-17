@@ -29,7 +29,6 @@
             left: 0; 
             width: 100%; 
             height: 100%; 
-            /* جعل الخلفية شفافة */
             background: rgba(255,255,255,0.7); 
             z-index: 9999; 
             display: flex; 
@@ -40,13 +39,13 @@
 
         /* حاوية النافذة المنبثقة للصورة */
         #welcome-screen .modal-welcome {
-            width: 85%; /* تصغير الحاوية */
+            width: 85%; 
             max-width: 400px;
             background: #fff;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             overflow: hidden;
-            position: relative; /* لزر الإغلاق */
+            position: relative; 
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -58,7 +57,7 @@
             position: absolute;
             top: 15px;
             right: 15px;
-            color: var(--main-pink); /* لون وردي غامق */
+            color: var(--main-pink); 
             font-size: 24px;
             cursor: pointer;
             z-index: 10000;
@@ -68,7 +67,7 @@
         #welcome-screen .img-container {
             width: 100%;
             height: auto;
-            max-height: 70vh; /* تحديد أقصى ارتفاع */
+            max-height: 70vh; 
             overflow: hidden;
             display: flex;
             justify-content: center;
@@ -78,11 +77,10 @@
         #welcome-screen img { 
             width: 100%; 
             height: auto; 
-            object-fit: contain; /* الحفاظ على الأبعاد */
+            object-fit: contain; 
             border-radius: 20px;
         }
-        /* --- نهاية تعديل تنسيق شاشة الترحيب --- */
-
+        
         header { background-color: var(--soft-pink); background-image: url('logo.jpg'); background-size: contain; background-position: center top; background-repeat: no-repeat; width: 100%; height: 260px; border-bottom: 3px solid var(--main-pink); }
         
         .marquee-container { background-color: var(--main-pink); color: white; overflow: hidden; padding: 12px 0; font-size: 14px; font-weight: bold; position: sticky; top: 0; z-index: 1001; text-align: center; }
@@ -95,18 +93,17 @@
         .whatsapp-float { position: fixed; top: 130px; left: 20px; background-color: #25d366; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; z-index: 2001; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-decoration: none; transition: transform 0.2s; }
         .whatsapp-float:active { transform: scale(1.2); }
 
-        /* --- تعديل وتنسيق قائمة الأقسام لتصبح دورين بشكل منسق ورائع --- */
         .categories-nav { 
             position: sticky; 
             top: 43px; 
             background: #fff; 
             padding: 12px 8px; 
             display: flex; 
-            flex-wrap: wrap; /* يسمح بالتفاف الأزرار لسطر جديد */
+            flex-wrap: wrap; 
             gap: 8px; 
             z-index: 1000; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
-            justify-content: center; /* توسيط الأزرار في السطرين */
+            justify-content: center; 
             border-bottom: 1px solid rgba(214, 51, 132, 0.1);
         }
 
@@ -121,14 +118,13 @@
             cursor: pointer; 
             transition: all 0.2s ease-in-out; 
             font-size: 12px;
-            flex: 1 1 calc(25% - 8px); /* توزيع الأزرار بشكل متساوي وتلقائي */
-            min-width: 75px; /* الحد الأدنى لعرض الزر كي لا يتشوه النص */
+            flex: 1 1 calc(25% - 8px); 
+            min-width: 75px; 
             text-align: center;
         }
 
-        /* تمييز زر لمسات مضيئة وزر الكل لضبط التوزيع الفلكس */
         .cat-btn.glow {
-            flex: 2 1 calc(50% - 8px); /* إعطاء زر لمسات مضيئة مساحة أكبر متناسقة */
+            flex: 2 1 calc(50% - 8px); 
         }
 
         .cat-btn:active {
@@ -142,7 +138,6 @@
         }
         .cat-btn.glow { border-color: var(--glow-gold); color: var(--main-brown); box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
         .cat-btn.glow.active { background: var(--glow-gold); color: #000; box-shadow: 0 3px 8px rgba(255, 215, 0, 0.4); }
-        /* --- نهاية تعديل قائمة الأقسام --- */
         
         .section-title { background: var(--main-brown); color: white; padding: 8px 20px; margin: 25px 15px 10px; border-radius: 8px; display: inline-block; font-size: 15px; }
         .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; }
@@ -190,7 +185,20 @@
         .cart-fixed-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--main-pink); color: white; padding: 22px 0; display: none; justify-content: center; align-items: center; z-index: 4000; box-shadow: 0 -5px 20px rgba(214, 51, 132, 0.3); border-radius: 30px 30px 0 0; cursor: pointer; transition: 0.3s; }
         .cart-fixed-bar:active { transform: scale(0.98); }
 
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 5000; overflow-y: auto; backdrop-filter: blur(5px); }
+        /* تم التعديل: إضافة حماية للـ Pointer Events لمنع حجب العناصر وهي مخفية */
+        .modal-overlay { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0,0,0,0.8); 
+            z-index: 5000; 
+            overflow-y: auto; 
+            backdrop-filter: blur(5px);
+            pointer-events: none; 
+        }
         .modal-body { background: white; width: 92%; max-width: 450px; margin: 30px auto; border-radius: 25px; padding: 25px; direction: rtl; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         
         .cart-item-row { background: #fff; border: 1px solid #f0f0f0; border-radius: 15px; padding: 15px; margin-bottom: 12px; }
@@ -343,7 +351,7 @@
         let cart = {};
         let isDiscountApplied = false;
         let discountRate = 0;
-        let sliderIntervals = []; // مصفوفة لتتبع وتنظيف المؤقتات القديمة منعاً للتشنج
+        let sliderIntervals = []; 
 
         function clearAllSliders() {
             sliderIntervals.forEach(interval => clearInterval(interval));
@@ -351,7 +359,7 @@
         }
 
         function renderMenu(items) {
-            clearAllSliders(); // تنظيف المؤقتات فوراً قبل بناء الـ DOM من جديد لإنهاء التعليق
+            clearAllSliders(); 
             const container = document.getElementById('menuContent');
             container.innerHTML = "";
             const cats = { cookies: "الكوكيز", pudding: "البودينق", cakes: "الكيكات", areeka: "عريكة كوكيز", boxes: "البوكسات", glow: "✨ لمسات مضيئة" };
@@ -491,7 +499,6 @@
                 delete cart[id];
             }
             
-            // تحديث العدادات المتطابقة في كل واجهات المتجر
             ['q-'+id, 'mq-'+id].forEach(eid => {
                 const el = document.getElementById(eid);
                 if(el) el.innerText = cart[id]?.qty || 0;
@@ -526,7 +533,6 @@
 
         function updateNote(id, val) { 
             if(cart[id]) cart[id].note = val; 
-            // مزامنة حقول الإدخال بين واجهة المتجر الرئيسية وواجهة صفحة المنتج الفرعية
             ['note-'+id, 'pnote-'+id].forEach(eid => {
                 const el = document.getElementById(eid);
                 if(el && el.value !== val) el.value = val;
@@ -558,7 +564,7 @@
                             nextImg.classList.add('active');
                         }
                     }, 4000); 
-                    sliderIntervals.push(interval); // حفظ المرجع لإلغائه لاحقاً من الذاكرة
+                    sliderIntervals.push(interval); 
                 } 
             }); 
         }
@@ -567,7 +573,8 @@
             const input = document.getElementById('couponInput').value.trim();
             const msg = document.getElementById('couponMsg');
             
-            if(input === "رورو تاج راسي وحياتي") {
+            // تم التعديل: تصفية وتحسين التحقق من الكوبون لضمان عدم رفضه بسبب الرموز التعبيرية أو المسافات
+            if(input === "رورو تاج راسي وحياتي" || input.includes("رورو تاج راسي")) {
                 isDiscountApplied = true;
                 discountRate = 0.02; 
                 msg.innerText = "✅ تم تطبيق الخصم 2%";
@@ -586,9 +593,19 @@
             updateReviewOnly();
         }
 
+        // تم التعديل: تفعيل أحداث اللمس (Pointer Events) فور فتح النافذة
         function openReview() {
             updateReviewOnly();
-            document.getElementById('reviewModal').style.display = 'block';
+            const modal = document.getElementById('reviewModal');
+            modal.style.display = 'block';
+            modal.style.pointerEvents = 'auto'; 
+        }
+
+        // تم التعديل: حظر أحداث اللمس للنافذة فور إغلاقها كي لا تحجب واجهة المتجر
+        function closeReview() { 
+            const modal = document.getElementById('reviewModal');
+            modal.style.display = 'none'; 
+            modal.style.pointerEvents = 'none'; 
         }
 
         function updateReviewOnly() {
@@ -656,8 +673,6 @@
             document.getElementById('modalTotal').innerText = finalTotal.toFixed(2);
         }
 
-        function closeReview() { document.getElementById('reviewModal').style.display = 'none'; }
-
         function sendWhatsApp() { 
             let msg = "أهلاً كوكيز ميما، طلب جديد 🍪:\n\n"; 
             let subtotal = 0; 
@@ -709,7 +724,6 @@
             renderMenu(cat === 'all' ? products : products.filter(p => p.cat === cat)); 
         }
         
-        // التشغيل المبدئي للموقع عند أول تحميل للملف
         renderMenu(products);
     </script>
 </body>
