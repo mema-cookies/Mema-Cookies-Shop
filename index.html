@@ -492,7 +492,7 @@
                 if(el) el.style.display = (cart[id]?.qty > 0) ? 'block' : 'none';
             });
             updateCartUI();
-            if(document.getElementById('reviewModal').style.display === 'block') openReview();
+            if(document.getElementById('reviewModal').style.display === 'block') updateReviewOnly();
         }
 
         function updateNote(id, val) { 
@@ -547,10 +547,15 @@
                 msg.innerText = "❌ كود غير صحيح أو انتهت صلاحيته";
                 msg.style.color = "red";
             }
-            openReview();
+            updateReviewOnly();
         }
 
         function openReview() {
+            updateReviewOnly();
+            document.getElementById('reviewModal').style.display = 'block';
+        }
+
+        function updateReviewOnly() {
             const list = document.getElementById('reviewItems');
             list.innerHTML = ""; let subtotal = 0;
             for (let id in cart) {
@@ -567,9 +572,9 @@
                             <div class="extra-row-invoice">
                                 <span>+ ${cart[exId].name} (${cart[exId].qty}) ${cart[exId].note ? '<br><small>📝 '+cart[exId].note+'</small>' : ''}</span>
                                 <div class="cart-item-ctrl">
-                                    <button class="btn-cart-qty" onclick="changeQty('${exId}', '${cart[exId].name}', ${ex.price}, 1, '${id}')">+</button>
+                                    <button class="btn-cart-qty" onclick="changeQty('${exId}', '${cart[exId].name}', ${cart[exId].price}, 1, '${id}')">+</button>
                                     <span style="font-weight:bold; margin:0 5px">${exCost} ر.س</span>
-                                    <button class="btn-cart-qty" onclick="changeQty('${exId}', '${cart[exId].name}', ${ex.price}, -1, '${id}')">-</button>
+                                    <button class="btn-cart-qty" onclick="changeQty('${exId}', '${cart[exId].name}', ${cart[exId].price}, -1, '${id}')">-</button>
                                 </div>
                             </div>`;
                         }
@@ -606,7 +611,6 @@
             }
 
             document.getElementById('modalTotal').innerText = finalTotal.toFixed(2);
-            document.getElementById('reviewModal').style.display = 'block';
         }
 
         function closeReview() { document.getElementById('reviewModal').style.display = 'none'; }
