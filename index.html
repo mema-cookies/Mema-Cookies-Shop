@@ -620,7 +620,7 @@
             const msg = document.getElementById('couponMsg');
             
             // تم التعديل: تصفية وتحسين التحقق من الكوبون لضمان عدم رفضه بسبب الرموز التعبيرية أو المسافات
-            if(input === "رورو " || input.includes("رورو تاج راسي")) {
+            if(input === "رورو تاج راسي وحياتي" || input.includes("رورو تاج راسي")) {
                 isDiscountApplied = true;
                 discountRate = 0.02; 
                 msg.innerText = "✅ تم تطبيق الخصم 2%";
