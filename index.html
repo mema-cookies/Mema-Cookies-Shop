@@ -620,16 +620,22 @@
             const msg = document.getElementById('couponMsg');
             
             // تم التعديل: تصفية وتحسين التحقق من الكوبون لضمان عدم رفضه بسبب الرموز التعبيرية أو المسافات
-            if(input === "رورو تاج راسي وحياتي" || input.includes("رورو تاج راسي")) {
-                isDiscountApplied = true;
-                discountRate = 0.02; 
-                msg.innerText = "✅ تم تطبيق الخصم 2%";
-                msg.style.color = "green";
-            } else if(input === "") {
-                isDiscountApplied = false;
-                discountRate = 0;
-                msg.innerText = "يرجى إدخال الكوبون";
-                msg.style.color = "orange";
+if (
+    input === "ورود تاج راسي وحياتي" ||
+    input === "راتب"
+) {
+    isDiscountApplied = true;
+
+    if (input === "راتب") {
+        discountRate = 0.05;
+        msg.innerText = "✅ تم تطبيق خصم 5٪";
+    } else {
+        discountRate = 0.02;
+        msg.innerText = "✅ تم تطبيق خصم 2٪";
+    }
+
+    msg.style.color = "green";
+}
             } else {
                 isDiscountApplied = false;
                 discountRate = 0;
