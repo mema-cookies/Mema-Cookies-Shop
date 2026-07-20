@@ -22,7 +22,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-‎        /* --- تعديل تنسيق شاشة الترحيب --- */
+        /* --- تعديل تنسيق شاشة الترحيب --- */
         #welcome-screen { 
             position: fixed; 
             top: 0; 
@@ -37,7 +37,7 @@
             transition: opacity 0.5s ease; 
         }
 
-‎        /* حاوية النافذة المنبثقة للصورة */
+        /* حاوية النافذة المنبثقة للصورة */
         #welcome-screen .modal-welcome {
             width: 85%; 
             max-width: 400px;
@@ -52,7 +52,7 @@
             justify-content: center;
         }
 
-‎        /* زر إغلاق واضح */
+        /* زر إغلاق واضح */
         #welcome-screen .close-icon-fixed {
             position: absolute;
             top: 15px;
@@ -63,7 +63,7 @@
             z-index: 10000;
         }
 
-‎        /* تنسيق الصورة الترحيبية */
+        /* تنسيق الصورة الترحيبية */
         #welcome-screen .img-container {
             width: 100%;
             height: auto;
@@ -185,7 +185,7 @@
         .cart-fixed-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--main-pink); color: white; padding: 22px 0; display: none; justify-content: center; align-items: center; z-index: 4000; box-shadow: 0 -5px 20px rgba(214, 51, 132, 0.3); border-radius: 30px 30px 0 0; cursor: pointer; transition: 0.3s; }
         .cart-fixed-bar:active { transform: scale(0.98); }
 
-‎        /* تم التعديل: إضافة حماية للـ Pointer Events لمنع حجب العناصر وهي مخفية */
+        /* تم التعديل: إضافة حماية للـ Pointer Events لمنع حجب العناصر وهي مخفية */
         .modal-overlay { 
             display: none; 
             position: fixed; 
@@ -218,7 +218,7 @@
         
         .btn-back-cart { position: absolute; top: 20px; right: 20px; background: var(--soft-pink); border: none; padding: 6px 12px; border-radius: 10px; color: var(--main-pink); font-size: 11px; font-weight: bold; cursor: pointer; z-index: 10; }
 
-‎        /* --- الأكواد المضافة حديثاً لميزة التوصيل والاستلام لتبدو كالصورة تماماً --- */
+        /* --- الأكواد المضافة حديثاً لميزة التوصيل والاستلام لتبدو كالصورة تماماً --- */
         .store-shipping-badge-box {
             display: flex;
             background: #ffffff;
@@ -303,6 +303,19 @@
             
             <h3 style="text-align:center; color:var(--main-pink); margin-top:35px; margin-bottom:20px;">🍪 مراجعة طلبك 🍪</h3>
             <div id="reviewItems"></div>
+
+                <div class="store-shipping-badge-box">
+                    <div class="badge-shipping-item">
+                        <i class="fas fa-motorcycle"></i>
+                        <span>التوصيل متوفر</span>
+                    </div>
+                    <div class="badge-shipping-line"></div>
+                    <div class="badge-shipping-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>الاستلام متاح</span>
+                    </div>
+                </div>
+
 
             <div class="discount-section">
                 <label style="font-size: 12px; font-weight: bold; color: var(--main-brown);">هل لديك كوبون تخفيض ؟</label>
@@ -481,17 +494,6 @@
                     <span style="font-size:28px; font-weight:900; color:var(--main-pink);">${item.price} ريال</span>
                 </div>
                 
-                <div class="store-shipping-badge-box">
-                    <div class="badge-shipping-item">
-                        <i class="fas fa-motorcycle"></i>
-                        <span>التوصيل متوفر</span>
-                    </div>
-                    <div class="badge-shipping-line"></div>
-                    <div class="badge-shipping-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>الاستلام متاح</span>
-                    </div>
-                </div>
 
                 ${extrasHtml}
                 <div class="page-action-container">
@@ -617,7 +619,7 @@
             const input = document.getElementById('couponInput').value.trim();
             const msg = document.getElementById('couponMsg');
             
-‎            // تم التعديل: تصفية وتحسين التحقق من الكوبون لضمان عدم رفضه بسبب الرموز التعبيرية أو المسافات
+            // تم التعديل: تصفية وتحسين التحقق من الكوبون لضمان عدم رفضه بسبب الرموز التعبيرية أو المسافات
             if(input === "رورو تاج راسي وحياتي" || input.includes("رورو تاج راسي")) {
                 isDiscountApplied = true;
                 discountRate = 0.02; 
@@ -637,7 +639,7 @@
             updateReviewOnly();
         }
 
-‎        // تم التعديل: تفعيل أحداث اللمس (Pointer Events) فور فتح النافذة
+        // تم التعديل: تفعيل أحداث اللمس (Pointer Events) فور فتح النافذة
         function openReview() {
             updateReviewOnly();
             const modal = document.getElementById('reviewModal');
@@ -645,7 +647,7 @@
             modal.style.pointerEvents = 'auto'; 
         }
 
-‎        // تم التعديل: حظر أحداث اللمس للنافذة فور إغلاقها كي لا تحجب واجهة المتجر
+        // تم التعديل: حظر أحداث اللمس للنافذة فور إغلاقها كي لا تحجب واجهة المتجر
         function closeReview() { 
             const modal = document.getElementById('reviewModal');
             modal.style.display = 'none'; 
