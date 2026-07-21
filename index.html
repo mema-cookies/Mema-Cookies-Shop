@@ -627,11 +627,12 @@
             const msg = document.getElementById('couponMsg');
             
             // تم التعديل: تصفية وتحسين التحقق من الكوبون لضمان عدم رفضه بسبب الرموز التعبيرية أو المسافات
-            if(input === "رورو تاج راسي وحياتي" || input.includes("رورو تاج راسي")) {
-                isDiscountApplied = true;
-                discountRate = 0.02; 
-                msg.innerText = "✅ تم تطبيق الخصم 2%";
-                msg.style.color = "green";
+            if (input === "راتب") {
+        isDiscountApplied = true;
+        discountRate = 0.1;
+        msg.innerText = "✅ تم تطبيق الخصم 10%";
+        msg.style.color = "green";
+    } else if(input === "") {
             } else if(input === "") {
                 isDiscountApplied = false;
                 discountRate = 0;
