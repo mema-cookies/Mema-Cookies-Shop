@@ -632,7 +632,22 @@
         discountRate = 0.1;
         msg.innerText = "✅ تم تطبيق الخصم 10%";
         msg.style.color = "green";
-    } else if(input === "") {
+    } else if (input === "هنا") {
+        isDiscountApplied = true;
+        discountRate = 0.1;
+        msg.innerText = "✅ تم تطبيق الخصم 10%";
+        msg.style.color = "green";
+    } else if (input === "") {
+        isDiscountApplied = false;
+        discountRate = 0;
+        msg.innerText = "يرجى إدخال الكوبون";
+        msg.style.color = "orange";
+    } else {
+        isDiscountApplied = false;
+        discountRate = 0;
+        msg.innerText = "❌ كود غير صحيح أو انتهت صلاحيته";
+        msg.style.color = "red";
+    }
             } else if(input === "") {
                 isDiscountApplied = false;
                 discountRate = 0;
