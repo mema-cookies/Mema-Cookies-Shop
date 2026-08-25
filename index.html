@@ -801,6 +801,7 @@ if (input === "روري") {
         }
 
         function filterMenu(cat, btn) { 
+            document.body.style.backgroundColor = (cat === 'national') ? '#1b5e20' : '';
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active')); 
             btn.classList.add('active'); 
             renderMenu(cat === 'all' ? products : products.filter(p => p.cat === cat)); 
