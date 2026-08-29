@@ -645,16 +645,17 @@
             
             // تم التعديل: تصفية وتحسين التحقق من الكوبون لضمان عدم رفضه بسبب الرموز التعبيرية أو المسافات
 if (input === "روري") {
-        isDiscountApplied = true;
-        discountRate = 0.1;
-        msg.innerText = "✅ تم تطبيق الخصم 10%";
-        msg.style.color = "green"}
-     else if (input === "دراسة") {
-        isDiscountApplied = true;
-        discountRate = 0.1;
-        msg.innerText = "✅ تم تطبيق الخصم 10%";
-        msg.style.color = "green";
-    } 
+    isDiscountApplied = true;
+    discountRate = 0.1;
+    msg.innerText = "✅ تم تطبيق الخصم 10%";
+    msg.style.color = "green";
+} 
+else if (input === "دراسة") {
+    isDiscountApplied = true;
+    discountRate = 0.1;
+    msg.innerText = "✅ تم تطبيق الخصم 10%";
+    msg.style.color = "green";
+} 
 else if (input === "WATAN96") {
     if (subtotal > 135) {
         isDiscountApplied = true;
@@ -679,6 +680,7 @@ else {
     discountRate = 0;
     msg.innerText = "كود غير صحيح أو انتهت صلاحيته";
     msg.style.color = "red";
+}
 }
             updateReviewOnly();
         }
