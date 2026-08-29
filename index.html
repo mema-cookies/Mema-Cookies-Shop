@@ -659,6 +659,19 @@ if (input === "روري") {
         discountRate = 0;
         msg.innerText = "يرجى إدخال الكوبون";
         msg.style.color = "orange";
+         else if (input === "WATAN96") {
+    if (subtotal > 135) {
+        isDiscountApplied = true;
+        discountRate = 0.04;
+        msg.innerText = "✅ تم تطبيق الخصم 4%";
+        msg.style.color = "green";
+    } else {
+        isDiscountApplied = false;
+        discountRate = 0;
+        msg.innerText = "❌ الكود يتطلب أن يكون المجموع أكثر من 135";
+        msg.style.color = "red";
+    }
+}
     } else {
         isDiscountApplied = false;
         discountRate = 0;
