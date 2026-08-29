@@ -659,6 +659,12 @@ if (input === "روري") {
         discountRate = 0;
         msg.innerText = "يرجى إدخال الكوبون";
         msg.style.color = "orange";
+    } else {
+        isDiscountApplied = false;
+        discountRate = 0;
+        msg.innerText = "❌ كود غير صحيح أو انتهت صلاحيته";
+        msg.style.color = "red";
+    }
             updateReviewOnly();
         }
 
