@@ -561,6 +561,8 @@
                 <span id="couponMsg" class="discount-msg"></span>
             </div>
 
+            <div id="giftProgress" style="text-align:center; margin:12px 0; padding:12px; border-radius:12px; background:#fff4f8; color:var(--main-brown); font-weight:bold; font-size:12px;"></div>
+
             <div id="priceDetails" style="text-align:center; margin:20px 0; border-top:1px solid #eee; padding-top:15px;">
                 <div id="subtotalRow" style="display:none; color:#777; font-size:14px; margin-bottom:5px;">الإجمالي قبل الخصم: <span id="modalSubtotal">0</span> ريال</div>
                 <div id="discountRow" style="display:none; color:green; font-size:14px; margin-bottom:5px;">قيمة الخصم (<span id="discountPercentText">0</span>%): -<span id="modalDiscountVal">0</span> ريال</div>
@@ -587,7 +589,7 @@
             { id: "c3", name: "كوكيز حساوي", cat: "cookies", price: 6, desc: "نكهة تراثية - بلمسة عصرية", imgs: ["9.jpg", "40.jpg", "41.jpg", "42.jpg", "43.jpg", "44.jpg"] },
             { id: "c4", name: "سكوب كوكيز", cat: "cookies", price: 23, desc: "سكوب كوكيز مع الفيوتن والقرمشه والشوكلاتة .. تجربة لذيذة ما تُنسى!", imgs: ["22.jpg", "73.jpg", "102.jpg", "103.jpg", "104.jpg"], extras: [{name:"زيادة شوكلاتة بلجيكية", price:2}, {name:"زيادة فيوتين", price:2}] },
             { id: "c5", name: "سكوب كوكيز ميما وسط", cat: "cookies", price: 33, desc: "سكوب كوكيز مع الفيوتن والقرمشه والشوكلاتة .. تجربة لذيذة ما تُنسى!", imgs: ["73.jpg"], extras: [{name:"زيادة شوكلاتة بلجيكية", price:2}, {name:"زيادة فيوتين", price:2}] },
-            { id: "c6", name: "دونات كوكيز", cat: "cookies", price: 6, desc: "كوكيز بطابع الدونات.. قرمشة من برا وطراوة ولذة من جوا 🍩🍪", imgs: ["1059a.jpg"], sauceOptions: ["صوص كيندر", "صوص فستق", "شوكولاتة بيضاء", "شوكولاتة بلجيكي", "سادة (حشوة شوكولاتة بلجيكي فقط)"] },
+            { id: "c6", name: "دونات كوكيز", cat: "cookies", price: 6, desc: "كوكيز بطابع الدونات.. قرمشة من برا وطراوة ولذة من جوا 🍩🍪", imgs: ["1059a.jpg"], flavorVariants: true, extras: [{ name: "شوكلت بلجيكي", price: 0 }, { name: "فستق", price: 0 }, { name: "كيندر", price: 0 }, { name: "شوكلت أبيض", price: 0 }] },
             { id: "p1", name: "بودينق ميما ميني", cat: "pudding", price: 10, desc: "طراوة ولذة - بشوكلت بلجيكي فاخر", imgs: ["5.jpg", "72.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 2 }, { name: "اضافة كيندر", price: 2 }, { name: "اضافة شوكلاتة بيضاء", price: 2 }, { name: "مارشميلو", price: 2 }] },
             { id: "p2", name: "بودينق ميما وسط", cat: "pudding", price: 20, desc: "طبقات من الكوكيز والفيوتن المقرمش والشوكلاته البلجيكية الفاخرة", imgs: ["4.jpg", "70.jpg", "71.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 2 }, { name: "اضافة كيندر", price: 2 }, { name: "اضافة شوكلاتة بيضاء", price: 2 }, { name: "مارشميلو", price: 2 }] },
             { id: "p3", name: "بودينق ميما كبير", cat: "pudding", price: 30, desc: "طبقات من الكوكيز والفيوتن المقرمش والشوكلاته البلجيكية الفاخرة", imgs: ["6.jpg", "66.jpg"], extras: [{ name: "اضافة شوكلاتة بلجيكية", price: 0 }, { name: "اضافة فستق", price: 2 }, { name: "اضافة كيندر", price: 2 }, { name: "اضافة شوكلاتة بيضاء", price: 2 }, { name: "مارشميلو", price: 2 }] },
@@ -678,6 +680,9 @@
         let cart = {};
         let isDiscountApplied = false;
         let discountRate = 0;
+        const FREE_GIFT_THRESHOLD = 135;
+        const FREE_GIFT_ID = "gift_c1";
+        let freeGiftActive = false;
         let sliderIntervals = []; 
 
         function clearAllSliders() {
@@ -698,18 +703,6 @@
                     filtered.forEach(item => {
                         let imgsHtml = item.imgs.map((img, idx) => `<img src="${img}" class="${idx===0?'active':''}">`).join('');
                         let extrasHtml = '';
-                        if (item.id === "c6" && item.sauceOptions) {
-                            const selectedSauce = cart[item.id]?.sauce || "";
-                            extrasHtml = `<div class="extras-container">`;
-                            item.sauceOptions.forEach(sauce => {
-                                extrasHtml += `
-                                <label class="extra-interactive-item" style="cursor:pointer;">
-                                    <span class="extra-name">${sauce}</span>
-                                    <input type="radio" name="card-sauce-${item.id}" value="${sauce}" ${selectedSauce === sauce ? 'checked' : ''} onchange="selectSauce('${item.id}', this.value)">
-                                </label>`;
-                            });
-                            extrasHtml += `</div>`;
-                        }
                         if (item.extras) {
                             extrasHtml = `<div class="extras-container">`;
                             item.extras.forEach(ex => {
@@ -717,7 +710,7 @@
                                 const isSelected = cart[exId]?.qty > 0;
                                 extrasHtml += `
                                 <div class="extra-interactive-item ${isSelected ? 'selected' : ''}" id="card-${exId}">
-                                    <span class="extra-name">${ex.name} (+${ex.price})</span>
+                                    <span class="extra-name">${ex.name}${item.flavorVariants ? "" : ` (+${ex.price})`}</span>
                                     <div class="extra-ctrl">
                                         <button class="btn-extra" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, 1, '${item.id}')">+</button>
                                         <span class="extra-qty" id="mq-${exId}">${cart[exId]?.qty || 0}</span>
@@ -757,16 +750,6 @@
             let imgsHtml = item.imgs.map((img, idx) => `<img src="${img}" class="${idx===0?'active':''}" id="pimg-${idx}">`).join('');
             
             let extrasHtml = '';
-            if (item.sauceOptions) {
-                const selectedSauce = cart[item.id]?.sauce || "";
-                extrasHtml += `<div class="page-extras"><h3 style="font-size:16px; color:var(--main-brown); margin-bottom:15px;">🍩 اختيار الصوص الخارجي</h3>`;
-                item.sauceOptions.forEach(sauce => {
-                    extrasHtml += `<label style="display:block; padding:10px; margin:7px 0; background:white; border:1px solid #eee; border-radius:10px; cursor:pointer;">
-                        <input type="radio" name="sauce-${item.id}" value="${sauce}" ${selectedSauce === sauce ? 'checked' : ''} onchange="selectSauce('${item.id}', this.value)"> ${sauce}
-                    </label>`;
-                });
-                extrasHtml += `</div>`;
-            }
             if (item.extras) {
                 extrasHtml = `<div class="page-extras"><h3 style="font-size:16px; color:var(--main-brown); margin-bottom:15px;">الاضافات</h3>`;
                 item.extras.forEach(ex => {
@@ -774,7 +757,7 @@
                     const isSelected = cart[exId]?.qty > 0;
                     extrasHtml += `
                     <div class="extra-interactive-item ${isSelected ? 'selected' : ''}" id="pcard-${exId}" style="margin-bottom:10px; padding:12px;">
-                        <span style="font-size:13px; font-weight:bold">${ex.name} (+${ex.price} ريال)</span>
+                        <span style="font-size:13px; font-weight:bold">${ex.name}${item.flavorVariants ? "" : ` (+${ex.price} ريال)`}</span>
                         <div style="display:flex; align-items:center; gap:10px">
                             <button class="btn-extra" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, 1, '${item.id}')">+</button>
                             <span id="q-${exId}" style="font-weight:bold; color:var(--main-pink)">${cart[exId]?.qty || 0}</span>
@@ -845,27 +828,49 @@
             if(activeBtn && activeBtn.getAttribute('onclick').includes("'national'")) renderMenu(nationalProducts);
         }
 
-        function selectSauce(productId, sauce) {
-            if (!cart[productId]) {
-                const product = [...products, ...nationalProducts].find(p => p.id === productId);
-                if (product) cart[productId] = { name: product.name, price: product.price, qty: 0, note: "", parentId: null };
+        function getRegularSubtotal() {
+            let total = 0;
+            for (let id in cart) {
+                if (id !== FREE_GIFT_ID) total += cart[id].qty * cart[id].price;
             }
-            if (cart[productId]) cart[productId].sauce = sauce;
+            return total;
+        }
+
+        function syncFreeGift() {
+            freeGiftActive = getRegularSubtotal() >= FREE_GIFT_THRESHOLD;
+            if (freeGiftActive) {
+                cart[FREE_GIFT_ID] = { name: "كوكيز ميما", price: 0, qty: 1, note: "مجانا 🎁", parentId: null, isGift: true };
+            } else {
+                delete cart[FREE_GIFT_ID];
+            }
         }
 
         function changeQty(id, name, price, delta, parentId = null) { 
-            if (id === "c6" && delta > 0) {
-                const selected = document.querySelector('input[name="sauce-c6"]:checked');
-                const savedSauce = cart[id]?.sauce;
-                if (!selected && !savedSauce) {
-                    alert("الرجاء اختيار الصوص الخارجي أولاً");
-                    return;
+            // نكهات الدونات: كل نكهة مستقلة، ومجموعها هو عدد الدونات
+            if (parentId === "c6" && id.startsWith("ex_c6_")) {
+                if (!cart[id]) cart[id] = { name, price: 0, qty: 0, note: "", parentId: "c6" };
+                const oldQty = cart[id].qty;
+                cart[id].qty = Math.max(0, oldQty + delta);
+                const actualDelta = cart[id].qty - oldQty;
+                if (cart[id].qty === 0) delete cart[id];
+                if (actualDelta !== 0) {
+                    if (!cart.c6) cart.c6 = { name: "دونات كوكيز", price: 6, qty: 0, note: "", parentId: null };
+                    cart.c6.qty += actualDelta;
+                    if (cart.c6.qty <= 0) delete cart.c6;
                 }
-                if (selected) {
-                    if (!cart[id]) cart[id] = { name: name, price: price, qty: 0, note: "", parentId: parentId };
-                    cart[id].sauce = selected.value;
-                }
+                ['q-'+id, 'mq-'+id].forEach(eid => { const el = document.getElementById(eid); if(el) el.innerText = cart[id]?.qty || 0; });
+                ['q-c6', 'mq-c6'].forEach(eid => { const el = document.getElementById(eid); if(el) el.innerText = cart.c6?.qty || 0; });
+                const card = document.getElementById('card-'+id); if(card) card.classList.toggle('selected', !!cart[id]);
+                const pcard = document.getElementById('pcard-'+id); if(pcard) pcard.classList.toggle('selected', !!cart[id]);
+                syncFreeGift();
+                updateCartUI();
+                if(document.getElementById('reviewModal').style.display === 'block') updateReviewOnly();
+                return;
             }
+
+            if (id === FREE_GIFT_ID && delta > 0) return changeQty('c1', 'كوكيز ميما', 5, 1);
+            if (id === FREE_GIFT_ID) return;
+
             if (!cart[id]) cart[id] = { name: name, price: price, qty: 0, note: "", parentId: parentId }; 
             cart[id].qty += delta; 
             if (cart[id].qty <= 0) {
@@ -901,6 +906,7 @@
                 }
             });
             
+            syncFreeGift();
             updateCartUI();
             if(document.getElementById('reviewModal').style.display === 'block') updateReviewOnly();
         }
@@ -954,19 +960,10 @@ if (input === "روري") {
         msg.innerText = "✅ تم تطبيق الخصم 10%";
         msg.style.color = "green"}
      else if (input === "WATAN96") {
-        let subtotal = 0;
-        for (let id in cart) subtotal += cart[id].qty * cart[id].price;
-        if (subtotal > 135) {
-            isDiscountApplied = true;
-            discountRate = 0.04;
-            msg.innerText = "✅ تم تطبيق الخصم 4%";
-            msg.style.color = "green";
-        } else {
-            isDiscountApplied = false;
-            discountRate = 0;
-            msg.innerText = "الكوبون متاح للطلبات الأكثر من 135 ريال";
-            msg.style.color = "orange";
-        }
+        isDiscountApplied = true;
+        discountRate = 0.04;
+        msg.innerText = "✅ تم تطبيق الخصم 4%";
+        msg.style.color = "green";
     } else if (input === "") {
         isDiscountApplied = false;
         discountRate = 0;
@@ -1026,15 +1023,12 @@ if (input === "روري") {
                     list.innerHTML += `
                     <div class="cart-item-row">
                         <div class="cart-item-header">
-                            <b style="color:var(--main-brown); font-size:16px;">${item.name}</b>
+                            <b style="color:var(--main-brown); font-size:16px;">${item.name} ${item.isGift ? '<span style="color:green;font-size:12px">🎁 مجانا</span>' : ''}</b>
                             <div class="cart-item-ctrl">
-                                <button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, 1)">+</button>
-                                <span style="font-weight:bold; width:20px; text-align:center">${item.qty}</span>
-                                <button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, -1)">-</button>
+                                ${item.isGift ? `<button class="btn-cart-qty" onclick="changeQty('${FREE_GIFT_ID}', 'كوكيز ميما', 0, 1)">+</button><span style="font-weight:bold; width:20px; text-align:center">1</span>` : `<button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, 1)">+</button><span style="font-weight:bold; width:20px; text-align:center">${item.qty}</span><button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, -1)">-</button>`}
                                 <span style="margin-right:10px; font-weight:900; color:var(--main-pink)">${productBaseTotal} ر.س</span>
                             </div>
                         </div>
-                        ${item.sauce ? `<div class="extra-row-invoice"><span>الصوص الخارجي: ${item.sauce}</span></div>` : ``}
                         ${extrasDetails}
                     </div>`;
                     subtotal += (productBaseTotal + extrasTotal);
@@ -1043,6 +1037,14 @@ if (input === "روري") {
 
             if(!hasItems) {
                 list.innerHTML = `<div style="text-align:center; padding:20px; color:#999;">سلة المشتريات فارغة حالياً 🛒</div>`;
+            }
+
+            const giftProgress = document.getElementById('giftProgress');
+            if (giftProgress) {
+                const regularSubtotal = getRegularSubtotal();
+                giftProgress.innerHTML = freeGiftActive
+                    ? '🎉 حصلتِ على <b>كوكيز ميما مجاناً</b> — وأي حبة إضافية بـ 5 ريال'
+                    : `🍪 باقي لك <b>${Math.max(0, FREE_GIFT_THRESHOLD - regularSubtotal).toFixed(2)}</b> ريال وتحصلين على كوكيز ميما مجاناً`;
             }
 
             let finalTotal = subtotal;
@@ -1071,9 +1073,8 @@ if (input === "روري") {
                 if(!item.parentId) {
                     hasItems = true;
                     let baseTotal = item.qty * item.price;
-                    msg += `*${item.name}*\n`;
+                    msg += `*${item.name}${item.isGift ? " 🎁 مجانا" : ""}*\n`;
                     msg += `العدد: ${item.qty} | السعر: ${baseTotal} ريال\n`;
-                    if(item.sauce) msg += `الصوص الخارجي: ${item.sauce}\n`;
                     let extrasMsg = "";
                     let extrasTotal = 0;
                     for(let exId in cart) { 
