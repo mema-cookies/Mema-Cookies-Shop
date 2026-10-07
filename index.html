@@ -212,7 +212,8 @@
         .extras-container { background: #fff9fa; padding: 8px; border-top: 1px dashed #ffd1dc; display: flex; flex-direction: column; gap: 8px; }
         .extra-interactive-item { background: white; border: 1px solid #eee; border-radius: 12px; padding: 8px; display: flex; justify-content: space-between; align-items: center; transition: 0.2s; }
         .extra-interactive-item.selected { border-color: var(--main-pink); background: #fff0f3; box-shadow: 0 2px 5px rgba(214, 51, 132, 0.1); }
-        .extra-name { font-size: 10px; color: #444; font-weight: bold; }
+        .extra-name { font-size: 10px; color: #444; font-weight: bold; flex: 1; }
+        .extra-price { font-size: 10px; color: var(--main-pink); font-weight: 800; margin-right: 8px; white-space: nowrap; }
         .extra-ctrl { display: flex; align-items: center; gap: 6px; }
         .btn-extra { background: var(--main-pink); color: white; border: none; width: 24px; height: 24px; border-radius: 6px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .extra-qty { font-size: 12px; min-width: 12px; text-align: center; font-weight: bold; color: var(--main-pink); }
@@ -621,6 +622,7 @@
                         extrasHtml += `
                         <div class="extra-interactive-item ${isSelected ? 'selected' : ''}" id="card-${exId}">
                             <span class="extra-name">${ex.name}</span>
+                            <span class="extra-price">+${ex.price} ريال</span>
                             <div class="extra-ctrl">
                                 <button class="btn-extra" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, 1, '${item.id}')">+</button>
                                 <span class="extra-qty" id="q-${exId}">${cart[exId]?.qty || 0}</span>
