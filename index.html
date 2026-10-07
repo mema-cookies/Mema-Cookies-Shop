@@ -250,38 +250,58 @@
         }
         /* ----------------------------------------------------------- */
 
-        /* National Day section */
-        body.national-mode { background-color:#e8f5ec; }
-        body.national-mode .section-title { background:#0b6b3a; }
-        body.national-mode .product-card { border-color:#b7d9c4; box-shadow:0 4px 12px rgba(11,107,58,.10); }
-        body.national-mode .product-info h3 { color:#075b31; }
-        body.national-mode .product-desc, body.national-mode .price-text { color:#0b6b3a; }
-        body.national-mode .main-controls { background:#f4fbf6; }
-        body.national-mode .btn-main { background:#0b6b3a; }
-        .cat-btn.national-btn { border-color:#0b6b3a; color:#0b6b3a; line-height:1.15; }
-        .cat-btn.national-btn.active { background:#0b6b3a; color:white; box-shadow:0 3px 8px rgba(11,107,58,.3); }
-        .old-price { color:#888; text-decoration:line-through; font-size:11px; margin-inline-start:6px; font-weight:600; }
+    
+        .order-policy-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 18px auto;
+            padding: 16px 18px;
+            max-width: 900px;
+            background: #fff8fa;
+            border: 1px solid #f1d7df;
+            border-radius: 16px;
+            box-shadow: 0 3px 12px rgba(0,0,0,.05);
+            color: var(--main-brown, #5a3b32);
+        }
+        .order-policy-icon {
+            font-size: 24px;
+            line-height: 1;
+            flex: 0 0 auto;
+        }
+        .order-policy-content h3 {
+            margin: 0 0 8px;
+            color: var(--main-pink, #d63384);
+            font-size: 17px;
+        }
+        .order-policy-content p {
+            margin: 6px 0;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        .order-policy-content strong {
+            color: var(--main-brown, #5a3b32);
+        }
+
     </style>
 </head>
 <body>
-    <div id="welcome-screen">
-  <div class="modal-welcome" style="background:linear-gradient(135deg,#f8d7da,#d63384,#e8f5ec);padding:25px;color:white;text-align:center;">
-    <span class="close-icon-fixed" onclick="hideWelcome()">×</span>
-    <h2>عروض اليوم الوطني غير مع كوكيز ميما 🇸🇦🍪</h2>
-    <p>استخدموا كود خصم <b>WATAN96</b><br>عند الطلب بقيمة 135 ريال وأكثر ✨</p><p>جهزنا لكم بوكسات مخفضة وعروض خاصة بمناسبة اليوم الوطني 💗</p>
-    <button onclick="hideWelcome()" style="padding:12px 25px;border:0;border-radius:20px;">اطلب الآن</button>
-  </div>
-</div>
-<div id="mainView">
-        <div class="marquee-container">
-            <div class="marquee-text">🇸🇦 عروض اليوم الوطني مستمرة 💗 استخدم كود WATAN96 عند الطلب بـ 135 ريال وأكثر 🇸🇦</div>
-        </div>
+    <div id="mainView">
         <a href="https://www.instagram.com/cookies_mema70/" class="instagram-float" target="_blank"><i class="fab fa-instagram"></i></a>
         <a href="https://wa.me/966502509910" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
         <header></header>
+        
+        <section class="order-policy-box" aria-label="سياسة الطلب">
+            <div class="order-policy-icon">📋</div>
+            <div class="order-policy-content">
+                <h3>سياسة الطلب</h3>
+                <p><strong>الطلبات بالكميات أو الكيكات:</strong> يُفضّل طلبها قبل الموعد بيوم إلى يومين لضمان توفرها وتجهيزها بالشكل المطلوب.</p>
+                <p><strong>الطلبات البسيطة والمستعجلة:</strong> قد تتوفر في نفس اليوم حسب الكمية وتوفر المنتجات، ويُفضّل التواصل معنا قبل الطلب للتأكد.</p>
+            </div>
+        </section>
+
         <nav class="categories-nav">
             <button class="cat-btn active" onclick="filterMenu('all', this)">الكل</button>
-            <button class="cat-btn national-btn" onclick="filterMenu('national', this)">منتجات<br>اليوم الوطني</button>
             <button class="cat-btn" onclick="filterMenu('cookies', this)">كوكيز</button>
             <button class="cat-btn" onclick="filterMenu('pudding', this)">بودينق</button>
             <button class="cat-btn" onclick="filterMenu('cakes', this)">كيكات</button>
@@ -562,7 +582,6 @@
                     <div class="badge-shipping-item"><i class="fas fa-gift"></i><span>يتوفر لدينا تنسيق هدايا مع طلباتكم</span></div>
                 </div>
 
-
             <div class="discount-section">
                 <label style="font-size: 12px; font-weight: bold; color: var(--main-brown);">هل لديك كوبون تخفيض ؟</label>
                 <div class="discount-input-group">
@@ -678,18 +697,6 @@
             { id: "g15", name: "شمعة طويلة وردي", cat: "glow", price: 2.50, desc: "تصميم طويل وجذاب", imgs: ["4455.jpg"] }
         ];
 
-        const nationalProducts = [
-            { id:"nat1", name:"بوكس عز الوطن", cat:"national", price:196, oldPrice:212, desc:"4 حبات دونات - 6 كوكيز ميما - سكوب ميما وسط - كيكة 10 انش", imgs:["waa33.jpg"] },
-            { id:"nat2", name:"بوكس اللمة", cat:"national", price:149, oldPrice:162, desc:"4 حبات دونات - 6 كوكيز ميما - سكوب كوكيز وسط - كيكة 8 إنش", imgs:["lmah33.jpg"] },
-            { id:"nat3", name:"بوكس 96", cat:"national", price:96, oldPrice:106, desc:"1 عريكة كوكيز مقاس 5 انش - 1 كيكة مقاس 8 انش - 1 بودينق ميما صغير - 2 كوكيز ميما - 1 دونات", imgs:["w96.jpg"] },
-            { id:"nat4", name:"بوكس صغير", cat:"national", price:49, oldPrice:52, desc:"2 حبات دونات - 4 حبات كوكيز - 1 بودينق ميما وسط", imgs:["box33.jpg"] },
-            { id:"nat5", name:"بوكس الدونات (12 حبة)", cat:"national", price:67, oldPrice:72, desc:"12 حبة دونات", imgs:["don33.jpg"] },
-            { id:"nat6", name:"بوكس الدونات (6 حبات)", cat:"national", price:34, oldPrice:36, desc:"6 حبات دونات", imgs:["don33.jpg"] },
-            { id:"nat7", name:"بوكس المرح (5 حبات)", cat:"national", price:49, oldPrice:55, desc:"بوكس المرح 5 حبات", imgs:["mrh3.jpg"] },
-            { id:"nat8", name:"بوكس المرح (8 حبات)", cat:"national", price:79, oldPrice:88, desc:"بوكس المرح 8 حبات", imgs:["mrh3.jpg"] },
-            { id:"nat9", name:"كيكة KSA 96", cat:"national", price:36, oldPrice:49, desc:"كيكة خاصة باليوم الوطني 🇸🇦 - تغريسات خاصة باليوم الوطني مجاناً - شوكلت بلجيكي فاخر", imgs:["kek96.jpg"], extras:[{ name:"إضافة صوص الفستق مجاناً ", price:0 }] }
-        ];
-
         let cart = {};
         let isDiscountApplied = false;
         let discountRate = 0;
@@ -709,7 +716,7 @@
             clearAllSliders(); 
             const container = document.getElementById('menuContent');
             container.innerHTML = "";
-            const cats = { national: "🇸🇦 منتجات اليوم الوطني", cookies: "الكوكيز", pudding: "البودينق", cakes: "الكيكات", areeka: "عريكة كوكيز", boxes: "البوكسات", glow: "✨ لمسات مضيئة" };
+            const cats = { cookies: "الكوكيز", pudding: "البودينق", cakes: "الكيكات", areeka: "عريكة كوكيز", boxes: "البوكسات", glow: "✨ لمسات مضيئة" };
             for (let key in cats) {
                 const filtered = items.filter(i => i.cat === key);
                 if (filtered.length > 0) {
@@ -743,7 +750,7 @@
                             <div class="product-info" onclick="openProductPage('${item.id}')">
                                 <h3>${item.bestSeller ? '<span class="best-seller-badge">🔥 الأكثر مبيعاً</span><br>' : ""}${item.name}</h3>
                                 <div class="product-desc">${item.desc}</div>
-                                <span class="price-text">${item.price} ريال ${item.oldPrice ? `<span class="old-price">${item.oldPrice} ريال</span>` : ``}</span>
+                                <span class="price-text">${item.price} ريال</span>
                             </div>
                             ${extrasHtml}
                             <div class="main-controls">
@@ -760,7 +767,7 @@
         }
 
         function openProductPage(productId) {
-            const item = [...products, ...nationalProducts].find(p => p.id === productId);
+            const item = [...products].find(p => p.id === productId);
             document.getElementById('pageHeaderTitle').innerText = item.name;
             let imgsHtml = item.imgs.map((img, idx) => `<img src="${img}" class="${idx===0?'active':''}" id="pimg-${idx}">`).join('');
             
@@ -796,7 +803,6 @@
                     <p style="color:var(--main-pink); font-size:14px; font-weight:bold; margin:10px 0">${item.desc}</p>
                     <span style="font-size:28px; font-weight:900; color:${item.cat === 'national' ? '#0b6b3a' : 'var(--main-pink)'};">${item.price} ريال ${item.oldPrice ? `<span class="old-price" style="font-size:16px">${item.oldPrice} ريال</span>` : ``}</span>
                 </div>
-                
 
                 ${extrasHtml}
                 <div class="page-action-container">
@@ -840,7 +846,6 @@
                 return p.cat === activeCat;
             }));
             const activeBtn = document.querySelector('.cat-btn.active');
-            if(activeBtn && activeBtn.getAttribute('onclick').includes("'national'")) renderMenu(nationalProducts);
         }
 
         function getRegularSubtotal() {
@@ -919,7 +924,7 @@
             ['note-'+id, 'pnote-'+id, 'warn-'+id, 'pwarn-'+id].forEach(eid => {
                 const el = document.getElementById(eid);
                 if(el) {
-                    const linkedProduct = [...products, ...nationalProducts].find(p => p.id === (parentId || id)) || {};
+                    const linkedProduct = [...products].find(p => p.id === (parentId || id)) || {};
                     const baseExtra = (linkedProduct.extras || []).find(e => `ex_${linkedProduct.id}_${e.name.replace(/\s/g, '')}` === id) || {};
                     if(eid.includes('warn') && !baseExtra.hasWarning) el.style.display = 'none';
                     else if(eid.includes('note') && !baseExtra.hasNote) el.style.display = 'none';
@@ -979,20 +984,7 @@ if (input === "روري") {
         isDiscountApplied = true;
         discountRate = 0.1;
         msg.innerText = "✅ تم تطبيق الخصم 10%";
-        msg.style.color = "green"}
-     else if (input === "WATAN96") {
-        if (getRegularSubtotal() >= 135) {
-            isDiscountApplied = true;
-            discountRate = 0.04;
-            msg.innerText = "✅ تم تطبيق الخصم 4%";
-            msg.style.color = "green";
-        } else {
-            isDiscountApplied = false;
-            discountRate = 0;
-            msg.innerText = "❌ يجب أن يكون الطلب 135 ريال أو أكثر لاستخدام الكود";
-            msg.style.color = "red";
-        }
-    } else if (input === "") {
+        msg.style.color = "green"} else if (input === "") {
         isDiscountApplied = false;
         discountRate = 0;
         msg.innerText = "يرجى إدخال الكوبون";
@@ -1140,9 +1132,7 @@ if (input === "روري") {
         function filterMenu(cat, btn) { 
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active')); 
             btn.classList.add('active');
-            document.body.classList.toggle('national-mode', cat === 'national');
-            if (cat === 'national') renderMenu(nationalProducts);
-            else renderMenu(cat === 'all' ? products : products.filter(p => p.cat === cat)); 
+            renderMenu(cat === 'all' ? products : products.filter(p => p.cat === cat)); 
         }
         
         renderMenu(products);
