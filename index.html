@@ -102,9 +102,18 @@
             flex-wrap: wrap; 
             gap: 8px; 
             z-index: 1000; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.10); 
             justify-content: center; 
-            border-bottom: 1px solid rgba(214, 51, 132, 0.1);
+            border-bottom: 1px solid rgba(214, 51, 132, 0.12);
+            isolation: isolate;
+            box-sizing: border-box;
+        }
+        .categories-nav::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: #fff;
+            z-index: -1;
         }
 
         .cat-btn { 
@@ -140,6 +149,24 @@
         .cat-btn.glow.active { background: var(--glow-gold); color: #000; box-shadow: 0 3px 8px rgba(255, 215, 0, 0.4); }
         
         .section-title { background: var(--main-brown); color: white; padding: 8px 20px; margin: 25px 15px 10px; border-radius: 8px; display: inline-block; font-size: 15px; }
+
+        /* عناوين فرعية داخل قسم اللمسات المضيئة */
+        .glow-subtitle {
+            background: rgba(255,255,255,0.82);
+            color: var(--main-pink);
+            padding: 8px 18px;
+            margin: 18px 15px 8px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            font-size: 14px;
+            font-weight: 800;
+            box-shadow: 0 2px 8px rgba(121,85,72,0.06);
+            border: 1px solid rgba(214,51,132,0.08);
+        }
+        .glow-subtitle:first-of-type { margin-top: 10px; }
+
         .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; }
         
         .product-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; flex-direction: column; border: 1px solid #fce4ec; transition: 0.3s; }
@@ -282,6 +309,16 @@
         .order-policy-content strong {
             color: var(--main-brown, #5a3b32);
         }
+        .payment-warning {
+            margin-top: 10px !important;
+            padding: 10px 12px;
+            background: #fff0f3;
+            border: 1px solid #f2bfd0;
+            border-radius: 10px;
+            color: var(--main-pink) !important;
+            font-weight: 800;
+            text-align: center;
+        }
 
     </style>
 </head>
@@ -297,6 +334,7 @@
                 <h3>سياسة الطلب</h3>
                 <p><strong>الطلبات بالكميات أو الكيكات:</strong> يُفضّل طلبها قبل الموعد بيوم إلى يومين لضمان توفرها وتجهيزها بالشكل المطلوب.</p>
                 <p><strong>الطلبات البسيطة والمستعجلة:</strong> قد تتوفر في نفس اليوم حسب الكمية وتوفر المنتجات، ويُفضّل التواصل معنا قبل الطلب للتأكد.</p>
+<p class="payment-warning">‼️ لا يتم اعتماد أو تأكيد أي طلب الا بعد تحويل المبلغ</p>
             </div>
         </section>
 
@@ -309,240 +347,7 @@
             <button class="cat-btn" onclick="filterMenu('boxes', this)">بوكسات</button>
             <button class="cat-btn glow" onclick="filterMenu('glow', this)">✨ لمسات مضيئة</button>
         </nav>
-        <div id="menuContent">
-<div class="section-title">الكوكيز</div><div class="menu-grid">
-<div class="product-card" data-product-id="c1">
-<div class="image-container"><img src="3.jpg" class="active"></div>
-<div class="product-info"><h3>كوكيز ميما</h3><div class="product-desc">طراوة ولذة - بشوكلت بلجيكي فاخر</div><span class="price-text">5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="c2">
-<div class="image-container"><img src="8.jpg" class="active"></div>
-<div class="product-info"><h3>بايتس كوكيز</h3><div class="product-desc">صغيرة بالحجم - كبيره بالطعم تذوب وتخليك تبتسم</div><span class="price-text">1 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="c3">
-<div class="image-container"><img src="9.jpg" class="active"></div>
-<div class="product-info"><h3>كوكيز حساوي</h3><div class="product-desc">نكهة تراثية - بلمسة عصرية</div><span class="price-text">6 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="c4">
-<div class="image-container"><img src="22.jpg" class="active"></div>
-<div class="product-info"><h3>سكوب كوكيز</h3><div class="product-desc">سكوب كوكيز مع الفيوتن والقرمشه والشوكلاتة .. تجربة لذيذة ما تُنسى!</div><span class="price-text">23 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="c5">
-<div class="image-container"><img src="73.jpg" class="active"></div>
-<div class="product-info"><h3>سكوب كوكيز ميما وسط</h3><div class="product-desc">سكوب كوكيز مع الفيوتن والقرمشه والشوكلاتة .. تجربة لذيذة ما تُنسى!</div><span class="price-text">33 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="c6">
-<div class="image-container"><img src="1059a.jpg" class="active"></div>
-<div class="product-info"><h3>دونات كوكيز</h3><div class="product-desc">كوكيز بطابع الدونات.. قرمشة من برا وطراوة ولذة من جوا 🍩🍪<br>الدونات محشية شوكلت بلجيكي وبإمكانكم اختيار صوص إضافي للتغطية</div><span class="price-text">6 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-</div>
-<div class="section-title">البودينق</div><div class="menu-grid">
-<div class="product-card" data-product-id="p1">
-<div class="image-container"><img src="5.jpg" class="active"></div>
-<div class="product-info"><h3>بودينق ميما ميني</h3><div class="product-desc">طراوة ولذة - بشوكلت بلجيكي فاخر</div><span class="price-text">10 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="p2">
-<div class="image-container"><img src="4.jpg" class="active"></div>
-<div class="product-info"><h3>بودينق ميما وسط</h3><div class="product-desc">طبقات من الكوكيز والفيوتن المقرمش والشوكلاته البلجيكية الفاخرة</div><span class="price-text">20 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="p3">
-<div class="image-container"><img src="6.jpg" class="active"></div>
-<div class="product-info"><h3>بودينق ميما كبير</h3><div class="product-desc">طبقات من الكوكيز والفيوتن المقرمش والشوكلاته البلجيكية الفاخرة</div><span class="price-text">30 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="p4">
-<div class="image-container"><img src="13.jpg" class="active"></div>
-<div class="product-info"><h3>بودينق مكس ميني</h3><div class="product-desc">مكس الكيك والكوكيز !! طبقات من الكوكيز والكيك والفيوتن المقرمش والشوكولاته البلجيكية الفاخرة</div><span class="price-text">11 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="p5">
-<div class="image-container"><img src="21.jpg" class="active"></div>
-<div class="product-info"><h3>بودينق مكس صغير</h3><div class="product-desc">مكس الكيك والكوكيز !! طبقات من الكوكيز والكيك والفيوتن المقرمش والشوكولاته البلجيكية الفاخرة</div><span class="price-text">19 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="p6">
-<div class="image-container"><img src="12.jpg" class="active"></div>
-<div class="product-info"><h3>بودينق مكس وسط</h3><div class="product-desc">مكس الكيك والكوكيز !! طبقات من الكوكيز والكيك والفيوتن المقرمش والشوكولاته البلجيكية الفاخرة</div><span class="price-text">21 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-</div>
-<div class="section-title">الكيكات</div><div class="menu-grid">
-<div class="product-card" data-product-id="k1">
-<div class="image-container"><img src="7.jpg" class="active"></div>
-<div class="product-info"><h3>كيكة 5 انش (دائرية)</h3><div class="product-desc">كيكات محشيه ومغطاة بالشوكولاته البلجيكي - متعة لكل لقمة</div><span class="price-text">40 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="k6">
-<div class="image-container"><img src="d10.jpg" class="active"></div>
-<div class="product-info"><h3>كيكة 10 إنش (دائرية)</h3><div class="product-desc">كيكة دائرية فاخرة بمقاس 10 إنش - طعم لا يُقاوم</div><span class="price-text">125 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="k2">
-<div class="image-container"><img src="1.jpg" class="active"></div>
-<div class="product-info"><h3>كيكة 8 انش (دائرية)</h3><div class="product-desc">كيكات محشيه ومغطاة بالشوكولاته البلجيكي - متعة لكل لقمة</div><span class="price-text">85 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="k3">
-<div class="image-container"><img src="10.jpg" class="active"></div>
-<div class="product-info"><h3>كيكة 5 انش (قلب)</h3><div class="product-desc">كيكات محشيه ومغطاة بالشوكولاته البلجيكي - متعة لكل لقمة</div><span class="price-text">40 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="k4">
-<div class="image-container"><img src="2.jpg" class="active"></div>
-<div class="product-info"><h3>كيكة 10 انش (قلب)</h3><div class="product-desc">كيكات محشيه ومغطاة بالشوكولاته البلجيكي - متعة لكل لقمة</div><span class="price-text">120 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="k5">
-<div class="image-container"><img src="k5.jpg" class="active"></div>
-<div class="product-info"><h3>كيكة دورين (8 و 5 انش)</h3><div class="product-desc">كيكة دورين فاخرة بتصميم مميز - متعة لكل لقمة</div><span class="price-text">125 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="k6">
-<div class="image-container"><img src="333333.jpg" class="active"></div>
-<div class="product-info"><h3>كيكة 3 ادوار (8 و 5 و 2 انش)</h3><div class="product-desc">كيكة 3 ادوار فاخرة - متعة لكل لقمة</div><span class="price-text">145 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-</div>
-<div class="section-title">عريكة كوكيز</div><div class="menu-grid">
-<div class="product-card" data-product-id="ar1">
-<div class="image-container"><img src="5001.jpg" class="active"></div>
-<div class="product-info"><h3>عريكة كوكيز مقاس 8 إنش</h3><div class="product-desc">عريكة الكوكيز .. حيث يلتقي التراث الجنوبي بالفخامة العصرية</div><span class="price-text">85 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="ar2">
-<div class="image-container"><img src="5002.jpg" class="active"></div>
-<div class="product-info"><h3>عريكة كوكيز مقاس صغير</h3><div class="product-desc">نكهة الأصالة الجنوبية بلمسة كوكيز ميما المميزة</div><span class="price-text">23 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="ar3">
-<div class="image-container"><img src="5003.jpg" class="active"></div>
-<div class="product-info"><h3>عريكة كوكيز مقاس 5 إنش</h3><div class="product-desc">الأصالة الجنوبية بطابع حديث ومذاق استثنائي</div><span class="price-text">40 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-</div>
-<div class="section-title">البوكسات</div><div class="menu-grid">
-<div class="product-card" data-product-id="b1">
-<div class="image-container"><img src="11.jpg" class="active"></div>
-<div class="product-info"><h3>بوكس دونات كوكيز (6 حبات)</h3><div class="product-desc">كوكيز بطابع الدونات - لذة مزدوجة</div><span class="price-text">38 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="b2">
-<div class="image-container"><img src="18.jpg" class="active"></div>
-<div class="product-info"><h3>بوكس دونات كوكيز (12 حبة)</h3><div class="product-desc">كوكيز بطابع الدونات - لذة مزدوجة</div><span class="price-text">76 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="b1-diy">
-<div class="image-container"><img src="11.jpg" class="active"></div>
-<div class="product-info"><h3>بوكس دونات اصنعها بنفسك (6 حبات)</h3><div class="product-desc">كل الأدوات بيدك والابداع عليك</div><span class="price-text">38 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="b2-diy">
-<div class="image-container"><img src="18.jpg" class="active"></div>
-<div class="product-info"><h3>بوكس دونات اصنعها بنفسك (12 حبة)</h3><div class="product-desc">كل الأدوات بيدك والابداع عليك</div><span class="price-text">76 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="b3">
-<div class="image-container"><img src="20.jpg" class="active"></div>
-<div class="product-info"><h3>بوكس المرح (5 حبات)</h3><div class="product-desc">كل الأدوات بيدك والابداع عليك</div><span class="price-text">55 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="b4">
-<div class="image-container"><img src="20.jpg" class="active"></div>
-<div class="product-info"><h3>بوكس المرح (8 حبات)</h3><div class="product-desc">كل الأدوات بيدك والابداع عليك</div><span class="price-text">88 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-</div>
-<div class="section-title">✨ لمسات مضيئة</div><div class="menu-grid">
-<div class="product-card" data-product-id="g_print">
-<div class="image-container"><img src="5555.jpg" class="active"></div>
-<div class="product-info"><h3>طباعة صور</h3><div class="product-desc">اهدي صديقك صوراً تبقى ذكرى جميلة بينكما _ لحظات لا تنسى!</div><span class="price-text">5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="g1">
-<div class="image-container"><img src="4444.jpg" class="active"></div>
-<div class="product-info"><h3>مجموعة شموع مبتكرة (3 حبات)</h3><div class="product-desc">أحمر - شكل مميز</div><span class="price-text">2.5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="g2">
-<div class="image-container"><img src="4441.jpg" class="active"></div>
-<div class="product-info"><h3>شمعة عيد ميلاد زرقاء</h3><div class="product-desc">لون أزرق مميز للاحتفال</div><span class="price-text">2.5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="g3">
-<div class="image-container"><img src="4442.jpg" class="active"></div>
-<div class="product-info"><h3>شمعة قبعة احتفال (أحمر وأبيض)</h3><div class="product-desc">تصميم قبعة ملونة</div><span class="price-text">2.5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="g4">
-<div class="image-container"><img src="4443.jpg" class="active"></div>
-<div class="product-info"><h3>شمعة قبعة احتفال (أبيض ووردي)</h3><div class="product-desc">تصميم قبعة ملونة</div><span class="price-text">2.5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="g5">
-<div class="image-container"><img src="4445.jpg" class="active"></div>
-<div class="product-info"><h3>شمعة قبعة احتفال (أحمر وأصفر)</h3><div class="product-desc">تصميم قبعة ملونة</div><span class="price-text">2.5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="g6">
-<div class="image-container"><img src="4446.jpg" class="active"></div>
-<div class="product-info"><h3>مجموعة شموع مبتكرة (3 حبات)</h3><div class="product-desc">وردي - أشكال لطيفة</div><span class="price-text">2.5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="g7">
-<div class="image-container"><img src="4447.jpg" class="active"></div>
-<div class="product-info"><h3>شمعة دب لطيف</h3><div class="product-desc">شكل دب كرتوني</div><span class="price-text">2.5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="g8">
-<div class="image-container"><img src="4448.jpg" class="active"></div>
-<div class="product-info"><h3>شمعة دب وردي</h3><div class="product-desc">شكل دب لطيف باللون الوردي</div><span class="price-text">2.5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="g9">
-<div class="image-container"><img src="4449.jpg" class="active"></div>
-<div class="product-info"><h3>شمعة دب موف</h3><div class="product-desc">شكل دب لطيف باللون الموف</div><span class="price-text">2.5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="g10">
-<div class="image-container"><img src="4450.jpg" class="active"></div>
-<div class="product-info"><h3>شمعة عيد ميلاد فضي</h3><div class="product-desc">لون فضي براق</div><span class="price-text">2.5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="g11">
-<div class="image-container"><img src="4451.jpg" class="active"></div>
-<div class="product-info"><h3>شمعة عيد ميلاد وردي</h3><div class="product-desc">لون وردي مميز</div><span class="price-text">2.5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="g12">
-<div class="image-container"><img src="4452.jpg" class="active"></div>
-<div class="product-info"><h3>مجموعة شموع مبتكرة (3 حبات)</h3><div class="product-desc">موف - لمسة جمالية</div><span class="price-text">2.5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="g13">
-<div class="image-container"><img src="4453.jpg" class="active"></div>
-<div class="product-info"><h3>شمعة صغيرة ذهبي</h3><div class="product-desc">لون ذهبي أنيق</div><span class="price-text">1 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="g14">
-<div class="image-container"><img src="4454.jpg" class="active"></div>
-<div class="product-info"><h3>شمعة طويلة ذهبي</h3><div class="product-desc">تصميم طويل وفخـم</div><span class="price-text">2.5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-<div class="product-card" data-product-id="g15">
-<div class="image-container"><img src="4455.jpg" class="active"></div>
-<div class="product-info"><h3>شمعة طويلة وردي</h3><div class="product-desc">تصميم طويل وجذاب</div><span class="price-text">2.5 ريال</span></div>
-<div class="main-controls"><button class="btn-main">+</button><span class="main-qty">0</span><button class="btn-main" style="background:#eee;color:#333">-</button></div>
-</div>
-</div>
-</div>
+        <div id="menuContent"></div>
         <div style="text-align: center; padding: 40px 0; color: var(--main-brown); font-weight: bold; font-size: 18px;">يُصنع بكل حُب | MADE WITH LOVE💕</div>
     </div>
 
@@ -611,6 +416,24 @@
                 screen.style.opacity = '0';
                 setTimeout(() => screen.style.display = 'none', 500);
             }
+        }
+
+        // حفظ مكان التصفح للرجوع لنفس المنتج/المكان بعد إغلاق صفحة المنتج
+        let savedMainScrollPosition = 0;
+        let savedCategoryState = null;
+
+        function rememberMainScrollPosition() {
+            savedMainScrollPosition = window.scrollY || window.pageYOffset || 0;
+            const activeCategory = document.querySelector('.cat-btn.active');
+            savedCategoryState = activeCategory ? activeCategory.textContent.trim() : null;
+        }
+
+        function restoreMainScrollPosition() {
+            const pos = savedMainScrollPosition;
+            requestAnimationFrame(() => {
+                window.scrollTo(0, pos);
+                setTimeout(() => window.scrollTo(0, pos), 50);
+            });
         }
 
         const products = [
@@ -721,60 +544,115 @@
         }
 
         function renderMenu(items) {
-            clearAllSliders(); 
+            clearAllSliders();
             const container = document.getElementById('menuContent');
             container.innerHTML = "";
             const cats = { cookies: "الكوكيز", pudding: "البودينق", cakes: "الكيكات", areeka: "عريكة كوكيز", boxes: "البوكسات", glow: "✨ لمسات مضيئة" };
-            for (let key in cats) {
-                const filtered = items.filter(i => i.cat === key);
-                if (filtered.length > 0) {
-                    container.innerHTML += `<div class="section-title">${cats[key]}</div>`;
-                    let grid = '<div class="menu-grid">';
-                    filtered.forEach(item => {
-                        let imgsHtml = item.imgs.map((img, idx) => `<img src="${img}" class="${idx===0?'active':''}">`).join('');
-                        let extrasHtml = '';
-                        if (item.extras) {
-                            extrasHtml = `<div class="extras-container">`;
-                            item.extras.forEach(ex => {
-                                const exId = `ex_${item.id}_${ex.name.replace(/\s/g, '')}`;
-                                const isSelected = cart[exId]?.qty > 0;
-                                extrasHtml += `
-                                <div class="extra-interactive-item ${isSelected ? 'selected' : ''}" id="card-${exId}">
-                                    <span class="extra-name">${ex.name}${item.flavorVariants ? "" : ` (+${ex.price})`}</span>
-                                    <div class="extra-ctrl">
-                                        <button class="btn-extra" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, 1, '${item.id}')">+</button>
-                                        <span class="extra-qty" id="mq-${exId}">${cart[exId]?.qty || 0}</span>
-                                        <button class="btn-extra" style="background:#ddd; color:#666" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, -1, '${item.id}')">-</button>
-                                    </div>
-                                </div>`;
-                                extrasHtml += `<span id="warn-${exId}" class="warning-text" style="display:${isSelected && ex.hasWarning ? 'block' : 'none'}">* هذا الورق غير قابل للأكل</span>`;
-                                extrasHtml += `<input type="text" id="note-${exId}" class="note-box" style="display:${isSelected && ex.hasNote ? 'block' : 'none'}" oninput="updateNote('${exId}', this.value)" placeholder="${ex.noteLabel || 'اكتب ملاحظتك هنا...'}" value="${cart[exId]?.note || ''}">`;
-                            });
-                            extrasHtml += `</div>`;
-                        }
-                        grid += `
-                        <div class="product-card" data-product-id="${item.id}">
-                            <div class="image-container" onclick="openProductPage('${item.id}')">${imgsHtml}</div>
-                            <div class="product-info" onclick="openProductPage('${item.id}')">
-                                <h3>${item.bestSeller ? '<span class="best-seller-badge">🔥 الأكثر مبيعاً</span><br>' : ""}${item.name}</h3>
-                                <div class="product-desc">${item.desc}</div>
-                                <span class="price-text">${item.price} ريال</span>
-                            </div>
-                            ${extrasHtml}
-                            <div class="main-controls">
-                                <button class="btn-main" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, 1)">+</button>
-                                <span class="main-qty" id="mq-${item.id}">${cart[item.id]?.qty || 0}</span>
-                                <button class="btn-main" style="background:#eee; color:#333" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, -1)">-</button>
+
+            // ترتيب المنتجات داخل "لمسات مضيئة" حتى تكون الشموع المتشابهة بجانب بعضها.
+            const glowGroups = [
+                {
+                    title: "🕯️ شموع طويلة",
+                    ids: ["g14", "g15", "g16"]
+                },
+                {
+                    title: "🧸 شموع دب",
+                    ids: ["g7", "g8", "g9", "g17"]
+                },
+                {
+                    title: "🎂 شموع عيد ميلاد",
+                    ids: ["g10", "g11", "g18", "g2"]
+                },
+                {
+                    title: "✨ شموع وزينة أخرى",
+                    ids: ["g_print", "g1", "g3", "g4", "g5", "g6", "g12", "g13", "g70", "hk9", "ki9", "h01"]
+                }
+            ];
+
+            function productCard(item) {
+                let imgsHtml = item.imgs.map((img, idx) => `<img src="${img}" class="${idx===0?'active':''}">`).join('');
+                let extrasHtml = '';
+                if (item.extras) {
+                    extrasHtml = `<div class="extras-container">`;
+                    item.extras.forEach(ex => {
+                        const exId = `ex_${item.id}_${ex.name.replace(/\s/g, '')}`;
+                        const isSelected = cart[exId]?.qty > 0;
+                        extrasHtml += `
+                        <div class="extra-interactive-item ${isSelected ? 'selected' : ''}" id="card-${exId}">
+                            <span class="extra-name">${ex.name}</span>
+                            <div class="extra-ctrl">
+                                <button class="btn-extra" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, 1, '${item.id}')">+</button>
+                                <span class="extra-qty" id="q-${exId}">${cart[exId]?.qty || 0}</span>
+                                <button class="btn-extra" style="background:#ddd;color:#666" onclick="changeQty('${exId}', '${ex.name}', ${ex.price}, -1, '${item.id}')">-</button>
                             </div>
                         </div>`;
+                        if (ex.hasNote) {
+                            extrasHtml += `<input type="text" id="note-${exId}" class="note-box" style="display:${isSelected ? 'block' : 'none'}" oninput="updateNote('${exId}', this.value)" placeholder="${ex.noteLabel || 'الملاحظة...'}" value="${cart[exId]?.note || ''}">`;
+                        }
+                        if (ex.hasWarning) {
+                            extrasHtml += `<span id="warn-${exId}" class="warning-text" style="display:${isSelected ? 'block' : 'none'}">* هذا الورق غير قابل للأكل</span>`;
+                        }
                     });
-                    container.innerHTML += grid + '</div>';
+                    extrasHtml += `</div>`;
+                }
+                return `<div class="product-card" data-product-id="${item.id}">
+                    <div class="image-container" onclick="openProductPage('${item.id}')">${imgsHtml}</div>
+                    <div class="product-info" onclick="openProductPage('${item.id}')">
+                        <h3>${item.bestSeller ? '<span class="best-seller-badge">🔥 الأكثر مبيعاً</span><br>' : ''}${item.name}</h3>
+                        <div class="product-desc">${item.desc}</div>
+                        <span class="price-text">${item.price} ريال</span>
+                    </div>
+                    ${extrasHtml}
+                    <div class="main-controls">
+                        <button class="btn-main" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, 1)">+</button>
+                        <span class="main-qty" id="mq-${item.id}">${cart[item.id]?.qty || 0}</span>
+                        <button class="btn-main" style="background:#eee; color:#333" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, -1)">-</button>
+                    </div>
+                </div>`;
+            }
+
+            function renderGrid(filtered) {
+                if (!filtered.length) return;
+                let grid = '<div class="menu-grid">';
+                filtered.forEach(item => grid += productCard(item));
+                grid += '</div>';
+                container.innerHTML += grid;
+            }
+
+            for (let key in cats) {
+                const filtered = items.filter(i => i.cat === key);
+                if (!filtered.length) continue;
+
+                container.innerHTML += `<div class="section-title">${cats[key]}</div>`;
+
+                if (key === 'glow') {
+                    const used = new Set();
+                    glowGroups.forEach(group => {
+                        const groupItems = group.ids
+                            .map(id => filtered.find(item => item.id === id))
+                            .filter(Boolean);
+                        if (groupItems.length) {
+                            groupItems.forEach(item => used.add(item.id));
+                            container.innerHTML += `<div class="glow-subtitle">${group.title}</div>`;
+                            renderGrid(groupItems);
+                        }
+                    });
+
+                    // أي منتج جديد يُضاف إلى اللمسات المضيئة مستقبلاً يظهر تلقائياً هنا.
+                    const remaining = filtered.filter(item => !used.has(item.id));
+                    if (remaining.length) {
+                        container.innerHTML += `<div class="glow-subtitle">✨ إضافات أخرى</div>`;
+                        renderGrid(remaining);
+                    }
+                } else {
+                    renderGrid(filtered);
                 }
             }
             startSliders();
         }
 
         function openProductPage(productId) {
+            rememberMainScrollPosition();
             const item = [...products].find(p => p.id === productId);
             document.getElementById('pageHeaderTitle').innerText = item.name;
             let imgsHtml = item.imgs.map((img, idx) => `<img src="${img}" class="${idx===0?'active':''}" id="pimg-${idx}">`).join('');
@@ -852,7 +730,8 @@
                 if(!activeBtn || activeBtn.innerText.includes('الكل')) return true;
                 const activeCat = activeBtn.getAttribute('onclick').match(/'([^']+)'/)[1];
                 return p.cat === activeCat;
-            }));
+                        restoreMainScrollPosition();
+        }));
             const activeBtn = document.querySelector('.cat-btn.active');
         }
 
@@ -1144,6 +1023,12 @@ if (input === "روري") {
         }
         
         renderMenu(products);
+
+        // احتياطي لضمان حفظ الموضع حتى لو فُتح المنتج من كود مختلف
+        document.addEventListener('click', function(e) {
+            const trigger = e.target.closest('.product-card .image-container, .product-card .product-info');
+            if (trigger) rememberMainScrollPosition();
+        }, true);
     </script>
 </body>
 </html>
