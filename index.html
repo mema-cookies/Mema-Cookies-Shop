@@ -147,20 +147,31 @@
         }
         .cat-btn.glow { border-color: var(--glow-gold); color: var(--main-brown); box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
         .cat-btn.glow.active { background: var(--glow-gold); color: #000; box-shadow: 0 3px 8px rgba(255, 215, 0, 0.4); }
-        
         .section-title {
-            background: rgba(214, 51, 132, 0.08);
+            background: linear-gradient(135deg, rgba(214, 51, 132, 0.16), rgba(255, 214, 230, 0.38));
             color: var(--main-pink);
-            padding: 10px 24px;
-            margin: 24px auto 12px;
-            border-radius: 16px;
+            padding: 14px 34px;
+            margin: 30px auto 16px;
+            border-radius: 22px;
             display: block;
-            width: fit-content;
-            font-size: 18px;
-            font-weight: 800;
-            border: 1px solid rgba(214, 51, 132, 0.10);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            width: min(82%, 560px);
+            box-sizing: border-box;
+            font-size: 25px;
+            font-weight: 900;
+            border: 2px solid rgba(214, 51, 132, 0.16);
+            box-shadow: 0 5px 16px rgba(214, 51, 132, 0.10), inset 0 1px 0 rgba(255,255,255,0.7);
             text-align: center;
+            letter-spacing: .2px;
+        }
+
+        @media (max-width: 600px) {
+            .section-title {
+                width: 88%;
+                font-size: 22px;
+                padding: 13px 24px;
+                margin: 26px auto 14px;
+                border-radius: 20px;
+            }
         }
 
         /* عناوين فرعية داخل قسم اللمسات المضيئة */
@@ -352,7 +363,7 @@
                 <h3>سياسة الطلب</h3>
                 <p><strong>الطلبات بالكميات أو الكيكات:</strong> يُفضّل طلبها قبل الموعد بيوم إلى يومين لضمان توفرها وتجهيزها بالشكل المطلوب.</p>
                 <p><strong>الطلبات البسيطة والمستعجلة:</strong> قد تتوفر في نفس اليوم حسب الكمية وتوفر المنتجات، ويُفضّل التواصل معنا قبل الطلب للتأكد.</p>
-<p class="payment-warning">‼️ لا يتم اعتماد أو تأكيد أي طلب الا بعد تحويل المبلغ</p>
+<p class="payment-warning">‼️ لا يتم اعتماد أو تأكيد أي طلب بدون تحويل المبلغ</p>
             </div>
         </section>
 
@@ -677,10 +688,10 @@
                     }
                 } else if (key === 'pudding') {
                     const puddingGroups = [
-                        { title: "🍮 بودينق ميني", ids: ["p1", "p4"] },
-                        { title: "🍮 بودينق صغير", ids: ["p7", "p5"] },
-                        { title: "🍮 بودينق وسط", ids: ["p2", "p6"] },
-                        { title: "🍮 بودينق كبير", ids: ["p3"] }
+                        { title: "🍮 بودينق ميما ميني", ids: ["p1", "p4"] },
+                        { title: "🍮 بودينق ميما صغير", ids: ["p7", "p5"] },
+                        { title: "🍮 بودينق ميما وسط", ids: ["p2", "p6"] },
+                        { title: "🍮 بودينق ميما كبير", ids: ["p3"] }
                     ];
                     const used = new Set();
                     puddingGroups.forEach(group => {
@@ -698,10 +709,10 @@
                     }
                 } else if (key === 'cakes') {
                     const cakeGroups = [
-                        { title: "🎂 كيكات 5 إنش", ids: ["k1", "k3"] },
-                        { title: "🎂 كيكات 8 إنش", ids: ["k2"] },
-                        { title: "🎂 كيكات 10 إنش", ids: ["k6", "k4"] },
-                        { title: "🎂 كيكات متعددة الأدوار", ids: ["k5", "k7"] }
+                        { title: "🎂 كيكات كوكيز ميما 5 إنش", ids: ["k1", "k3"] },
+                        { title: "🎂 كيكة كوكيز 8 إنش", ids: ["k2"] },
+                        { title: "🎂 كيكات كوكيز ميما 10 إنش", ids: ["k6", "k4"] },
+                        { title: "🎂 كيكات كوكيز ميما متعددة الأدوار", ids: ["k5", "k7"] }
                     ];
                     const used = new Set();
                     cakeGroups.forEach(group => {
@@ -801,14 +812,17 @@
         function closeProductPage() {
             document.getElementById('productPage').style.display = 'none';
             document.getElementById('mainView').style.display = 'block';
-            renderMenu(products.filter(p => {
-                const activeBtn = document.querySelector('.cat-btn.active');
-                if(!activeBtn || activeBtn.innerText.includes('الكل')) return true;
-                const activeCat = activeBtn.getAttribute('onclick').match(/'([^']+)'/)[1];
-                return p.cat === activeCat;
-                        restoreMainScrollPosition();
-        }));
+
+            // إعادة بناء نفس القسم المفتوح، ثم إعادة المستخدم لنفس موضعه بالضبط.
             const activeBtn = document.querySelector('.cat-btn.active');
+            let activeCat = 'all';
+            if (activeBtn && !activeBtn.innerText.includes('الكل')) {
+                const match = activeBtn.getAttribute('onclick')?.match(/'([^']+)'/);
+                if (match) activeCat = match[1];
+            }
+
+            renderMenu(activeCat === 'all' ? products : products.filter(p => p.cat === activeCat));
+            restoreMainScrollPosition();
         }
 
         function getRegularSubtotal() {
