@@ -554,7 +554,7 @@
             { id: "g70", name: "زينة كيك فضي", cat: "glow", price: 1, desc: "لمسة فضية أنيقة لتزيين الكيك", imgs: ["g70.jpg"] },
             { id: "hk9", name: "زينة للكعك شكل قلب", cat: "glow", price: 1, desc: "زينة قلب جميلة تضيف لمسة لطيفة للكيك", imgs: ["hk9.jpg"] },
             { id: "ki9", name: "زينة للكعك شكل نجمة", cat: "glow", price: 1, desc: "زينة نجمة مميزة لإطلالة أجمل للكيك", imgs: ["ki9.jpg"] },
-            { id: "h01", name: "زينة للكعك شكل تاج", cat: "glow", price: 1, desc: "زينة تاج فاخرة لمظهر مميز للكيك", imgs: ["h01.jpg"] },,
+            { id: "h01", name: "زينة للكعك شكل تاج", cat: "glow", price: 1, desc: "زينة تاج فاخرة لمظهر مميز للكيك", imgs: ["h01.jpg"] },
             
         ];
 
@@ -612,7 +612,7 @@
             ];
 
             function productCard(item) {
-                let imgsHtml = item.imgs.map((img, idx) => `<img src="${img}" class="${idx===0?'active':''}">`).join('');
+                let imgsHtml = item.imgs.map((img, idx) => `<img src="./${img}" alt="صورة المنتج" loading="lazy" class="${idx===0?'active':''}" onerror="this.style.display='none'">`).join('');
                 let extrasHtml = '';
                 if (item.extras) {
                     extrasHtml = `<div class="extras-container">`;
