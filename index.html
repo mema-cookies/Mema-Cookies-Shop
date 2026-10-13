@@ -383,14 +383,54 @@
             background: #fff;
             box-shadow: 0 4px 14px rgba(91, 62, 47, .045);
         }
+        .cart-product-summary {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            min-width: 0;
+        }
+        .cart-product-thumb {
+            width: 76px;
+            height: 76px;
+            flex: 0 0 76px;
+            object-fit: cover;
+            border-radius: 13px;
+            background: #fff4ef;
+            border: 1px solid #f0e3dc;
+        }
+        .cart-product-thumb-fallback {
+            width: 76px;
+            height: 76px;
+            flex: 0 0 76px;
+            border-radius: 13px;
+            background: #fff4ef;
+            border: 1px solid #f0e3dc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+        .cart-product-details { flex: 1; min-width: 0; }
+        .cart-product-name {
+            display: block;
+            color: var(--main-brown);
+            font-size: 15px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+            margin-bottom: 7px;
+        }
         .cart-item-header {
-            gap: 10px;
-            align-items: flex-start;
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            align-items: center;
             flex-wrap: wrap;
         }
-        .cart-item-header > b {
-            flex: 1 1 100%;
-            line-height: 1.6;
+        .cart-item-header > b { line-height: 1.6; }
+        @media (max-width: 380px) {
+            .cart-product-thumb, .cart-product-thumb-fallback { width: 62px; height: 62px; flex-basis: 62px; }
+            .cart-product-summary { gap: 9px; }
         }
         .cart-item-ctrl {
             display: flex;
@@ -1158,13 +1198,22 @@ if (input === "روري") {
                             </div>`;
                         }
                     }
+                    const productInfo = products.find(p => p.id === id);
+                    const productImage = productInfo && productInfo.imgs && productInfo.imgs.length
+                        ? `<img class="cart-product-thumb" src="./${productInfo.imgs[0]}" alt="${item.name}" loading="lazy" onerror="this.outerHTML='<div class=&quot;cart-product-thumb-fallback&quot; aria-label=&quot;صورة غير متاحة&quot;>🍪</div>'">`
+                        : `<div class="cart-product-thumb-fallback" aria-label="صورة غير متاحة">🍪</div>`;
                     list.innerHTML += `
                     <div class="cart-item-row">
-                        <div class="cart-item-header">
-                            <b style="color:var(--main-brown); font-size:16px;">${item.name} ${item.isGift ? '<span style="color:green;font-size:12px">🎁 مجانا</span>' : ''}</b>
-                            <div class="cart-item-ctrl">
-                                ${item.isGift ? `<button class="btn-cart-qty" onclick="changeQty('${FREE_GIFT_ID}', 'كوكيز ميما', 0, 1)">+</button><span style="font-weight:bold; width:20px; text-align:center">1</span>` : `<button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, 1)">+</button><span style="font-weight:bold; width:20px; text-align:center">${item.qty}</span><button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, -1)">-</button>`}
-                                <span style="margin-right:10px; font-weight:900; color:var(--main-pink)">${productBaseTotal} ر.س</span>
+                        <div class="cart-product-summary">
+                            ${productImage}
+                            <div class="cart-product-details">
+                                <b class="cart-product-name">${item.name} ${item.isGift ? '<span style="color:green;font-size:12px">🎁 مجانا</span>' : ''}</b>
+                                <div class="cart-item-header">
+                                    <div class="cart-item-ctrl">
+                                        ${item.isGift ? `<button class="btn-cart-qty" onclick="changeQty('${FREE_GIFT_ID}', 'كوكيز ميما', 0, 1)">+</button><span style="font-weight:bold; width:20px; text-align:center">1</span>` : `<button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, 1)">+</button><span style="font-weight:bold; width:20px; text-align:center">${item.qty}</span><button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, -1)">-</button>`}
+                                    </div>
+                                    <span style="font-weight:900; color:var(--main-pink); white-space:nowrap">${productBaseTotal} ر.س</span>
+                                </div>
                             </div>
                         </div>
                         ${extrasDetails}
