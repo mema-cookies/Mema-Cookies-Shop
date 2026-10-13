@@ -350,6 +350,146 @@
             text-align: center;
         }
 
+
+        /* --- تحسين واجهة سلة ميما --- */
+        #reviewModal {
+            background: rgba(43, 29, 25, .62);
+            backdrop-filter: blur(7px);
+            -webkit-backdrop-filter: blur(7px);
+            padding: 12px 0;
+            box-sizing: border-box;
+        }
+        #reviewModal .modal-body {
+            width: min(92%, 480px);
+            max-height: calc(100dvh - 24px);
+            overflow-y: auto;
+            box-sizing: border-box;
+            margin: 0 auto;
+            padding: 22px 18px 18px;
+            border: 1px solid rgba(255,255,255,.8);
+            border-radius: 26px;
+            background: linear-gradient(180deg, #fffdfb 0%, #fff 34%);
+            box-shadow: 0 22px 65px rgba(63, 39, 30, .24);
+        }
+        #reviewModal h3 {
+            font-size: 21px !important;
+            letter-spacing: -.3px;
+        }
+        .cart-item-row {
+            padding: 14px;
+            margin-bottom: 10px;
+            border: 1px solid #f0e3dc;
+            border-radius: 17px;
+            background: #fff;
+            box-shadow: 0 4px 14px rgba(91, 62, 47, .045);
+        }
+        .cart-item-header {
+            gap: 10px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .cart-item-header > b {
+            flex: 1 1 100%;
+            line-height: 1.6;
+        }
+        .cart-item-ctrl {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        .btn-cart-qty {
+            width: 30px;
+            height: 30px;
+            border-radius: 9px;
+            color: #6d493b;
+            background: #f6eee9;
+            border: 1px solid #eadbd2;
+            font-size: 17px;
+        }
+        .extra-row-invoice {
+            background: #fff8f5;
+            border-right: 3px solid #c88770;
+            border-radius: 10px;
+            gap: 8px;
+            font-size: 12px;
+        }
+        .store-shipping-badge-box {
+            margin: 13px 0;
+            padding: 12px 9px;
+            border-radius: 16px;
+            border-color: #f0e4dd;
+            background: #fffaf7;
+            gap: 8px;
+        }
+        .badge-shipping-item {
+            gap: 6px;
+            font-size: 11px;
+            text-align: center;
+            flex: 1;
+            flex-direction: column;
+        }
+        .badge-shipping-item i { color: #bd7865; }
+        .badge-shipping-line { height: 34px; background: #eadbd2; }
+        .discount-section {
+            margin: 13px 0;
+            padding: 14px;
+            border: 1px dashed #d9b7a8;
+            border-radius: 17px;
+            background: #fffaf7;
+        }
+        .discount-input {
+            min-width: 0;
+            background: #fff;
+            border-color: #eadbd2;
+        }
+        .btn-apply-discount {
+            background: #795548;
+            white-space: nowrap;
+        }
+        #giftProgress {
+            margin: 14px 0 !important;
+            padding: 16px 13px !important;
+            border: 1px solid #f0d3dd;
+            border-radius: 17px !important;
+            background: linear-gradient(135deg, #fff0f5, #fffaf7) !important;
+            color: #795548 !important;
+            line-height: 1.8;
+            font-size: 13px !important;
+        }
+        #giftProgress.gift-earned {
+            background: linear-gradient(135deg, #fff0f5, #fff8e9) !important;
+            border-color: #e8c1cd;
+            color: #8a3f60 !important;
+        }
+        #priceDetails {
+            padding: 17px 14px !important;
+            margin: 16px 0 !important;
+            border: 1px solid #eee2dc;
+            border-radius: 17px;
+            background: #fffaf7;
+        }
+        #priceDetails > div:last-child {
+            font-size: 21px !important;
+            line-height: 1.8;
+        }
+        #reviewModal button[onclick="sendWhatsApp()"] {
+            border-radius: 16px !important;
+            padding: 16px !important;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, .22) !important;
+        }
+        #reviewModal .btn-back-cart {
+            background: #f7e9e4;
+            color: #795548;
+            border-radius: 12px;
+        }
+        @media (max-width: 420px) {
+            #reviewModal .modal-body { padding: 20px 13px 14px; }
+            .store-shipping-badge-box { padding: 10px 6px; }
+            .badge-shipping-item { font-size: 10px; }
+            #reviewModal h3 { font-size: 19px !important; }
+        }
+
     </style>
 </head>
 <body>
@@ -1040,9 +1180,11 @@ if (input === "روري") {
             const giftProgress = document.getElementById('giftProgress');
             if (giftProgress) {
                 const regularSubtotal = getRegularSubtotal();
-                giftProgress.innerHTML = freeGiftActive
-                    ? '🎉 حصلتِ على <b>بودينق ميما مجاناً</b> — وأي حبة إضافية بـ 5 ريال'
-                    : `🍪 باقي لك <b>${Math.max(0, FREE_GIFT_THRESHOLD - regularSubtotal).toFixed(2)}</b> ريال وتحصلين على كوكيز ميما مجاناً`;
+                const cookieGiftEarned = Boolean(cart[COOKIE_GIFT_ID]);
+                giftProgress.classList.toggle('gift-earned', cookieGiftEarned);
+                giftProgress.innerHTML = cookieGiftEarned
+                    ? '🎉 <b>مبروك! تستاهلين كوكيز ميما المجاني! 🍪</b><br><span style="font-weight:500">هدية حلوة من ميما لك، لأنك تستاهلين 🤎</span>'
+                    : `🍪 أضيفي منتجات بقيمة <b>${Math.max(0, COOKIE_GIFT_THRESHOLD - regularSubtotal).toFixed(2)} ريال</b> لتحصلين على كوكيز ميما مجانًا 🎁`;
             }
 
             let finalTotal = subtotal;
