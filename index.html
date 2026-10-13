@@ -530,6 +530,68 @@
             #reviewModal h3 { font-size: 19px !important; }
         }
 
+
+        /* هوية ميما الجديدة: شوكولاتة + كريمي + وردي ناعم */
+        :root { --mema-cream:#fff9f4; --mema-choco:#654536; --mema-tan:#c28d78; --mema-pink:#f7e4eb; }
+        body { background: linear-gradient(180deg,#fff9f4 0%,#fff4f5 48%,#f8e9e4 100%); color:var(--mema-choco); }
+        body::before { content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.24; background-image:radial-gradient(circle at 12% 20%,#d7a995 0 2px,transparent 3px),radial-gradient(circle at 82% 34%,#edc6d4 0 2px,transparent 3px),radial-gradient(circle at 45% 78%,#d7a995 0 1.5px,transparent 3px),radial-gradient(circle at 30% 55%,#b98a73 0 1px,transparent 2px),radial-gradient(circle at 70% 85%,#f0c8d6 0 2px,transparent 3px); background-size:170px 180px,220px 230px,190px 200px,145px 160px,250px 240px; animation:mema-sugar-drift 22s linear infinite; }
+        /* زينة خفيفة مستوحاة من الكوكيز ورشّات السكر بالخلفية */
+        body::after { content:"🍪"; position:fixed; left:-12px; bottom:17%; font-size:66px; opacity:.075; transform:rotate(-24deg); pointer-events:none; z-index:0; filter:grayscale(.15); }
+        @keyframes mema-sugar-drift { from{background-position:0 0,0 0,0 0} to{background-position:0 180px,0 -230px,0 200px} }
+        #mainView { position:relative; z-index:1; }
+        .mema-home-intro { margin:16px 14px 18px; padding:20px 18px; border-radius:22px; color:#fffaf6; background:linear-gradient(125deg,#654536,#8b6251 65%,#bd8976); box-shadow:0 9px 22px rgba(101,69,54,.17); position:relative; overflow:hidden; text-align:right; }
+        .mema-home-intro::after { content:"🍪"; position:absolute; left:16px; bottom:-13px; font-size:68px; opacity:.18; transform:rotate(-18deg); }
+        .mema-home-intro .eyebrow { display:inline-block; font-size:11px; padding:5px 10px; border:1px solid rgba(255,255,255,.35); border-radius:20px; margin-bottom:9px; }
+        .mema-home-intro h2 { margin:0 0 6px; font-size:23px; line-height:1.5; }
+        .mema-home-intro p { margin:0; font-size:13px; line-height:1.8; color:#fff0e9; max-width:88%; }
+        .mema-home-intro .intro-cta { display:inline-block; margin-top:12px; padding:8px 14px; border-radius:12px; background:#fff7f1; color:#654536; font-size:12px; font-weight:800; text-decoration:none; }
+        .mood-section { padding:0 14px 8px; }
+        .mood-heading { color:#654536; font-size:18px; font-weight:900; margin:8px 3px 12px; }
+        .mood-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+        .mood-tile { min-height:76px; border:1px solid #efded5; border-radius:17px; padding:12px; display:flex; align-items:center; gap:10px; text-align:right; background:rgba(255,255,255,.9); box-shadow:0 4px 12px rgba(101,69,54,.05); cursor:pointer; font-family:inherit; color:#654536; transition:transform .18s,box-shadow .18s; }
+        .mood-tile:active { transform:scale(.97); }
+        .mood-emoji { width:42px; height:42px; flex:0 0 42px; border-radius:13px; background:#fff0f4; display:flex; align-items:center; justify-content:center; font-size:23px; }
+        .mood-tile b { display:block; font-size:13px; margin-bottom:3px; }
+        .mood-tile small { color:#98796d; font-size:10px; }
+        .best-seller-heading { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:24px 15px 0; padding:14px 16px; border-radius:17px 17px 0 0; background:linear-gradient(120deg,#fff0f4,#fffaf5); border:1px solid #f0d9df; border-bottom:0; color:#654536; }
+        .best-seller-heading b { font-size:18px; }
+        .best-seller-heading span { font-size:11px; color:#9d6d7d; }
+        .best-seller-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; padding:12px 14px 15px; margin-top:0; border:1px solid #f0d9df; border-top:0; border-radius:0 0 17px 17px; background:rgba(255,255,255,.5); }
+        .best-mini-card { min-width:0; overflow:hidden; border:1px solid #efded5; border-radius:16px; background:#fff; box-shadow:0 5px 15px rgba(101,69,54,.08); cursor:pointer; }
+        .best-mini-card img { display:block; width:100%; height:120px; object-fit:cover; background:#fff4ef; }
+        .best-mini-info { padding:10px; text-align:center; }
+        .best-mini-info b { display:block; color:#654536; font-size:12px; line-height:1.6; min-height:38px; }
+        .best-mini-info span { display:block; color:#d63384; font-size:13px; font-weight:900; margin-top:5px; }
+        .best-mini-info small { display:block; color:#98796d; font-size:10px; margin-top:7px; }
+        .product-card { border-color:#efded5; }
+        .best-seller-badge { background:#fff0f4; color:#a34c6d; }
+        .main-controls .btn-main { border-radius:12px; }
+        .cart-fixed-bar { background:linear-gradient(110deg,#654536,#946854); box-shadow:0 -5px 20px rgba(101,69,54,.22); }
+        #cartToast { position:fixed; bottom:95px; left:50%; transform:translate(-50%,18px); opacity:0; pointer-events:none; z-index:4500; max-width:calc(100% - 28px); padding:12px 17px; border-radius:14px; background:#654536; color:#fffaf6; box-shadow:0 8px 24px rgba(55,35,26,.22); font-size:13px; font-weight:800; text-align:center; transition:opacity .22s,transform .22s; }
+        #cartToast.show { opacity:1; transform:translate(-50%,0); }
+        .gift-progress-track { height:8px; border-radius:99px; background:#f0e1da; overflow:hidden; margin-top:11px; }
+        .gift-progress-fill { height:100%; width:0; border-radius:99px; background:linear-gradient(90deg,#c28d78,#d65d8a); transition:width .35s ease; }
+        .gift-milestones { display:flex; justify-content:space-between; gap:8px; margin-top:8px; font-size:10px; color:#98796d; }
+        .gift-message-section { margin:13px 0; padding:14px; border-radius:16px; border:1px solid #efded5; background:#fffdfb; }
+        .gift-message-section label { display:block; margin-bottom:8px; color:#654536; font-size:13px; font-weight:800; }
+        #giftMessage { display:block; width:100%; box-sizing:border-box; min-height:72px; padding:11px 12px; border:1px solid #eadbd2; border-radius:12px; background:#fff; font:inherit; font-size:12px; resize:vertical; outline:none; }
+        #giftMessage:focus { border-color:#c28d78; box-shadow:0 0 0 3px rgba(194,141,120,.12); }
+        @media (min-width:700px) { .mema-home-intro,.mood-section { max-width:900px; margin-left:auto; margin-right:auto; } .mood-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+        @media (prefers-reduced-motion:reduce) { body::before { animation:none; } .mood-tile,#cartToast,.gift-progress-fill { transition:none; } }
+
+
+        .cart-recommendations { margin:12px 0 15px; padding:13px; border:1px solid #efded5; border-radius:17px; background:#fffdfb; }
+        .cart-recommendations h4 { margin:0 0 4px; color:#654536; font-size:15px; }
+        .cart-recommendations > p { margin:0 0 11px; color:#98796d; font-size:11px; }
+        .cart-recommendation-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+        .cart-recommendation { min-width:0; padding:9px 5px; border:1px solid #f0e3dc; border-radius:13px; background:#fff8f5; text-align:center; }
+        .cart-recommendation .rec-emoji { font-size:23px; display:block; margin-bottom:4px; }
+        .cart-recommendation b { display:block; color:#654536; font-size:10px; line-height:1.5; min-height:30px; }
+        .cart-recommendation small { display:block; color:#b24d79; font-weight:900; font-size:10px; margin:4px 0 7px; }
+        .cart-recommendation button { border:0; border-radius:9px; background:#795548; color:#fff; padding:6px 8px; font:inherit; font-size:10px; font-weight:800; width:100%; cursor:pointer; }
+        .cart-subtitle { text-align:center; margin:-12px 0 16px; color:#98796d; font-size:12px; }
+        @media (max-width:360px) { .cart-recommendation-grid { gap:5px; } .cart-recommendation { padding:7px 3px; } .cart-recommendation b { font-size:9px; } }
+
     </style>
 </head>
 <body>
@@ -537,6 +599,12 @@
         <a href="https://www.instagram.com/cookies_mema70/" class="instagram-float" target="_blank"><i class="fab fa-instagram"></i></a>
         <a href="https://wa.me/966502509910" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
         <header></header>
+        <section class="mema-home-intro" aria-label="ترحيب ميما">
+            <span class="eyebrow">MADE WITH LOVE · 🍪</span>
+            <h2>كل قطعة حلا.. حكاية حب 🤎</h2>
+            <p>اختاري حلاك المفضل من ميما، وخلّي لحظاتك ألذ بتفاصيل صُنعت بحب.</p>
+            <a class="intro-cta" href="#moodSection">اكتشفي اختيارات ميما ↓</a>
+        </section>
         
         <section class="order-policy-box" aria-label="سياسة الطلب">
             <div class="order-policy-icon">📋</div>
@@ -557,6 +625,15 @@
             <button class="cat-btn" onclick="filterMenu('boxes', this)">بوكسات</button>
             <button class="cat-btn glow" onclick="filterMenu('glow', this)">✨ لمسات مضيئة</button>
         </nav>
+        <section class="mood-section" id="moodSection" aria-label="اختاري مزاجك">
+            <div class="mood-heading">وش خاطرك اليوم؟ 🤎</div>
+            <div class="mood-grid">
+                <button class="mood-tile" onclick="jumpToCategory('cookies')"><span class="mood-emoji">🍪</span><span><b>مزاجي كوكيز</b><small>لقمة حلوة وسعادة</small></span></button>
+                <button class="mood-tile" onclick="jumpToCategory('cakes')"><span class="mood-emoji">🎂</span><span><b>مزاجي كيك</b><small>للمناسبات الحلوة</small></span></button>
+                <button class="mood-tile" onclick="jumpToCategory('cakes')"><span class="mood-emoji">🎁</span><span><b>أبيها هدية</b><small>كيكات تُهدى بكل حب</small></span></button>
+                <button class="mood-tile" onclick="jumpToCategory('glow')"><span class="mood-emoji">✨</span><span><b>أكمل زينة كيكتي</b><small>تفاصيل تكمل الفرحة</small></span></button>
+            </div>
+        </section>
         <div id="menuContent"></div>
         <div style="text-align: center; padding: 40px 0; color: var(--main-brown); font-weight: bold; font-size: 18px;">يُصنع بكل حُب | MADE WITH LOVE💕</div>
     </div>
@@ -581,7 +658,17 @@
             <button class="btn-back-cart" onclick="closeReview()"><i class="fas fa-arrow-right"></i> العودة للمتجر</button>
             
             <h3 style="text-align:center; color:var(--main-pink); margin-top:35px; margin-bottom:20px;">🍪 مراجعة طلبك 🍪</h3>
+            <p class="cart-subtitle">راجعي اختياراتك، وخلّي طلبك أحلى مع ميما 🤎</p>
             <div id="reviewItems"></div>
+            <section class="cart-recommendations" aria-label="منتجات مقترحة">
+                <h4>يمكن يعجبك كمان ✨</h4>
+                <p>إضافات صغيرة تكمل فرحتك</p>
+                <div class="cart-recommendation-grid">
+                    <div class="cart-recommendation"><span class="rec-emoji">🕯️</span><b>شمعة صغيرة ذهبي</b><small>1 ريال</small><button onclick="changeQty('g13','شمعة صغيرة ذهبي',1,1)">+ أضيفي</button></div>
+                    <div class="cart-recommendation"><span class="rec-emoji">⭐</span><b>زينة كيك شكل نجمة</b><small>1 ريال</small><button onclick="changeQty('ki9','زينة للكعك شكل نجمة',1,1)">+ أضيفي</button></div>
+                    <div class="cart-recommendation"><span class="rec-emoji">🎉</span><b>شمعة قبعة احتفال</b><small>2.50 ريال</small><button onclick="changeQty('g3','شمعة قبعة احتفال (أحمر وأبيض)',2.5,1)">+ أضيفي</button></div>
+                </div>
+            </section>
 
                 <div class="store-shipping-badge-box">
                     <div class="badge-shipping-item">
@@ -607,6 +694,10 @@
             </div>
 
             <div id="giftProgress" style="text-align:center; margin:12px 0; padding:12px; border-radius:12px; background:#fff4f8; color:var(--main-brown); font-weight:bold; font-size:12px;"></div>
+            <div class="gift-message-section">
+                <label for="giftMessage">💌 تبغين نضيف رسالة مع هديتك؟ <span style="font-weight:500;color:#98796d">(اختياري)</span></label>
+                <textarea id="giftMessage" placeholder="اكتبي رسالتك هنا، ونرفقها مع تفاصيل طلبك..."></textarea>
+            </div>
 
             <div id="priceDetails" style="text-align:center; margin:20px 0; border-top:1px solid #eee; padding-top:15px;">
                 <div id="subtotalRow" style="display:none; color:#777; font-size:14px; margin-bottom:5px;">الإجمالي قبل الخصم: <span id="modalSubtotal">0</span> ريال</div>
@@ -618,6 +709,8 @@
             <button onclick="closeReview()" style="background: #f0f0f0; width: 100%; padding: 12px; border: none; border-radius: 15px; margin-top: 15px; cursor: pointer; font-weight: bold; color: #666;">إغلاق</button>
         </div>
     </div>
+
+    <div id="cartToast" role="status" aria-live="polite">🍪 تمت الإضافة إلى سلتك بنجاح!</div>
 
     <script>
         function hideWelcome() {
@@ -731,18 +824,18 @@
             { id: "g14", name: "شمعة طويلة ذهبي", cat: "glow", price: 2.50, desc: "تصميم طويل وفخـم", imgs: ["4454.jpg"] },
             { id: "g15", name: "شمعة طويلة وردي", cat: "glow", price: 2.50, desc: "تصميم طويل وجذاب", imgs: ["4455.jpg"] },
             { id: "g16", name: "شمعة طويلة أزرق", cat: "glow", price: 2.50, desc: "تصميم طويل وأزرق", imgs: ["f6.jpg"] },
-            { id: "g70", name: "زينة كيك فضي", cat: "glow", price: 1, desc: "لمسة فضية أنيقة لتزيين الكيك", imgs: ["g70.jpg"] },
-            { id: "hk9", name: "زينة للكعك شكل قلب", cat: "glow", price: 1, desc: "زينة قلب جميلة تضيف لمسة لطيفة للكيك", imgs: ["hk9.jpg"] },
-            { id: "ki9", name: "زينة للكعك شكل نجمة", cat: "glow", price: 1, desc: "زينة نجمة مميزة لإطلالة أجمل للكيك", imgs: ["ki9.jpg"] },
-            { id: "h01", name: "زينة للكعك شكل تاج", cat: "glow", price: 1, desc: "زينة تاج فاخرة لمظهر مميز للكيك", imgs: ["h01.jpg"] },
+            { id: "g70", name: "زينة كيك فضي", cat: "glow", price: 1, desc: "لمسة فضية أنيقة لتزيين الكيك", imgs: ["MyMenu/g70.jpg"] },
+            { id: "hk9", name: "زينة للكعك شكل قلب", cat: "glow", price: 1, desc: "زينة قلب جميلة تضيف لمسة لطيفة للكيك", imgs: ["MyMenu/hk9.jpg"] },
+            { id: "ki9", name: "زينة للكعك شكل نجمة", cat: "glow", price: 1, desc: "زينة نجمة مميزة لإطلالة أجمل للكيك", imgs: ["MyMenu/ki9.jpg"] },
+            { id: "h01", name: "زينة للكعك شكل تاج", cat: "glow", price: 1, desc: "زينة تاج فاخرة لمظهر مميز للكيك", imgs: ["MyMenu/h01.jpg"] },
             
         ];
 
         let cart = {};
         let isDiscountApplied = false;
         let discountRate = 0;
-        const COOKIE_GIFT_THRESHOLD = 135;
-        const FREE_GIFT_THRESHOLD = 150;
+        const COOKIE_GIFT_THRESHOLD = 100;
+        const FREE_GIFT_THRESHOLD = 180;
         const FREE_GIFT_ID = "gift_p4";
         const COOKIE_GIFT_ID = "gift_cookie";
         let freeGiftActive = false;
@@ -757,6 +850,8 @@
             clearAllSliders();
             const container = document.getElementById('menuContent');
             container.innerHTML = "";
+            const moodSection = document.getElementById('moodSection');
+            if (moodSection) moodSection.style.display = items.length === products.length ? 'block' : 'none';
             const cats = { cookies: "كوكيز ميما", pudding: "بودينق ميما", cakes: "كيكات ميما", areeka: "عريكة كوكيز", boxes: "بوكسات ميما", glow: "✨ لمسات مضيئة" };
 
             // ترتيب المنتجات داخل "لمسات مضيئة" حتى تكون الشموع المتشابهة بجانب بعضها.
@@ -834,12 +929,22 @@
                 </div>`;
             }
 
-            function renderGrid(filtered) {
+            function renderGrid(filtered, extraClass = '') {
                 if (!filtered.length) return;
-                let grid = '<div class="menu-grid">';
+                let grid = `<div class="menu-grid ${extraClass}">`;
                 filtered.forEach(item => grid += productCard(item));
                 grid += '</div>';
                 container.innerHTML += grid;
+            }
+
+            // قسم الأكثر مبيعًا يظهر في الصفحة الرئيسية فقط.
+            if (items.length === products.length) {
+                const featuredIds = ["p6", "c5", "k2", "ar3"];
+                const bestSellers = featuredIds.map(id => products.find(item => item.id === id)).filter(Boolean);
+                if (bestSellers.length) {
+                    container.innerHTML += '<div class="best-seller-heading"><b>⭐ الأكثر طلبًا من ميما</b><span>اختيارات تستاهل التجربة</span></div>';
+                    container.innerHTML += `<div class="best-seller-grid">${bestSellers.map(item => `<article class="best-mini-card" onclick="openProductPage('${item.id}')"><img src="./${item.imgs[0]}" alt="${item.name}" loading="lazy" onerror="this.style.opacity='.25'"><div class="best-mini-info"><b>${item.name}</b><span>${item.price} ريال</span><small>اضغطي لاكتشاف المنتج ←</small></div></article>`).join('')}</div>`;
+                }
             }
 
             for (let key in cats) {
@@ -1009,20 +1114,43 @@
         function getRegularSubtotal() {
             let total = 0;
             for (let id in cart) {
-                if (id !== FREE_GIFT_ID) total += cart[id].qty * cart[id].price;
+                if (id !== FREE_GIFT_ID && id !== COOKIE_GIFT_ID) total += cart[id].qty * cart[id].price;
             }
             return total;
         }
 
         function syncFreeGift() {
             const subtotal = getRegularSubtotal();
-            freeGiftActive = false;
-            delete cart[FREE_GIFT_ID];
+            freeGiftActive = subtotal >= FREE_GIFT_THRESHOLD;
             if (subtotal >= COOKIE_GIFT_THRESHOLD) {
-                cart[COOKIE_GIFT_ID] = { name: "كوكيز ميما", price: 0, qty: 1, note: "مجانا 🎁", parentId: null, isGift: true };
+                cart[COOKIE_GIFT_ID] = { name: "كوكيز ميما", price: 0, qty: 1, note: "هدية مجانية 🎁", parentId: null, isGift: true };
             } else {
                 delete cart[COOKIE_GIFT_ID];
             }
+            if (subtotal >= FREE_GIFT_THRESHOLD) {
+                cart[FREE_GIFT_ID] = { name: "بودينق مكس ميني", price: 0, qty: 1, note: "هدية مجانية 🎁", parentId: null, isGift: true };
+            } else {
+                delete cart[FREE_GIFT_ID];
+            }
+        }
+
+        let cartToastTimer = null;
+        function showAddedToast(name) {
+            const toast = document.getElementById('cartToast');
+            if (!toast) return;
+            toast.textContent = `🍪 تمت إضافة ${name || 'المنتج'} إلى سلتك بنجاح 🤎`;
+            toast.classList.add('show');
+            clearTimeout(cartToastTimer);
+            cartToastTimer = setTimeout(() => toast.classList.remove('show'), 2100);
+        }
+
+        function jumpToCategory(category) {
+            const button = [...document.querySelectorAll('.cat-btn')].find(btn => (btn.getAttribute('onclick') || '').includes(`'${category}'`));
+            if (button) filterMenu(category, button);
+            const mood = document.getElementById('moodSection');
+            if (mood) mood.style.display = 'none';
+            const menu = document.getElementById('menuContent');
+            if (menu) menu.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function changeQty(id, name, price, delta, parentId = null) {
@@ -1048,12 +1176,12 @@
                 const pcard = document.getElementById('pcard-'+id); if(pcard) pcard.classList.toggle('selected', !!cart[id]);
                 syncFreeGift();
                 updateCartUI();
+                if (delta > 0) showAddedToast(name);
                 if(document.getElementById('reviewModal').style.display === 'block') updateReviewOnly();
                 return;
             }
 
-            if (id === FREE_GIFT_ID && delta > 0) return changeQty('c1', 'كوكيز ميما', 5, 1);
-            if (id === FREE_GIFT_ID) return;
+            if (id === FREE_GIFT_ID || id === COOKIE_GIFT_ID) return;
 
             if (!cart[id]) cart[id] = { name: name, price: price, qty: 0, note: "", parentId: parentId }; 
             cart[id].qty += delta; 
@@ -1092,6 +1220,7 @@
             
             syncFreeGift();
             updateCartUI();
+            if (delta > 0) showAddedToast(name);
             if(document.getElementById('reviewModal').style.display === 'block') updateReviewOnly();
         }
 
@@ -1198,7 +1327,7 @@ if (input === "روري") {
                             </div>`;
                         }
                     }
-                    const productInfo = products.find(p => p.id === id);
+                    const productInfo = products.find(p => p.id === id) || (id === COOKIE_GIFT_ID ? products.find(p => p.id === 'c1') : id === FREE_GIFT_ID ? products.find(p => p.id === 'p4') : null);
                     const productImage = productInfo && productInfo.imgs && productInfo.imgs.length
                         ? `<img class="cart-product-thumb" src="./${productInfo.imgs[0]}" alt="${item.name}" loading="lazy" onerror="this.outerHTML='<div class=&quot;cart-product-thumb-fallback&quot; aria-label=&quot;صورة غير متاحة&quot;>🍪</div>'">`
                         : `<div class="cart-product-thumb-fallback" aria-label="صورة غير متاحة">🍪</div>`;
@@ -1210,7 +1339,7 @@ if (input === "روري") {
                                 <b class="cart-product-name">${item.name} ${item.isGift ? '<span style="color:green;font-size:12px">🎁 مجانا</span>' : ''}</b>
                                 <div class="cart-item-header">
                                     <div class="cart-item-ctrl">
-                                        ${item.isGift ? `<button class="btn-cart-qty" onclick="changeQty('${FREE_GIFT_ID}', 'كوكيز ميما', 0, 1)">+</button><span style="font-weight:bold; width:20px; text-align:center">1</span>` : `<button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, 1)">+</button><span style="font-weight:bold; width:20px; text-align:center">${item.qty}</span><button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, -1)">-</button>`}
+                                        ${item.isGift ? `<span style="font-weight:800;color:#8a5d4a;background:#fff2e9;border-radius:8px;padding:6px 9px;font-size:11px">هدية مجانية 🎁</span>` : `<button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, 1)">+</button><span style="font-weight:bold; width:20px; text-align:center">${item.qty}</span><button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, -1)">-</button>`}
                                     </div>
                                     <span style="font-weight:900; color:var(--main-pink); white-space:nowrap">${productBaseTotal} ر.س</span>
                                 </div>
@@ -1230,10 +1359,20 @@ if (input === "روري") {
             if (giftProgress) {
                 const regularSubtotal = getRegularSubtotal();
                 const cookieGiftEarned = Boolean(cart[COOKIE_GIFT_ID]);
+                const puddingGiftEarned = Boolean(cart[FREE_GIFT_ID]);
+                const nextTarget = regularSubtotal < COOKIE_GIFT_THRESHOLD ? COOKIE_GIFT_THRESHOLD : FREE_GIFT_THRESHOLD;
+                const progressBase = regularSubtotal < COOKIE_GIFT_THRESHOLD ? 0 : COOKIE_GIFT_THRESHOLD;
+                const progress = Math.min(100, Math.max(0, ((regularSubtotal - progressBase) / (nextTarget - progressBase)) * 100));
                 giftProgress.classList.toggle('gift-earned', cookieGiftEarned);
-                giftProgress.innerHTML = cookieGiftEarned
-                    ? '🎉 <b>مبروك! تستاهلين كوكيز ميما المجاني! 🍪</b><br><span style="font-weight:500">هدية حلوة من ميما لك، لأنك تستاهلين 🤎</span>'
-                    : `🍪 أضيفي منتجات بقيمة <b>${Math.max(0, COOKIE_GIFT_THRESHOLD - regularSubtotal).toFixed(2)} ريال</b> لتحصلين على كوكيز ميما مجانًا 🎁`;
+                let giftText = '';
+                if (puddingGiftEarned) {
+                    giftText = '🎉 <b>يا سلام! حصلتِ على هديتين من ميما!</b><br><span style="font-weight:600">🍪 كوكيز ميما + 🍮 بودينق مكس ميني مجانًا 🤎</span>';
+                } else if (cookieGiftEarned) {
+                    giftText = `🎉 <b>مبروك! كوكيز ميما المجاني صار لك! 🍪</b><br><span style="font-weight:500">أضيفي منتجات بقيمة <b>${Math.max(0, FREE_GIFT_THRESHOLD - regularSubtotal).toFixed(2)} ريال</b> لتحصلين على بودينق مكس ميني مجانًا 🍮</span>`;
+                } else {
+                    giftText = `🎁 <b>هدايا ميما بانتظارك!</b><br>أضيفي منتجات بقيمة <b>${Math.max(0, COOKIE_GIFT_THRESHOLD - regularSubtotal).toFixed(2)} ريال</b> لتحصلين على كوكيز ميما مجانًا 🍪`;
+                }
+                giftProgress.innerHTML = `${giftText}<div class="gift-progress-track"><div class="gift-progress-fill" style="width:${progress}%"></div></div><div class="gift-milestones"><span>${cookieGiftEarned ? '✓ كوكيز مجاني' : '100 ر.س ← كوكيز مجاني'}</span><span>${puddingGiftEarned ? '✓ بودينق مجاني' : '180 ر.س ← بودينق ميني'}</span></div>`;
             }
 
             let finalTotal = subtotal;
@@ -1255,6 +1394,8 @@ if (input === "روري") {
 
         function sendWhatsApp() { 
             let msg = "أهلاً كوكيز ميما، طلب جديد 🍪:\n\n"; 
+            const giftMessage = (document.getElementById('giftMessage')?.value || '').trim();
+            if (giftMessage) msg += `💌 رسالة مرفقة مع الطلب: ${giftMessage}\n\n`;
             let subtotal = 0; 
             let hasItems = false;
             for (let id in cart) { 
