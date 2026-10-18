@@ -1562,11 +1562,20 @@ if (input === "روري") {
         async function downloadMemaInvoice() {
             const target = document.getElementById('memaInvoiceContent');
             const button = document.querySelector('#memaInvoiceModal .invoice-actions button');
-            const isAppleMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-            let timeoutId;
+            const isAppleMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            let previewTab = null;
+            let timeoutId = null;
+
+            // Open the tab directly from the tap so Safari is less likely to block it later.
+            if (isAppleMobile) {
+                try { previewTab = window.open('about:blank', '_blank'); } catch (e) {}
+            }
+
             try {
                 if (button) { button.disabled = true; button.textContent = 'جارٍ تجهيز الصورة…'; }
                 if (typeof html2canvas !== 'function') throw new Error('html2canvas غير متاح');
+                if (!target) throw new Error('محتوى الفاتورة غير موجود');
 
                 await Promise.race([
                     Promise.all(Array.from(target.querySelectorAll('img')).map(img => {
@@ -1600,43 +1609,46 @@ if (input === "روري") {
                 ]);
                 clearTimeout(timeoutId);
 
-                // iPhone/iPad cannot let a webpage silently write directly to Photos.
-                // Use the iOS share sheet with a real PNG file so the customer can choose Save Image.
-                if (isAppleMobile && navigator.share && navigator.canShare && canvas.toBlob) {
-                    const blob = await new Promise((resolve, reject) => {
-                        canvas.toBlob(value => value ? resolve(value) : reject(new Error('تعذر تحويل الفاتورة إلى صورة')), 'image/png');
-                    });
-                    const file = new File([blob], 'فاتورة-طلب-ميما.png', { type: 'image/png' });
-                    if (navigator.canShare({ files: [file] })) {
-                        await navigator.share({ files: [file], title: 'فاتورة طلب ميما' });
-                        return;
-                    }
-                }
-
                 const image = canvas.toDataURL('image/png');
                 if (isAppleMobile) {
-                    // Fallback for browsers that do not support sharing image files.
-                    const imageTab = window.open('', '_blank');
-                    if (!imageTab) {
-                        alert('من Safari اضغطي على زر المشاركة ثم اسمحي بفتح الصفحة، أو افتحي الموقع في Safari مباشرة.');
+                    if (!previewTab || previewTab.closed) {
+                        alert('Safari منع فتح صفحة الفاتورة. اسمحي بالنوافذ المنبثقة أو افتحي الموقع في Safari ثم حاولي مرة أخرى.');
                         return;
                     }
-                    imageTab.document.open();
-                    imageTab.document.write(`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>فاتورة طلب ميما</title></head><body style="margin:0;padding:12px;text-align:center;background:#fffaf6;font-family:Arial,sans-serif;color:#654536"><p>لحفظها في الصور: اضغطي زر المشاركة ثم اختاري «حفظ الصورة» أو اضغطي مطولًا على الصورة.</p><img src="${image}" alt="فاتورة طلب ميما" style="display:block;width:100%;height:auto;margin:auto"></body></html>`);
-                    imageTab.document.close();
+                    previewTab.document.open();
+                    previewTab.document.write(`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>فاتورة طلب ميما</title><style>body{margin:0;padding:12px;text-align:center;background:#fffaf6;color:#654536;font-family:Arial,sans-serif}img{display:block;width:100%;height:auto;margin:auto}p{line-height:1.8}</style></head><body><p>لحفظ الفاتورة في الصور: اضغطي زر المشاركة في Safari ثم اختاري «حفظ الصورة»، أو اضغطي مطولًا على الصورة إذا ظهر الخيار.</p><img src="${image}" alt="فاتورة طلب ميما"></body></html>`);
+                    previewTab.document.close();
                 } else {
-                    const link = document.createElement('a');
-                    link.download = 'فاتورة-طلب-ميما.png';
-                    link.href = image;
-                    link.style.display = 'none';
-                    document.body.appendChild(link);
-                    link.click();
-                    link.remove();
+                    canvas.toBlob(blob => {
+                        if (!blob) { alert('تعذر تحويل الفاتورة إلى صورة.'); return; }
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = 'فاتورة-طلب-ميما.png';
+                        document.body.appendChild(link);
+                        link.click();
+                        link.remove();
+                        setTimeout(() => URL.revokeObjectURL(url), 1500);
+                    }, 'image/png');
                 }
             } catch (error) {
                 console.error('Invoice image error:', error);
-                if (error && error.name === 'AbortError') return; // user closed the share sheet
-                alert('تعذر تجهيز الفاتورة. جرّبي مرة أخرى وتأكدي من اتصال الإنترنت.');
+                // لا نلوم الإنترنت تلقائيًا؛ اعرضي الفاتورة في صفحة بديلة حتى لا تتعطل المستخدمة.
+                if (isAppleMobile && previewTab && !previewTab.closed && target) {
+                    try {
+                        const styles = Array.from(document.querySelectorAll('style'))
+                            .map(style => style.innerHTML).join('\n');
+                        previewTab.document.open();
+                        previewTab.document.write(`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>فاتورة طلب ميما</title><style>${styles}
+body{margin:0;padding:14px;background:#4a3028;font-family:Tahoma,Arial,sans-serif}#memaInvoiceContent{display:block!important;width:100%!important;max-width:520px!important;margin:0 auto!important;box-sizing:border-box!important} .save-help{max-width:520px;margin:0 auto 12px;padding:12px;background:#fffaf6;border-radius:10px;text-align:center;line-height:1.8;color:#654536}</style></head><body><div class="save-help">تعذّر تحويلها تلقائيًا إلى صورة. يمكنك أخذ لقطة شاشة لهذه الفاتورة الآن، أو تجربة زر المشاركة في Safari.</div><div id="memaInvoiceContent">${target.innerHTML}</div></body></html>`);
+                        previewTab.document.close();
+                        alert('ما له علاقة بالإنترنت بالضرورة. تعذّر تحويل الفاتورة لصورة؛ فتحت لك نسخة بديلة تقدرين تصورينها بلقطة شاشة.');
+                    } catch (fallbackError) {
+                        alert('تعذّر إنشاء صورة الفاتورة. جرّبي أخذ لقطة شاشة للفاتورة من الصفحة الحالية.');
+                    }
+                } else {
+                    alert('تعذّر تحويل الفاتورة إلى صورة. قد يكون السبب صورة منتج أو صلاحية في المتصفح، وليس اتصال الإنترنت. جرّبي لقطة شاشة للفاتورة.');
+                }
             } finally {
                 clearTimeout(timeoutId);
                 if (button) { button.disabled = false; button.innerHTML = '<i class="fas fa-download"></i> حفظ الفاتورة كصورة'; }
