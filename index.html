@@ -1561,29 +1561,84 @@ if (input === "روري") {
 
         async function downloadMemaInvoice() {
             const target = document.getElementById('memaInvoiceContent');
-            if (typeof html2canvas !== 'function') {
-                alert('تعذر تحميل أداة حفظ الصورة. تأكدي من اتصال الإنترنت ثم حاولي مرة أخرى.');
-                return;
-            }
+            const button = document.querySelector('#memaInvoiceModal .invoice-actions button');
+            const isAppleMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            let timeoutId;
             try {
-                const button = document.querySelector('#memaInvoiceModal .invoice-actions button');
                 if (button) { button.disabled = true; button.textContent = 'جارٍ تجهيز الصورة…'; }
-                const canvas = await html2canvas(target, {
-                    backgroundColor: '#fffaf6',
-                    scale: 2,
-                    useCORS: true,
-                    allowTaint: false,
-                    logging: false,
-                    windowWidth: Math.max(document.documentElement.clientWidth, target.scrollWidth)
-                });
-                const link = document.createElement('a');
-                link.download = 'فاتورة-طلب-ميما.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
+                if (typeof html2canvas !== 'function') throw new Error('html2canvas غير متاح');
+
+                await Promise.race([
+                    Promise.all(Array.from(target.querySelectorAll('img')).map(img => {
+                        if (img.complete) return Promise.resolve();
+                        return new Promise(resolve => {
+                            img.addEventListener('load', resolve, { once: true });
+                            img.addEventListener('error', resolve, { once: true });
+                            setTimeout(resolve, 4000);
+                        });
+                    })),
+                    new Promise(resolve => setTimeout(resolve, 5000))
+                ]);
+                if (document.fonts && document.fonts.ready) {
+                    await Promise.race([document.fonts.ready, new Promise(resolve => setTimeout(resolve, 1500))]);
+                }
+
+                const canvas = await Promise.race([
+                    html2canvas(target, {
+                        backgroundColor: '#fffaf6',
+                        scale: isAppleMobile ? 1 : 2,
+                        useCORS: true,
+                        allowTaint: false,
+                        logging: false,
+                        imageTimeout: 5000,
+                        windowWidth: Math.max(document.documentElement.clientWidth, target.scrollWidth),
+                        width: target.scrollWidth
+                    }),
+                    new Promise((_, reject) => {
+                        timeoutId = setTimeout(() => reject(new Error('انتهت مهلة تجهيز الصورة')), 20000);
+                    })
+                ]);
+                clearTimeout(timeoutId);
+
+                // iPhone/iPad cannot let a webpage silently write directly to Photos.
+                // Use the iOS share sheet with a real PNG file so the customer can choose Save Image.
+                if (isAppleMobile && navigator.share && navigator.canShare && canvas.toBlob) {
+                    const blob = await new Promise((resolve, reject) => {
+                        canvas.toBlob(value => value ? resolve(value) : reject(new Error('تعذر تحويل الفاتورة إلى صورة')), 'image/png');
+                    });
+                    const file = new File([blob], 'فاتورة-طلب-ميما.png', { type: 'image/png' });
+                    if (navigator.canShare({ files: [file] })) {
+                        await navigator.share({ files: [file], title: 'فاتورة طلب ميما' });
+                        return;
+                    }
+                }
+
+                const image = canvas.toDataURL('image/png');
+                if (isAppleMobile) {
+                    // Fallback for browsers that do not support sharing image files.
+                    const imageTab = window.open('', '_blank');
+                    if (!imageTab) {
+                        alert('من Safari اضغطي على زر المشاركة ثم اسمحي بفتح الصفحة، أو افتحي الموقع في Safari مباشرة.');
+                        return;
+                    }
+                    imageTab.document.open();
+                    imageTab.document.write(`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>فاتورة طلب ميما</title></head><body style="margin:0;padding:12px;text-align:center;background:#fffaf6;font-family:Arial,sans-serif;color:#654536"><p>لحفظها في الصور: اضغطي زر المشاركة ثم اختاري «حفظ الصورة» أو اضغطي مطولًا على الصورة.</p><img src="${image}" alt="فاتورة طلب ميما" style="display:block;width:100%;height:auto;margin:auto"></body></html>`);
+                    imageTab.document.close();
+                } else {
+                    const link = document.createElement('a');
+                    link.download = 'فاتورة-طلب-ميما.png';
+                    link.href = image;
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                }
             } catch (error) {
-                alert('ما قدرنا نحفظ الصورة. جربي مرة أخرى أو خذي لقطة شاشة للفاتورة.');
+                console.error('Invoice image error:', error);
+                if (error && error.name === 'AbortError') return; // user closed the share sheet
+                alert('تعذر تجهيز الفاتورة. جرّبي مرة أخرى وتأكدي من اتصال الإنترنت.');
             } finally {
-                const button = document.querySelector('#memaInvoiceModal .invoice-actions button');
+                clearTimeout(timeoutId);
                 if (button) { button.disabled = false; button.innerHTML = '<i class="fas fa-download"></i> حفظ الفاتورة كصورة'; }
             }
         }
