@@ -572,10 +572,6 @@
         .gift-progress-track { height:8px; border-radius:99px; background:#f0e1da; overflow:hidden; margin-top:11px; }
         .gift-progress-fill { height:100%; width:0; border-radius:99px; background:linear-gradient(90deg,#c28d78,#d65d8a); transition:width .35s ease; }
         .gift-milestones { display:flex; justify-content:space-between; gap:8px; margin-top:8px; font-size:10px; color:#98796d; }
-        .gift-message-section { margin:13px 0; padding:14px; border-radius:16px; border:1px solid #efded5; background:#fffdfb; }
-        .gift-message-section label { display:block; margin-bottom:8px; color:#654536; font-size:13px; font-weight:800; }
-        #giftMessage { display:block; width:100%; box-sizing:border-box; min-height:72px; padding:11px 12px; border:1px solid #eadbd2; border-radius:12px; background:#fff; font:inherit; font-size:12px; resize:vertical; outline:none; }
-        #giftMessage:focus { border-color:#c28d78; box-shadow:0 0 0 3px rgba(194,141,120,.12); }
         @media (min-width:700px) { .mema-home-intro,.mood-section { max-width:900px; margin-left:auto; margin-right:auto; } .mood-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
         @media (prefers-reduced-motion:reduce) { body::before { animation:none; } .mood-tile,#cartToast,.gift-progress-fill { transition:none; } }
 
@@ -591,6 +587,41 @@
         .cart-recommendation button { border:0; border-radius:9px; background:#795548; color:#fff; padding:6px 8px; font:inherit; font-size:10px; font-weight:800; width:100%; cursor:pointer; }
         .cart-subtitle { text-align:center; margin:-12px 0 16px; color:#98796d; font-size:12px; }
         @media (max-width:360px) { .cart-recommendation-grid { gap:5px; } .cart-recommendation { padding:7px 3px; } .cart-recommendation b { font-size:9px; } }
+
+
+        /* إضافة مستقلة: فاتورة مصورة دون تغيير تصميم أو منطق السلة */
+        #memaInvoiceModal { display:none; position:fixed; inset:0; z-index:7000; overflow-y:auto; background:rgba(45,29,24,.72); padding:14px 0; box-sizing:border-box; }
+        #memaInvoiceModal .invoice-actions { width:min(94%,520px); margin:0 auto 12px; display:flex; gap:8px; }
+        #memaInvoiceModal .invoice-actions button { flex:1; border:0; border-radius:12px; padding:12px 8px; font:inherit; font-size:13px; font-weight:800; cursor:pointer; }
+        #memaInvoiceContent { width:min(94%,520px); margin:0 auto 20px; padding:20px 16px; box-sizing:border-box; border-radius:18px; background:#fffaf6; color:#654536; direction:rtl; font-family:'Segoe UI',Tahoma,sans-serif; }
+        .mema-invoice-national-banner { display:block; width:calc(100% + 32px); max-width:none; margin:-20px -16px 12px; border-radius:18px 18px 10px 10px; }
+        .mema-national-header { box-sizing:border-box; min-height:150px; padding:22px 14px 20px; text-align:center; color:#fffaf4; background:radial-gradient(circle at 15% 15%,rgba(255,255,255,.2),transparent 28%),linear-gradient(135deg,#244d39,#47745a 58%,#d4b5a0); border:1px solid #e6d4c7; position:relative; overflow:hidden; }
+        .mema-national-header:before { content:'🌴'; position:absolute; left:14px; bottom:8px; font-size:42px; opacity:.65; }
+        .mema-national-header:after { content:'🇸🇦'; position:absolute; right:14px; bottom:8px; font-size:30px; opacity:.75; }
+        .mema-national-palm { font-size:22px; margin-bottom:3px; }
+        .mema-national-heading { font-size:24px; font-weight:900; line-height:1.6; text-shadow:0 2px 5px rgba(0,0,0,.12); }
+        .mema-national-subheading { display:inline-block; margin-top:5px; padding:4px 14px; border-radius:20px; background:rgba(255,250,244,.95); color:#31543e; font-size:15px; font-weight:900; }
+        .mema-national-caption { margin-top:7px; font-size:11px; color:#fff5e9; }
+        .mema-invoice-thanks-art { display:block; width:calc(100% + 32px); max-width:none; height:auto; margin:14px -16px -8px; border-radius:10px 10px 18px 18px; }
+        .mema-invoice-brand { text-align:center; padding:8px 0 16px; border-bottom:2px dashed #e8c9d3; margin-bottom:14px; }
+        .mema-invoice-brand h2 { margin:0 0 4px; color:#a34c6d; font-size:24px; }
+        .mema-invoice-brand p { margin:0; color:#98796d; font-size:12px; }
+        .mema-invoice-item { display:flex; align-items:flex-start; gap:10px; padding:12px 0; border-bottom:1px solid #f0e3dc; page-break-inside:avoid; }
+        .mema-invoice-item img,.mema-invoice-fallback { width:76px; height:76px; flex:0 0 76px; object-fit:cover; border-radius:12px; background:#fff0f4; }
+        .mema-invoice-fallback { display:flex; align-items:center; justify-content:center; font-size:28px; }
+        .mema-invoice-item-details { flex:1; min-width:0; }
+        .mema-invoice-item-details b { display:block; font-size:14px; line-height:1.6; overflow-wrap:anywhere; }
+        .mema-invoice-item-details small { display:block; margin-top:4px; color:#98796d; font-size:11px; line-height:1.7; }
+        .mema-invoice-price { white-space:nowrap; font-weight:900; color:#a34c6d; font-size:13px; }
+        .mema-invoice-total { margin-top:16px; padding:14px; border-radius:13px; background:#fff0f4; }
+        .mema-invoice-total div { display:flex; justify-content:space-between; gap:10px; margin:5px 0; font-size:13px; }
+        .mema-invoice-total .grand { border-top:1px dashed #d9b7c3; padding-top:10px; margin-top:10px; font-size:19px; font-weight:900; color:#a34c6d; }
+        .mema-invoice-footer { text-align:center; padding-top:14px; font-size:11px; color:#98796d; line-height:1.8; }
+        .mema-national-note { margin-top:16px; padding:14px 12px; text-align:center; border:1px solid #c9d9c7; border-radius:14px; background:linear-gradient(145deg,#f4faf2,#fffaf6); color:#355b42; line-height:1.9; }
+        .mema-national-note .national-title { font-size:15px; font-weight:900; margin-bottom:4px; }
+        .mema-national-note .national-copy { font-size:11px; color:#5d7562; }
+        .mema-national-note .national-thanks { margin-top:8px; padding-top:8px; border-top:1px dashed #c9d9c7; font-size:11px; color:#654536; font-weight:800; }
+        @media (max-width:380px) { #memaInvoiceContent { padding:16px 11px; } .mema-invoice-item img,.mema-invoice-fallback { width:62px;height:62px;flex-basis:62px; } }
 
     </style>
 </head>
@@ -694,24 +725,29 @@
             </div>
 
             <div id="giftProgress" style="text-align:center; margin:12px 0; padding:12px; border-radius:12px; background:#fff4f8; color:var(--main-brown); font-weight:bold; font-size:12px;"></div>
-            <div class="gift-message-section">
-                <label for="giftMessage">💌 تبغين نضيف رسالة مع هديتك؟ <span style="font-weight:500;color:#98796d">(اختياري)</span></label>
-                <textarea id="giftMessage" placeholder="اكتبي رسالتك هنا، ونرفقها مع تفاصيل طلبك..."></textarea>
-            </div>
-
-            <div id="priceDetails" style="text-align:center; margin:20px 0; border-top:1px solid #eee; padding-top:15px;">
+<div id="priceDetails" style="text-align:center; margin:20px 0; border-top:1px solid #eee; padding-top:15px;">
                 <div id="subtotalRow" style="display:none; color:#777; font-size:14px; margin-bottom:5px;">الإجمالي قبل الخصم: <span id="modalSubtotal">0</span> ريال</div>
                 <div id="discountRow" style="display:none; color:green; font-size:14px; margin-bottom:5px;">قيمة الخصم (<span id="discountPercentText">0</span>%): -<span id="modalDiscountVal">0</span> ريال</div>
                 <div style="font-weight:800; font-size:22px; color:var(--main-brown);">الإجمالي النهائي: <span id="modalTotal" style="color:var(--main-pink)">0</span> ريال</div>
             </div>
 
             <button onclick="sendWhatsApp()" style="background: #25d366; color: white; border: none; width: 100%; padding: 18px; border-radius: 15px; font-weight: bold; font-size: 18px; cursor: pointer; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);"><i class="fab fa-whatsapp"></i> إرسال عبر واتساب</button>
+            <button onclick="openMemaInvoice()" style="background:linear-gradient(110deg,#654536,#946854); color:white; border:0; width:100%; padding:15px; border-radius:15px; margin-top:10px; font-weight:800; font-size:16px; cursor:pointer;"><i class="fas fa-file-invoice"></i> إنشاء فاتورة مصوّرة للطلب</button>
             <button onclick="closeReview()" style="background: #f0f0f0; width: 100%; padding: 12px; border: none; border-radius: 15px; margin-top: 15px; cursor: pointer; font-weight: bold; color: #666;">إغلاق</button>
         </div>
     </div>
 
+    <div id="memaInvoiceModal" aria-label="فاتورة الطلب">
+        <div class="invoice-actions">
+            <button onclick="downloadMemaInvoice()" style="background:#25d366;color:#fff;"><i class="fas fa-download"></i> حفظ الفاتورة كصورة</button>
+            <button onclick="closeMemaInvoice()" style="background:#fff;color:#654536;"><i class="fas fa-times"></i> إغلاق</button>
+        </div>
+        <div id="memaInvoiceContent"></div>
+    </div>
+
     <div id="cartToast" role="status" aria-live="polite">🍪 تمت الإضافة إلى سلتك بنجاح!</div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         function hideWelcome() {
             const screen = document.getElementById('welcome-screen');
@@ -1394,8 +1430,6 @@ if (input === "روري") {
 
         function sendWhatsApp() { 
             let msg = "أهلاً كوكيز ميما، طلب جديد 🍪:\n\n"; 
-            const giftMessage = (document.getElementById('giftMessage')?.value || '').trim();
-            if (giftMessage) msg += `💌 رسالة مرفقة مع الطلب: ${giftMessage}\n\n`;
             let subtotal = 0; 
             let hasItems = false;
             for (let id in cart) { 
@@ -1437,6 +1471,119 @@ if (input === "روري") {
             }
 
             window.open(`https://wa.me/966502509910?text=${encodeURIComponent(msg)}`); 
+        }
+
+
+        // فاتورة مستقلة تقرأ السلة الحالية فقط ولا تغيّر بياناتها أو وظائفها.
+        function openMemaInvoice() {
+            const modal = document.getElementById('memaInvoiceModal');
+            const content = document.getElementById('memaInvoiceContent');
+            let subtotal = 0;
+            let rows = '';
+            let hasItems = false;
+
+            for (const id in cart) {
+                const item = cart[id];
+                if (!item || item.parentId) continue;
+                hasItems = true;
+                const baseTotal = Number(item.qty || 0) * Number(item.price || 0);
+                let extrasTotal = 0;
+                let extrasHtml = '';
+                for (const exId in cart) {
+                    const extra = cart[exId];
+                    if (extra && extra.parentId === id) {
+                        const cost = Number(extra.qty || 0) * Number(extra.price || 0);
+                        extrasTotal += cost;
+                        extrasHtml += `<small>＋ ${escapeInvoiceText(extra.name)} × ${extra.qty}${extra.note ? ' — ' + escapeInvoiceText(extra.note) : ''} (${cost.toFixed(2)} ر.س)</small>`;
+                    }
+                }
+                const productInfo = products.find(p => p.id === id) ||
+                    (id === COOKIE_GIFT_ID ? products.find(p => p.id === 'c1') :
+                    id === FREE_GIFT_ID ? products.find(p => p.id === 'p4') : null);
+                const imageSrc = productInfo && productInfo.imgs && productInfo.imgs.length
+                    ? './' + productInfo.imgs[0] : '';
+                const imageHtml = imageSrc
+                    ? `<img src="${imageSrc}" alt="" crossorigin="anonymous" onerror="this.outerHTML='<div class=&quot;mema-invoice-fallback&quot;>🍪</div>'">`
+                    : '<div class="mema-invoice-fallback">🍪</div>';
+                rows += `<div class="mema-invoice-item">
+                    ${imageHtml}
+                    <div class="mema-invoice-item-details">
+                        <b>${escapeInvoiceText(item.name)} ${item.isGift ? '🎁 (هدية مجانية)' : ''}</b>
+                        <small>الكمية: ${item.qty} × ${Number(item.price || 0).toFixed(2)} ر.س</small>
+                        ${extrasHtml}
+                    </div>
+                    <div class="mema-invoice-price">${(baseTotal + extrasTotal).toFixed(2)} ر.س</div>
+                </div>`;
+                subtotal += baseTotal + extrasTotal;
+            }
+
+            if (!hasItems) {
+                alert('السلة فارغة. أضيفي المنتجات أولاً ثم أنشئي الفاتورة.');
+                return;
+            }
+            const discount = isDiscountApplied ? subtotal * discountRate : 0;
+            const finalTotal = subtotal - discount;
+            content.innerHTML = `
+                <div class="mema-invoice-national-banner mema-national-header" role="img" aria-label="بالغوا بالدفاع عن وطنكم، فالأوطان لا تحيا إلا بأبنائها">
+                    <div class="mema-national-palm">🇸🇦</div>
+                    <div class="mema-national-heading">بالغوا بالدفاع عن وطنكم</div>
+                    <div class="mema-national-subheading">فالأوطان لا تحيا إلا بأبنائها 💚💚💚</div>
+                    <div class="mema-national-caption">صُنع في الباحة بكل حب 🤎</div>
+                </div>
+                <div class="mema-invoice-brand">
+                    <div style="font-size:30px;margin-bottom:5px">🍪 🤎 🍪</div>
+                    <h2>كوكيز ميما</h2>
+                    <p>MADE WITH LOVE · فاتورة الطلب</p>
+                    <p style="margin-top:7px">${new Date().toLocaleDateString('ar-SA')}</p>
+                </div>
+                ${rows}
+                <div class="mema-invoice-total">
+                    <div><span>الإجمالي قبل الخصم</span><b>${subtotal.toFixed(2)} ريال</b></div>
+                    ${discount > 0 ? `<div><span>الخصم (${discountRate * 100}%)</span><b>− ${discount.toFixed(2)} ريال</b></div>` : ''}
+                    <div class="grand"><span>الإجمالي النهائي</span><span>${finalTotal.toFixed(2)} ريال</span></div>
+                </div>
+                <div class="mema-invoice-footer">🤎 شكرًا لاختياركم ميما<br>ثقتكم تسعدنا، وطلباتكم تكبر حكايتنا.<br>من أرض الباحة، نخبز لكم لحظات حلوة بكل حب 🍪</div>`;
+            modal.style.display = 'block';
+            modal.scrollTop = 0;
+        }
+
+        function escapeInvoiceText(value) {
+            return String(value ?? '').replace(/[&<>"']/g, ch => ({
+                '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+            }[ch]));
+        }
+
+        function closeMemaInvoice() {
+            document.getElementById('memaInvoiceModal').style.display = 'none';
+        }
+
+        async function downloadMemaInvoice() {
+            const target = document.getElementById('memaInvoiceContent');
+            if (typeof html2canvas !== 'function') {
+                alert('تعذر تحميل أداة حفظ الصورة. تأكدي من اتصال الإنترنت ثم حاولي مرة أخرى.');
+                return;
+            }
+            try {
+                const button = document.querySelector('#memaInvoiceModal .invoice-actions button');
+                if (button) { button.disabled = true; button.textContent = 'جارٍ تجهيز الصورة…'; }
+                const canvas = await html2canvas(target, {
+                    backgroundColor: '#fffaf6',
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: false,
+                    logging: false,
+                    windowWidth: Math.max(document.documentElement.clientWidth, target.scrollWidth)
+                });
+                const link = document.createElement('a');
+                link.download = 'فاتورة-طلب-ميما.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            } catch (error) {
+                alert('ما قدرنا نحفظ الصورة. جربي مرة أخرى أو خذي لقطة شاشة للفاتورة.');
+            } finally {
+                const button = document.querySelector('#memaInvoiceModal .invoice-actions button');
+                if (button) { button.disabled = false; button.innerHTML = '<i class="fas fa-download"></i> حفظ الفاتورة كصورة'; }
+            }
         }
 
         function filterMenu(cat, btn) { 
