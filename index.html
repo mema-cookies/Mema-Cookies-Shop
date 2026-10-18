@@ -81,7 +81,9 @@
             border-radius: 20px;
         }
         
-        header { background-color: var(--soft-pink); background-image: url('logo.jpg'); background-size: contain; background-position: center top; background-repeat: no-repeat; width: 100%; height: 260px; border-bottom: 3px solid var(--main-pink); }
+        header { background-color: var(--soft-pink); background-image: none; width: 100%; height: 260px; border-bottom: 3px solid var(--main-pink); position: relative; isolation: isolate; overflow: hidden; }
+        /* دمج خلفية صورة الشعار البيضاء مع خلفية الموقع الوردية لتبدو شفافة */
+        header::before { content: ""; position: absolute; inset: 0; background-image: url('logo.jpg'); background-size: contain; background-position: center top; background-repeat: no-repeat; mix-blend-mode: multiply; pointer-events: none; z-index: -1; }
         
         .marquee-container { background-color: var(--main-pink); color: white; overflow: hidden; padding: 12px 0; font-size: 14px; font-weight: bold; position: sticky; top: 0; z-index: 1001; text-align: center; }
         .marquee-text { display: inline-block; white-space: nowrap; animation: bounce-slide 10s ease-in-out infinite; }
