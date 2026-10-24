@@ -702,68 +702,6 @@
             #memaNationalAd, .mema-ad-timer span { transition: none; animation: none; }
         }
 
-
-/* لعبة مخبز السحر والغمـوض - إضافة مستقلة */
-:root {
-  --mema-game-bg:#130B29; --mema-game-card:#20133F; --mema-game-gold:#FFD700;
-  --mema-game-pink:#FF2A6D; --mema-game-teal:#05FFA1; --mema-game-text:#FFFFFF;
-}
-.mema-store-banner {
-  background:linear-gradient(135deg,#20133F,#3A1E6D); color:var(--mema-game-gold);
-  padding:16px 18px; margin:18px 14px; text-align:center; font-family:inherit;
-  font-size:15px; font-weight:900; cursor:pointer; display:flex; align-items:center;
-  justify-content:center; gap:12px; flex-wrap:wrap; box-shadow:0 10px 30px rgba(0,0,0,.18);
-  position:relative; z-index:2; border-bottom:3px solid var(--mema-game-gold);
-  border-radius:18px; transition:all .3s ease;
-}
-.mema-store-banner:hover { background:linear-gradient(135deg,#3A1E6D,#532C94); }
-.mema-store-banner svg { width:30px; height:30px; flex:0 0 auto; }
-#mema-game-modal {
-  display:none; position:fixed; inset:0; width:100%; height:100%; box-sizing:border-box;
-  background:rgba(8,4,18,.94); z-index:30000; justify-content:center; align-items:center;
-  padding:10px; backdrop-filter:blur(10px); overflow-y:auto;
-}
-.mema-game-container {
-  box-sizing:border-box; width:100%; max-width:530px; max-height:94vh; overflow-y:auto;
-  background:radial-gradient(circle at top,#32195F 0%,#20133F 75%); color:#fff;
-  border-radius:26px; box-shadow:0 25px 70px rgba(0,0,0,.6); padding:24px 18px;
-  text-align:center; position:relative; border:3px solid var(--mema-game-gold);
-  font-family:inherit; direction:rtl;
-}
-.mema-close-btn { position:absolute; top:12px; left:12px; background:rgba(255,255,255,.15);
-  border:0; width:38px; height:38px; border-radius:50%; font-size:22px; cursor:pointer;
-  color:var(--mema-game-gold); }
-.mema-game-pane { display:none; padding-top:18px; }
-.mema-game-pane.active { display:block; }
-.mema-game-title { color:var(--mema-game-gold); font-weight:900; margin:6px 0 12px; }
-.mema-game-copy { font-size:13px; color:#F0EBFF; line-height:1.9; }
-.mema-game-main-btn { background:linear-gradient(135deg,#FFD700,#FF8800); color:#130B29;
-  border:0; width:100%; padding:14px 12px; border-radius:15px; font-size:15px;
-  font-weight:900; cursor:pointer; margin-top:14px; }
-.mema-game-hud { display:flex; justify-content:space-between; gap:8px; background:#130B29;
-  padding:12px; border-radius:14px; margin:8px 0 14px; border:1px solid #3A1E6D; font-weight:900; }
-.mema-game-demand { background:#3A1E6D; border:2px solid var(--mema-game-gold);
-  border-radius:18px; padding:16px; margin:12px 0; }
-.mema-game-patience { width:100%; background:#130B29; height:9px; border-radius:8px;
-  overflow:hidden; margin-top:10px; }
-#mema-game-patience-fill { width:100%; height:100%; background:var(--mema-game-teal); }
-.mema-game-ingredients { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin:14px 0; }
-.mema-game-ingredient { background:#130B29; border:2px solid #3A1E6D; border-radius:13px;
-  padding:12px 6px; cursor:pointer; font-size:12px; font-weight:800; color:#fff; }
-.mema-game-ingredient.selected { border-color:var(--mema-game-gold); background:#3A1E6D; }
-.mema-game-oven { background:#130B29; border-radius:18px; padding:18px; margin:14px 0; }
-.mema-game-track { height:22px; background:#20133F; border-radius:12px; position:relative;
-  overflow:hidden; margin:18px 0; border:2px solid #532C94; }
-.mema-game-zone { position:absolute; left:65%; width:18%; height:100%; background:rgba(5,255,161,.4);
-  border-left:2px dashed #05FFA1; border-right:2px dashed #05FFA1; }
-#mema-game-needle { position:absolute; top:0; left:0; width:5px; height:100%;
-  background:var(--mema-game-pink); box-shadow:0 0 12px var(--mema-game-pink); }
-.mema-game-victory { background:linear-gradient(135deg,#3A1E6D,#20133F); border:2px dashed var(--mema-game-gold);
-  border-radius:20px; padding:18px; margin:14px 0; }
-#mema-game-code { font-size:20px; font-weight:900; color:var(--mema-game-gold); background:#130B29;
-  padding:12px 6px; border-radius:12px; margin:12px 0; border:2px solid var(--mema-game-gold); direction:ltr; }
-@media(max-width:420px) { .mema-game-container {padding:22px 13px;} .mema-store-banner {font-size:13px;} }
-
 </style>
 </head>
 <body>
@@ -776,44 +714,6 @@
     </div>
 
     <div id="mainView">
-
-        <button class="mema-store-banner" type="button" onclick="openMemaGame()" aria-haspopup="dialog">
-          <svg viewBox="0 0 24 24" fill="#FFD700" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="8" cy="9" r="1.5" fill="#130B29"/><circle cx="15" cy="8" r="1.2" fill="#130B29"/><circle cx="11" cy="14" r="1.8" fill="#130B29"/><circle cx="16" cy="15" r="1.2" fill="#130B29"/></svg>
-          <span>🪄 مخبز السحر والغموض — أسئلة متجددة وجوائز مميزة</span>
-          <span style="font-size:11px;background:rgba(255,215,0,.2);padding:5px 10px;border-radius:8px;color:#fff;">ابدئي التحدي</span>
-        </button>
-        <div id="mema-game-modal" role="dialog" aria-modal="true" aria-label="لعبة مخبز السحر والغموض">
-          <div class="mema-game-container">
-            <button class="mema-close-btn" type="button" onclick="closeMemaGame()" aria-label="إغلاق">×</button>
-            <section id="mema-game-pane-1" class="mema-game-pane active">
-              <div style="font-size:58px;margin:8px 0;">🍪✨</div>
-              <h2 class="mema-game-title">مخبز السحر والغموض</h2>
-              <p class="mema-game-copy">مرحبًا بكِ في أكاديمية ميما الذكية! اختاري المكونات الصحيحة لكل وصفة، ثم أوقفي مؤشر الفرن في المنطقة الخضراء لتكملي التحدي وتحصلي على رمز فوز خاص بجولتك.</p>
-              <button class="mema-game-main-btn" type="button" onclick="startMemaSession()">ابدئي رحلة السحر</button>
-            </section>
-            <section id="mema-game-pane-2" class="mema-game-pane">
-              <div class="mema-game-hud"><span>القلوب: <b id="mema-game-hearts">❤️❤️❤️</b></span><span>الطلبات: <b id="mema-game-orders">3 / 3</b></span></div>
-              <div class="mema-game-demand"><div style="font-size:30px;">👩🏻‍🍳</div><b id="mema-game-hint" style="color:#FFD700;">جاري تجهيز الطلب...</b><div class="mema-game-patience"><div id="mema-game-patience-fill"></div></div></div>
-              <p class="mema-game-copy">اختاري المكونات الخمسة الصحيحة للوصفة، وتجنبي المكونات الخاطئة.</p>
-              <div id="mema-game-ingredients" class="mema-game-ingredients"></div>
-              <button class="mema-game-main-btn" type="button" onclick="submitMemaRecipe()">اعتماد الوصفة</button>
-            </section>
-            <section id="mema-game-pane-3" class="mema-game-pane">
-              <h2 class="mema-game-title">🔥 فرن السحر الحراري</h2>
-              <p class="mema-game-copy">أوقفي المؤشر داخل المنطقة الخضراء لتحصلي على خبزة مثالية.</p>
-              <div class="mema-game-oven"><div style="font-size:42px;">🍪</div><b id="mema-game-oven-msg" style="color:#FFD700;">الفرن يتوهج...</b><div class="mema-game-track"><div class="mema-game-zone"></div><div id="mema-game-needle"></div></div></div>
-              <button id="mema-game-stop" class="mema-game-main-btn" type="button" onclick="stopMemaGameOven()">إيقاف الفرن الآن</button>
-            </section>
-            <section id="mema-game-pane-4" class="mema-game-pane">
-              <div style="font-size:60px;margin:8px 0;">🏆🍪</div><h2 class="mema-game-title">إنجاز الشيف الأسطوري!</h2>
-              <p class="mema-game-copy">أتممتِ التحدي بنجاح. احتفظي برمز الفوز وأرسليه مع طلبك للمتجر للاستفسار عن الهدية.</p>
-              <div class="mema-game-victory"><b>رمز الفوز الخاص بجولتك:</b><div id="mema-game-code">MEMA-WIN-XXXX</div><small class="mema-game-copy">صوّري هذه الشاشة وأرسليها مع طلبك عبر الواتساب.</small></div>
-              <button class="mema-game-main-btn" type="button" onclick="goToMemaMoodSection()">الانتقال إلى قسم المزاج</button>
-              <button class="mema-game-main-btn" style="background:linear-gradient(135deg,#FF2A6D,#B5179E);color:#fff;" type="button" onclick="startMemaSession()">العبِي مرة أخرى</button>
-            </section>
-          </div>
-        </div>
-
         <a href="https://www.instagram.com/cookies_mema70/" class="instagram-float" target="_blank"><i class="fab fa-instagram"></i></a>
         <a href="https://wa.me/966502509910" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
         <header></header>
@@ -1877,47 +1777,6 @@ if (input === "روري") {
         window.setTimeout(dismissMemaAd, 6000);
     })();
     </script>
-
-
-<script>
-(function () {
-  const recipes = [
-    {name:'كوكيز الفستق الحلبي الفاخر', hint:'أريد كوكيز بالفستق الحلبي ونكهته الغنية.', correct:['دقيق فاخر','زبدة طازجة','سكر بني','بيض طازج','كريمة الفستق']},
-    {name:'كوكيز لوتس الكراميل', hint:'أبحث عن كوكيز مقرمش بكراميل اللوتس.', correct:['دقيق فاخر','زبدة طازجة','سكر بني','بيض طازج','صلصة اللوتس']},
-    {name:'كوكيز شوكولاتة كندر', hint:'أريد شوكولاتة بالحليب وحشوة كندر.', correct:['دقيق فاخر','زبدة طازجة','سكر بني','بيض طازج','شوكولاتة كندر']},
-    {name:'كوكيز النوتيلا', hint:'أريد كوكيز بحشوة شوكولاتة البندق.', correct:['دقيق فاخر','زبدة طازجة','سكر بني','بيض طازج','شوكولاتة نوتيلا']},
-    {name:'كوكيز ريد فلفت', hint:'أريد كوكيز ريد فلفت بطعم مخملي.', correct:['دقيق فاخر','زبدة طازجة','سكر بني','بيض طازج','نكهة ريد فلفت']},
-    {name:'كوكيز الشوكولاتة البلجيكية', hint:'أريد كوكيز كلاسيكيًا برقائق الشوكولاتة البلجيكية.', correct:['دقيق فاخر','زبدة طازجة','سكر بني','بيض طازج','شوكولاتة بلجيكية']}
-  ];
-  const ingredients = ['دقيق فاخر','زبدة طازجة','سكر بني','بيض طازج','كريمة الفستق','صلصة اللوتس','شوكولاتة كندر','شوكولاتة نوتيلا','نكهة ريد فلفت','شوكولاتة بلجيكية','بيكنج بودر','نشا الذرة','قرفة مطحونة','سكر بودرة','زيت نباتي','حليب مكثف'];
-  let hearts=3, orders=3, current=null, selected=[], patienceTimer=null, ovenTimer=null, needle=0, direction=1, patience=100, audioCtx=null;
-  const $ = id => document.getElementById(id);
-  function tone(freq=700) { try { audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)(); const o=audioCtx.createOscillator(),g=audioCtx.createGain(); o.connect(g);g.connect(audioCtx.destination);o.frequency.value=freq;g.gain.value=.035;o.start();o.stop(audioCtx.currentTime+.06); } catch(e){} }
-  function pane(n) { document.querySelectorAll('.mema-game-pane').forEach(x=>x.classList.remove('active')); $('mema-game-pane-'+n).classList.add('active'); if(n!==2) clearInterval(patienceTimer); if(n!==3) clearInterval(ovenTimer); }
-  window.openMemaGame = function(){ $('mema-game-modal').style.display='flex'; tone(); };
-  window.closeMemaGame = function(){ $('mema-game-modal').style.display='none'; clearInterval(patienceTimer);clearInterval(ovenTimer); };
-  window.startMemaSession = function(){ hearts=3;orders=3;updateHud();newRound();pane(2); };
-  function updateHud(){ $('mema-game-hearts').textContent='❤️'.repeat(hearts)+'🤍'.repeat(3-hearts);$('mema-game-orders').textContent=orders+' / 3'; }
-  function newRound(){
-    selected=[]; current=recipes[Math.floor(Math.random()*recipes.length)];
-    $('mema-game-hint').textContent=current.hint;
-    let opts=[...current.correct];
-    const traps=ingredients.filter(x=>!opts.includes(x)).sort(()=>Math.random()-.5).slice(0,4);
-    opts=[...opts,...traps].sort(()=>Math.random()-.5);
-    const grid=$('mema-game-ingredients');grid.innerHTML='';
-    opts.forEach(name=>{const b=document.createElement('button');b.type='button';b.className='mema-game-ingredient';b.textContent=name;b.onclick=()=>{if(b.classList.contains('selected')){b.classList.remove('selected');selected=selected.filter(x=>x!==name);}else if(selected.length<5){b.classList.add('selected');selected.push(name);}else{alert('يمكنك اختيار خمسة مكونات فقط.');}};grid.appendChild(b);});
-    patience=100;$('mema-game-patience-fill').style.width='100%';clearInterval(patienceTimer);
-    patienceTimer=setInterval(()=>{patience-=1.5;$('mema-game-patience-fill').style.width=Math.max(0,patience)+'%';if(patience<=0){clearInterval(patienceTimer);fail('نفد صبر الزبون!');}},180);
-  }
-  window.submitMemaRecipe=function(){tone();if(selected.length!==5){alert('اختاري خمسة مكونات بالضبط.');return;}clearInterval(patienceTimer);if(current.correct.every(x=>selected.includes(x))){pane(3);startOven();}else{fail('الوصفة غير صحيحة؛ المكونات لا تطابق طلب الزبون.');}};
-  function fail(msg){clearInterval(patienceTimer);clearInterval(ovenTimer);hearts--;updateHud();alert(msg);if(hearts<=0){alert('انتهت القلوب! سنبدأ محاولة جديدة.');window.startMemaSession();}else{newRound();pane(2);}}
-  function startOven(){needle=0;direction=1;$('mema-game-needle').style.left='0%';$('mema-game-oven-msg').textContent='أوقفي المؤشر في المنطقة الخضراء!';clearInterval(ovenTimer);ovenTimer=setInterval(()=>{needle+=direction*2.8;if(needle>=96||needle<=0)direction*=-1;$('mema-game-needle').style.left=needle+'%';},25);}
-  window.stopMemaGameOven=function(){clearInterval(ovenTimer);tone();if(needle>=65&&needle<=83){orders--;updateHud();$('mema-game-oven-msg').textContent='نجاح ساحر! 🍪';setTimeout(()=>{if(orders<=0){const code='MEMA-WIN-'+Math.floor(1000+Math.random()*9000)+'-'+String.fromCharCode(65+Math.floor(Math.random()*26))+String.fromCharCode(65+Math.floor(Math.random()*26));$('mema-game-code').textContent=code;pane(4);}else{newRound();pane(2);}},700);}else{fail('احترقت الكوكيز بسبب التوقيت الخاطئ!');}};
-  window.goToMemaMoodSection=function(){window.closeMemaGame();window.location.href='https://mema-cookies.github.io/Mema-Cookies-Shop/#moodSection';};
-  $('mema-game-modal').addEventListener('click',e=>{if(e.target===$('mema-game-modal'))window.closeMemaGame();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')window.closeMemaGame();});
-})();
-</script>
 
 </body>
 </html>
