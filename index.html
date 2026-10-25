@@ -702,6 +702,43 @@
             #memaNationalAd, .mema-ad-timer span { transition: none; animation: none; }
         }
 
+
+        /* إضافات تجربة ميما: الإهداء، اللعبة، وحفظ السلة */
+        .mema-feature-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px;padding:0}
+        .mema-feature-btn{border:1px solid #ead8ce;border-radius:17px;padding:14px 10px;background:linear-gradient(145deg,#fffaf6,#fff0f4);color:#654536;font:inherit;font-weight:900;box-shadow:0 5px 15px rgba(101,69,54,.07);cursor:pointer;text-align:right;display:flex;align-items:center;gap:10px;min-height:76px}
+        .mema-feature-btn .feature-icon{width:42px;height:42px;flex:0 0 42px;border-radius:13px;background:#f7e4eb;display:flex;align-items:center;justify-content:center;font-size:23px}
+        .mema-feature-btn small{display:block;font-size:10px;font-weight:500;color:#98796d;margin-top:4px;line-height:1.5}
+        .mema-tool-modal{display:none;position:fixed;inset:0;z-index:25000;background:rgba(42,27,22,.72);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);overflow-y:auto;padding:18px 0;box-sizing:border-box}
+        .mema-tool-card{width:min(92%,480px);box-sizing:border-box;margin:12px auto;padding:22px 18px;border-radius:24px;background:#fffaf6;color:#654536;box-shadow:0 18px 55px rgba(0,0,0,.25);position:relative}
+        .mema-tool-card h2{margin:0 0 8px;text-align:center;color:#a34c6d;font-size:22px}
+        .mema-tool-card .tool-intro{text-align:center;color:#98796d;font-size:12px;line-height:1.8;margin:0 0 16px}
+        .mema-form-label{display:block;font-size:12px;font-weight:800;margin:12px 0 6px}
+        .mema-form-control{width:100%;box-sizing:border-box;padding:12px;border:1px solid #eadbd2;border-radius:12px;background:white;color:#654536;font:inherit;font-size:14px;outline:none}
+        .mema-tool-primary,.mema-tool-secondary{width:100%;border:0;border-radius:13px;padding:13px 12px;margin-top:10px;font:inherit;font-weight:900;cursor:pointer}
+        .mema-tool-primary{background:linear-gradient(110deg,#654536,#946854);color:#fff}
+        .mema-tool-secondary{background:#f6e9e4;color:#654536}
+        .mema-gift-preview{margin-top:14px;padding:18px 14px;border:1px dashed #c28d78;border-radius:17px;text-align:center;background:linear-gradient(145deg,#fff0f5,#fffaf6);line-height:1.9;overflow-wrap:anywhere}
+        .mema-gift-preview .gift-from{font-size:11px;color:#98796d}
+        .mema-gift-callout{padding:13px 14px;border-radius:15px;background:linear-gradient(135deg,#fff0f5,#fffaf6);border:1px solid #f0d9df;color:#654536;font-size:12px;line-height:1.9;margin:12px 0;text-align:center}
+        .mema-gift-fields[hidden]{display:none!important}
+        .mema-game-progress{height:8px;background:#f0e1da;border-radius:99px;overflow:hidden;margin:12px 0}
+        .mema-game-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#c28d78,#d65d8a);transition:width .25s}
+        .mema-game-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:14px}
+        .mema-game-options button{border:1px solid #efded5;background:#fff;color:#654536;border-radius:13px;padding:13px 8px;font:inherit;font-weight:800;cursor:pointer;min-height:54px}
+        .mema-game-options button:active,.mema-feature-btn:active{transform:scale(.98)}
+        .mema-game-status{text-align:center;font-weight:800;line-height:1.8;min-height:48px;margin-top:12px}
+        .mema-game-hub{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0}
+        .mema-game-card{display:flex;align-items:center;gap:12px;text-align:right;border:1px solid #ead8ce;border-radius:16px;background:#fff;padding:13px;color:#654536;font:inherit;cursor:pointer}
+        .mema-game-card .game-emoji{font-size:31px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:13px;background:#fff0f4;flex-shrink:0}
+        .mema-game-card b{display:block;font-size:14px}.mema-game-card small{display:block;color:#98796d;font-size:11px;line-height:1.6;margin-top:3px}
+        .mema-catch-area{height:235px;position:relative;overflow:hidden;border-radius:17px;border:1px dashed #d9b8a7;background:radial-gradient(circle,#fff 0%,#fff0f4 100%);margin-top:12px}
+        .mema-catch-cookie{position:absolute;border:0;background:#fff;border-radius:50%;width:54px;height:54px;font-size:31px;box-shadow:0 4px 12px #65453620;cursor:pointer}
+        .mema-memory-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}
+        .mema-memory-card{aspect-ratio:1;border:1px solid #ead8ce;border-radius:12px;background:#fff0f4;font-size:25px;cursor:pointer}
+        .mema-memory-card:disabled{cursor:default;background:#fff}
+        .mema-cart-saved-note{font-size:10px;color:#98796d;text-align:center;margin:8px 0 0}
+        @media(max-width:360px){.mema-feature-btn{padding:10px 7px;gap:7px}.mema-feature-btn .feature-icon{width:34px;height:34px;flex-basis:34px;font-size:19px}.mema-tool-card{padding:18px 13px}}
+
 </style>
 </head>
 <body>
@@ -722,6 +759,11 @@
             <h2>كل قطعة حلا.. حكاية حب 🤎</h2>
             <p>اختاري حلاك المفضل من ميما، وخلّي لحظاتك ألذ بتفاصيل صُنعت بحب.</p>
             <a class="intro-cta" href="#moodSection">اكتشفي اختيارات ميما ↓</a>
+        </section>
+
+        <section class="mema-feature-strip" aria-label="تجارب ميما الإضافية">
+            <button class="mema-feature-btn" type="button" onclick="openMemaGift()"><span class="feature-icon">🎁</span><span>فاجئي صديقتك من ميما<small>قسيمة شراء أو مفاجأة حلوة توصلها بكل حب</small></span></button>
+            <button class="mema-feature-btn" type="button" onclick="openMemaGame()"><span class="feature-icon">🪄</span><span>عالم كوكيز ميما<small>العبي تحدي الكوكيز واجمعي النقاط</small></span></button>
         </section>
         
         <section class="order-policy-box" aria-label="سياسة الطلب">
@@ -830,6 +872,71 @@
             <button onclick="closeMemaInvoice()" style="background:#fff;color:#654536;"><i class="fas fa-times"></i> إغلاق</button>
         </div>
         <div id="memaInvoiceContent"></div>
+    </div>
+
+    <!-- هدية ميما: قسيمة شراء أو اختيار منتجات أو مفاجأة -->
+    <div id="memaGiftModal" class="mema-tool-modal" role="dialog" aria-modal="true" aria-labelledby="memaGiftTitle">
+        <div class="mema-tool-card">
+            <h2 id="memaGiftTitle">🎁 فاجئي صديقتك من ميما</h2>
+            <p class="tool-intro">تبغين تفرّحين صديقتك؟ نقدر نساعدك ترسلين لها قسيمة شراء أو منتجات تختارينها بنفسك أو مفاجأة حلوة من ميما 🤎</p>
+            <div class="mema-gift-callout">💌 <b>خلي المفاجأة علينا!</b><br>اختاري طريقة الهدية، واكتبي بيانات صديقتك ورسالتك. بننسّق تفاصيل الإرسال معك عبر واتساب قبل اعتماد الطلب.</div>
+            <label class="mema-form-label" for="memaGiftType">كيف تحبين تهدينها؟</label>
+            <select id="memaGiftType" class="mema-form-control" onchange="updateMemaGiftTypeFields()">
+                <option value="قسيمة شراء">🎟️ قسيمة شراء من ميما</option>
+                <option value="مفاجأة من ميما">🎁 مفاجأة حلوة من اختيار ميما</option>
+                <option value="منتجات أختارها بنفسي">🍪 منتجات أختارها بنفسي</option>
+            </select>
+            <div id="memaVoucherFields" class="mema-gift-fields">
+                <label class="mema-form-label" for="memaGiftVoucherAmount">قيمة قسيمة الشراء (ريال)</label>
+                <input id="memaGiftVoucherAmount" class="mema-form-control" type="number" min="10" step="5" placeholder="مثلاً: 50">
+                <small style="display:block;color:#98796d;line-height:1.7;margin-top:6px">القسيمة تُعتمد بعد تأكيد قيمتها وشروط استخدامها مع المتجر.</small>
+            </div>
+            <div id="memaSurpriseFields" class="mema-gift-fields" hidden>
+                <label class="mema-form-label" for="memaGiftBudget">ميزانية المفاجأة (ريال)</label>
+                <input id="memaGiftBudget" class="mema-form-control" type="number" min="10" step="5" placeholder="مثلاً: 100">
+                <small style="display:block;color:#98796d;line-height:1.7;margin-top:6px">نختار لها منتجات مناسبة ضمن الميزانية، بعد تأكيد التفاصيل والتوفر.</small>
+            </div>
+            <div id="memaChooseProductsFields" class="mema-gift-fields" hidden>
+                <div class="mema-gift-callout">اختاري المنتجات من المتجر وأضيفيها إلى السلة أولًا، ثم ارجعي هنا وحددي «منتجات أختارها بنفسي». سنراجع تفاصيل المنتجات معك قبل الإرسال.</div>
+            </div>
+            <label class="mema-form-label" for="memaGiftRecipient">اسم صديقتك</label>
+            <input id="memaGiftRecipient" class="mema-form-control" maxlength="60" placeholder="مثلاً: سارة">
+            <label class="mema-form-label" for="memaGiftRecipientPhone">رقم تواصل صديقتك (اختياري)</label>
+            <input id="memaGiftRecipientPhone" class="mema-form-control" type="tel" maxlength="20" placeholder="للتنسيق عند الحاجة">
+            <label class="mema-form-label" for="memaGiftOccasion">المناسبة</label>
+            <select id="memaGiftOccasion" class="mema-form-control">
+                <option value="بدون مناسبة">بدون مناسبة 🤎</option><option value="عيد ميلاد">عيد ميلاد 🎂</option><option value="تخرج">تخرج 🎓</option><option value="شكر وتقدير">شكر وتقدير 💐</option><option value="سلامتك">سلامتك 🌷</option><option value="مناسبة خاصة">مناسبة خاصة 🎁</option>
+            </select>
+            <label class="mema-form-label" for="memaGiftMessage">رسالة المفاجأة</label>
+            <textarea id="memaGiftMessage" class="mema-form-control" rows="3" maxlength="220" placeholder="مثلاً: تستاهلين كل الأشياء الحلوة يا أحلى صديقة 🤎"></textarea>
+            <label class="mema-form-label" for="memaGiftSender">اسمك (اختياري أو اتركيها مفاجأة)</label>
+            <input id="memaGiftSender" class="mema-form-control" maxlength="60" placeholder="من صديقتك المحبة..."></input>
+            <div id="memaGiftPreview" class="mema-gift-preview" aria-live="polite"><div style="font-size:28px">🍪 🤎 💌</div><b>مفاجأة حلوة من ميما</b><p>لأنك تستاهلين كل شيء حلو.</p><div class="gift-from">كوكيز ميما · MADE WITH LOVE</div></div>
+            <button class="mema-tool-primary" type="button" onclick="saveMemaGift()">حفظ تفاصيل الهدية مع الطلب</button>
+            <button class="mema-tool-secondary" type="button" onclick="closeMemaGift()">إغلاق</button>
+            <p class="mema-cart-saved-note">لن يتم إرسال الهدية تلقائيًا من الموقع؛ ستُرسل تفاصيلها إلى واتساب المتجر للتأكيد والتنسيق معك أولًا.</p>
+        </div>
+    </div>
+
+    <!-- ألعاب ميما التفاعلية الثلاث -->
+    <div id="memaGameModal" class="mema-tool-modal" role="dialog" aria-modal="true" aria-labelledby="memaGameTitle">
+        <div class="mema-tool-card">
+            <h2 id="memaGameTitle">🍪 استراحة حلوة مع ميما</h2>
+            <p class="tool-intro">اختاري لعبتك المفضلة وخذي استراحة لطيفة مع ميما 🤎</p>
+            <div id="memaGameHub" class="mema-game-hub">
+                <button class="mema-game-card" type="button" onclick="startMemaCatch()"><span class="game-emoji">🍪</span><span><b>اصطادي الكوكيز</b><small>اجمعي أكبر عدد من الحبات خلال 30 ثانية.</small></span></button>
+                <button class="mema-game-card" type="button" onclick="openMemaBox()"><span class="game-emoji">🎁</span><span><b>افتحي صندوق ميما</b><small>اختاري صندوقًا واكتشفي مفاجأة لطيفة.</small></span></button>
+                <button class="mema-game-card" type="button" onclick="startMemaMemory()"><span class="game-emoji">🧠</span><span><b>تحدّي ذاكرة ميما</b><small>طابقي صور الكوكيز بأقل عدد من المحاولات.</small></span></button>
+            </div>
+            <div id="memaGamePlay" hidden>
+                <div id="memaGameStage" style="text-align:center;font-size:17px;font-weight:900;line-height:1.8"></div>
+                <div id="memaGameStatus" class="mema-game-status" aria-live="polite"></div>
+                <div id="memaGameArea"></div>
+                <button id="memaGameBackBtn" class="mema-tool-secondary" type="button" onclick="showMemaGameHub()">العودة للألعاب</button>
+            </div>
+            <button class="mema-tool-secondary" type="button" onclick="closeMemaGame()">إغلاق</button>
+            <p class="mema-cart-saved-note">الألعاب للتسلية فقط، ولا تمنح خصومات أو جوائز شراء فعلية.</p>
+        </div>
     </div>
 
     <div id="cartToast" role="status" aria-live="polite">🍪 تمت الإضافة إلى سلتك بنجاح!</div>
@@ -962,7 +1069,38 @@
         const FREE_GIFT_ID = "gift_p4";
         const COOKIE_GIFT_ID = "gift_cookie";
         let freeGiftActive = false;
-        let sliderIntervals = []; 
+        let sliderIntervals = [];
+        let memaGiftData = null;
+        let memaOrderNumber = '';
+        let memaGameQuestion = 0;
+        let memaGameScore = 0;
+        let memaGameTimer = null;
+        let memaCatchInterval = null;
+        let memaCatchTime = null;
+        let memaMemoryState = null;
+        const MEMA_STATE_KEY = 'memaCookiesShopState_v2';
+
+        function getMemaOrderNumber() {
+            if (!memaOrderNumber) {
+                memaOrderNumber = 'MEM-' + new Date().toISOString().slice(0,10).replace(/-/g,'') + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+                saveMemaState();
+            }
+            return memaOrderNumber;
+        }
+        function saveMemaState() {
+            try { localStorage.setItem(MEMA_STATE_KEY, JSON.stringify({cart, memaGiftData, memaOrderNumber, savedAt: Date.now()})); } catch (e) { console.warn('تعذر حفظ السلة على هذا المتصفح', e); }
+        }
+        function restoreMemaState() {
+            try {
+                const raw = localStorage.getItem(MEMA_STATE_KEY);
+                if (!raw) return;
+                const state = JSON.parse(raw);
+                if (state && state.cart && typeof state.cart === 'object') cart = state.cart;
+                if (state && state.memaGiftData) memaGiftData = state.memaGiftData;
+                if (state && state.memaOrderNumber) memaOrderNumber = state.memaOrderNumber;
+            } catch (e) { console.warn('تعذر استعادة السلة المحفوظة', e); }
+        }
+        restoreMemaState();
 
         function clearAllSliders() {
             sliderIntervals.forEach(interval => clearInterval(interval));
@@ -1366,6 +1504,7 @@
             document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none'; 
             document.getElementById('itemsCount').innerText = count; 
             document.getElementById('totalPrice').innerText = total + " ريال"; 
+            saveMemaState();
         }
 
         function startSliders() { 
@@ -1541,9 +1680,13 @@ if (input === "روري") {
                 }
             } 
 
-            if(!hasItems) {
-                alert('الرجاء إضافة منتجات أولاً قبل الإرسال!');
+            // السماح بإرسال طلب هدية مستقل حتى لو لم تُضَف منتجات للسلة (مثل قسيمة الشراء أو المفاجأة).
+            if(!hasItems && !memaGiftData) {
+                alert('أضيفي منتجات إلى السلة أو جهّزي هدية من قسم «فاجئي صديقتك من ميما» أولاً 🤎');
                 return;
+            }
+            if (!hasItems && memaGiftData) {
+                msg += 'طلب هدية مستقل — لا توجد منتجات محددة في السلة.\n';
             }
 
             if(isDiscountApplied) {
@@ -1557,6 +1700,17 @@ if (input === "روري") {
                 msg += `✨ *الإجمالي النهائي للطلب: ${subtotal.toFixed(2)} ريال*`;
             }
 
+            msg += `\nرقم الطلب: ${getMemaOrderNumber()}\n`;
+            if (memaGiftData) {
+                msg += `\n🎁 هدية من ميما\nنوع الهدية: ${memaGiftData.type || 'هدية من ميما'}\nإلى: ${memaGiftData.recipient || 'صديقة عزيزة'}\nالمناسبة: ${memaGiftData.occasion || 'بدون مناسبة'}\n`;
+                if (memaGiftData.voucherAmount) msg += `قيمة قسيمة الشراء المطلوبة: ${memaGiftData.voucherAmount} ريال (مقترحة وتحتاج تأكيد المتجر؛ ليست قسيمة مفعّلة بعد)\n`;
+                if (memaGiftData.budget) msg += `ميزانية المفاجأة المطلوبة: ${memaGiftData.budget} ريال (مقترحة وتحتاج تأكيد التوفر والسعر)\n`;
+                if (memaGiftData.recipientPhone) msg += `رقم تواصل المستلمة: ${memaGiftData.recipientPhone}\n`;
+                msg += `رسالة الإهداء: ${memaGiftData.message || 'لأنك تستاهلين كل شيء حلو.'}\n`;
+                if (memaGiftData.sender) msg += `من: ${memaGiftData.sender}\n`;
+                else msg += `المرسلة ترغب أن تبقى مفاجأة 🤫\n`;
+                msg += `يرجى التواصل لتأكيد تفاصيل الهدية وطريقة التسليم قبل اعتمادها.\n`;
+            }
             window.open(`https://wa.me/966502509910?text=${encodeURIComponent(msg)}`); 
         }
 
@@ -1629,6 +1783,8 @@ if (input === "روري") {
                     ${discount > 0 ? `<div><span>الخصم (${discountRate * 100}%)</span><b>− ${discount.toFixed(2)} ريال</b></div>` : ''}
                     <div class="grand"><span>الإجمالي النهائي</span><span>${finalTotal.toFixed(2)} ريال</span></div>
                 </div>
+                <div style="margin:12px 0;padding:10px 12px;border:1px solid #eadbd2;border-radius:12px;background:#fff"><div style="font-size:11px;color:#98796d">رقم الطلب</div><b>${escapeInvoiceText(getMemaOrderNumber())}</b></div>
+                ${memaGiftData ? `<div class="mema-national-note"><div class="national-title">🎁 هدية من ميما</div><div>نوع الهدية: <b>${escapeInvoiceText(memaGiftData.type || 'هدية من ميما')}</b></div><div>إلى: <b>${escapeInvoiceText(memaGiftData.recipient || 'صديقة عزيزة')}</b></div><div>المناسبة: ${escapeInvoiceText(memaGiftData.occasion || 'بدون مناسبة')}</div>${memaGiftData.voucherAmount ? `<div>قيمة القسيمة المقترحة: ${escapeInvoiceText(memaGiftData.voucherAmount)} ريال</div>` : ''}${memaGiftData.budget ? `<div>ميزانية المفاجأة المقترحة: ${escapeInvoiceText(memaGiftData.budget)} ريال</div>` : ''}<div class="national-copy">${escapeInvoiceText(memaGiftData.message || 'لأنك تستاهلين كل شيء حلو.')}</div>${memaGiftData.sender ? `<div class="national-thanks">من: ${escapeInvoiceText(memaGiftData.sender)}</div>` : '<div class="national-thanks">من صديقة تحبك 🤫</div>'}</div>` : ''}
                 <div class="mema-invoice-footer">🤎 شكرًا لاختياركم ميما<br>ثقتكم تسعدنا، وطلباتكم تكبر حكايتنا.<br>من أرض الباحة، نخبز لكم لحظات حلوة بكل حب 🍪</div>`;
             modal.style.display = 'block';
             modal.scrollTop = 0;
@@ -1744,6 +1900,162 @@ if (input === "روري") {
             }
         }
 
+        // هدية ميما: قسيمة شراء أو مفاجأة أو منتجات تختارها العميلة.
+        function openMemaGift() {
+            const modal = document.getElementById('memaGiftModal');
+            if (memaGiftData) {
+                document.getElementById('memaGiftType').value = memaGiftData.type || 'قسيمة شراء';
+                document.getElementById('memaGiftVoucherAmount').value = memaGiftData.voucherAmount || '';
+                document.getElementById('memaGiftBudget').value = memaGiftData.budget || '';
+                document.getElementById('memaGiftRecipient').value = memaGiftData.recipient || '';
+                document.getElementById('memaGiftRecipientPhone').value = memaGiftData.recipientPhone || '';
+                document.getElementById('memaGiftOccasion').value = memaGiftData.occasion || 'بدون مناسبة';
+                document.getElementById('memaGiftMessage').value = memaGiftData.message || '';
+                document.getElementById('memaGiftSender').value = memaGiftData.sender || '';
+            }
+            updateMemaGiftTypeFields();
+            updateMemaGiftPreview();
+            modal.style.display = 'block';
+        }
+        function closeMemaGift() { document.getElementById('memaGiftModal').style.display = 'none'; }
+        function updateMemaGiftTypeFields() {
+            const type = document.getElementById('memaGiftType')?.value || 'قسيمة شراء';
+            const voucher = document.getElementById('memaVoucherFields');
+            const surprise = document.getElementById('memaSurpriseFields');
+            const products = document.getElementById('memaChooseProductsFields');
+            if (voucher) voucher.hidden = type !== 'قسيمة شراء';
+            if (surprise) surprise.hidden = type !== 'مفاجأة من ميما';
+            if (products) products.hidden = type !== 'منتجات أختارها بنفسي';
+            updateMemaGiftPreview();
+        }
+        function updateMemaGiftPreview() {
+            const type = document.getElementById('memaGiftType')?.value || 'قسيمة شراء';
+            const recipient = document.getElementById('memaGiftRecipient')?.value.trim() || 'صديقتك';
+            const occasion = document.getElementById('memaGiftOccasion')?.value || 'بدون مناسبة';
+            const message = document.getElementById('memaGiftMessage')?.value.trim() || 'لأنك تستاهلين كل شيء حلو.';
+            const sender = document.getElementById('memaGiftSender')?.value.trim();
+            const voucherAmount = document.getElementById('memaGiftVoucherAmount')?.value;
+            const budget = document.getElementById('memaGiftBudget')?.value;
+            const typeLabel = type === 'قسيمة شراء' ? `قسيمة شراء من ميما${voucherAmount ? ` بقيمة ${voucherAmount} ريال` : ''}` : type === 'مفاجأة من ميما' ? `مفاجأة من ميما${budget ? ` بميزانية ${budget} ريال` : ''}` : 'منتجات اخترتِها بنفسك';
+            const preview = document.getElementById('memaGiftPreview');
+            if (preview) preview.innerHTML = `<div style="font-size:28px">🎁 🍪 🤎</div><b>مفاجأة حلوة إلى ${escapeInvoiceText(recipient)}</b><div style="font-size:11px;color:#98796d">${escapeInvoiceText(occasion)} · ${escapeInvoiceText(typeLabel)}</div><p>${escapeInvoiceText(message)}</p>${sender ? `<div class="gift-from">بكل حب، ${escapeInvoiceText(sender)}</div>` : '<div class="gift-from">من صديقة تحبك 🤫</div>'}<div class="gift-from">كوكيز ميما · MADE WITH LOVE</div>`;
+        }
+        function saveMemaGift() {
+            const type = document.getElementById('memaGiftType').value;
+            const recipient = document.getElementById('memaGiftRecipient').value.trim();
+            const recipientPhone = document.getElementById('memaGiftRecipientPhone').value.trim();
+            const occasion = document.getElementById('memaGiftOccasion').value;
+            const message = document.getElementById('memaGiftMessage').value.trim();
+            const sender = document.getElementById('memaGiftSender').value.trim();
+            const voucherAmount = document.getElementById('memaGiftVoucherAmount').value.trim();
+            const budget = document.getElementById('memaGiftBudget').value.trim();
+            if (!recipient) { alert('اكتبي اسم صديقتك أولاً 🤎'); document.getElementById('memaGiftRecipient').focus(); return; }
+            if (type === 'قسيمة شراء' && (!voucherAmount || Number(voucherAmount) < 10)) { alert('اكتبي قيمة قسيمة الشراء، على ألا تقل عن 10 ريالات.'); document.getElementById('memaGiftVoucherAmount').focus(); return; }
+            if (type === 'مفاجأة من ميما' && (!budget || Number(budget) < 10)) { alert('حددي ميزانية المفاجأة، على ألا تقل عن 10 ريالات.'); document.getElementById('memaGiftBudget').focus(); return; }
+            if (!message) { alert('اكتبي رسالة لطيفة لصديقتك، أو اكتبي عبارة قصيرة.'); document.getElementById('memaGiftMessage').focus(); return; }
+            if (type === 'منتجات أختارها بنفسي' && !Object.values(cart).some(item => !item.parentId && !item.isGift)) { alert('اختاري المنتجات من المتجر وأضيفيها إلى السلة أولاً، ثم احفظي تفاصيل الهدية.'); return; }
+            memaGiftData = {type, recipient, recipientPhone, occasion, message, sender, voucherAmount: type === 'قسيمة شراء' ? voucherAmount : '', budget: type === 'مفاجأة من ميما' ? budget : ''};
+            saveMemaState();
+            closeMemaGift();
+            alert('حُفظت تفاصيل هديتك 🤎 ستُرسل إلى واتساب المتجر لتأكيد القيمة والتوفر وطريقة التسليم قبل اعتماد الطلب.');
+        }
+        ['memaGiftType','memaGiftVoucherAmount','memaGiftBudget','memaGiftRecipient','memaGiftRecipientPhone','memaGiftOccasion','memaGiftMessage','memaGiftSender'].forEach(id => {
+            document.addEventListener('input', e => { if (e.target && e.target.id === id) { if (id === 'memaGiftType') updateMemaGiftTypeFields(); else updateMemaGiftPreview(); } });
+            document.addEventListener('change', e => { if (e.target && e.target.id === id) { if (id === 'memaGiftType') updateMemaGiftTypeFields(); else updateMemaGiftPreview(); } });
+        });
+
+        // ألعاب ميما: اصطياد الكوكيز، صندوق المفاجآت، وتحدي الذاكرة.
+        function openMemaGame() {
+            clearMemaGameTimers();
+            document.getElementById('memaGameModal').style.display = 'block';
+            showMemaGameHub();
+        }
+        function clearMemaGameTimers() {
+            if (memaGameTimer) clearTimeout(memaGameTimer);
+            if (memaCatchInterval) clearInterval(memaCatchInterval);
+            if (memaCatchTime) clearInterval(memaCatchTime);
+            memaGameTimer = memaCatchInterval = memaCatchTime = null;
+        }
+        function closeMemaGame() { clearMemaGameTimers(); document.getElementById('memaGameModal').style.display = 'none'; }
+        function showMemaGameHub() {
+            clearMemaGameTimers();
+            document.getElementById('memaGameHub').hidden = false;
+            document.getElementById('memaGamePlay').hidden = true;
+            document.getElementById('memaGameArea').innerHTML = '';
+        }
+        function prepareMemaGame(title, status) {
+            document.getElementById('memaGameHub').hidden = true;
+            document.getElementById('memaGamePlay').hidden = false;
+            document.getElementById('memaGameStage').textContent = title;
+            document.getElementById('memaGameStatus').textContent = status || '';
+            document.getElementById('memaGameArea').innerHTML = '';
+        }
+        function startMemaCatch() {
+            clearMemaGameTimers(); prepareMemaGame('🍪 اصطادي الكوكيز!', 'اضغطي على أكبر عدد من حبات الكوكيز خلال 30 ثانية.');
+            let score = 0, time = 30;
+            const status = document.getElementById('memaGameStatus');
+            const area = document.getElementById('memaGameArea');
+            area.innerHTML = '<div style="text-align:center;font-weight:900;margin:8px">النقاط: <span id="memaCatchScore">0</span> · الوقت: <span id="memaCatchClock">30</span> ث</div><div id="memaCatchField" class="mema-catch-area" aria-label="منطقة اصطياد الكوكيز"></div>';
+            const field = document.getElementById('memaCatchField');
+            function spawn() {
+                if (!field.isConnected) return;
+                const cookie = document.createElement('button'); cookie.type = 'button'; cookie.className = 'mema-catch-cookie'; cookie.textContent = ['🍪','🍪','🍫','🧁'][Math.floor(Math.random()*4)];
+                cookie.style.left = Math.max(0, Math.random() * Math.max(1, field.clientWidth - 58)) + 'px';
+                cookie.style.top = Math.max(0, Math.random() * Math.max(1, field.clientHeight - 58)) + 'px';
+                cookie.setAttribute('aria-label','اجمعي حبة');
+                cookie.onclick = () => { score++; document.getElementById('memaCatchScore').textContent = score; cookie.remove(); };
+                field.appendChild(cookie); while (field.children.length > 7) field.firstElementChild.remove();
+            }
+            spawn(); memaCatchInterval = setInterval(spawn, 550);
+            memaCatchTime = setInterval(() => {
+                time--; const clock = document.getElementById('memaCatchClock'); if (clock) clock.textContent = time;
+                if (time <= 0) {
+                    clearMemaGameTimers(); field.innerHTML = '<div style="text-align:center;padding:55px 8px;font-size:20px;font-weight:900">🍪 انتهى الوقت!</div>';
+                    status.textContent = `جمعتي ${score} حبة كوكيز! ${score >= 20 ? 'سرعة رائعة!' : 'جربي مرة ثانية لتحطمي رقمك.'}`;
+                    try { const old = Number(localStorage.getItem('memaCatchBest') || 0); if (score > old) localStorage.setItem('memaCatchBest', String(score)); status.textContent += ` أعلى نتيجة محفوظة: ${Math.max(score,old)}.`; } catch(e) {}
+                }
+            }, 1000);
+        }
+        function openMemaBox() {
+            clearMemaGameTimers(); prepareMemaGame('🎁 افتحي صندوق ميما', 'اختاري صندوقًا واحدًا لتكتشفي رسالتك الحلوة!');
+            const area = document.getElementById('memaGameArea');
+            area.innerHTML = '<div class="mema-game-options">' + [1,2,3].map((n)=>`<button type="button" onclick="revealMemaBox(${n},this)">🎁 الصندوق ${n}</button>`).join('') + '</div><div id="memaBoxResult" class="mema-gift-preview" aria-live="polite">أي صندوق يخفي مفاجأتك؟ 🤎</div>';
+        }
+        function revealMemaBox(n, btn) {
+            const surprises = ['🍪 أنتِ مثل الكوكيز: تضيفين الحلاوة لكل يوم!','🤎 أرسلي كلمة حلوة لشخص تحبينه اليوم.','✨ تستاهلين لحظة راحة وشيئًا لذيذًا من اختيارك!','🌷 تذكّري: التفاصيل الصغيرة تصنع سعادة كبيرة.','🧁 يومك أحلى بابتسامتك!','💌 شاركي الحب، فالحلاوة تكبر بالمشاركة.'];
+            const result = document.getElementById('memaBoxResult');
+            if (!result || result.dataset.opened) return;
+            result.dataset.opened = 'yes'; result.innerHTML = `<div style="font-size:36px">${['🍪','🤎','✨','🌷','🧁','💌'][Math.floor(Math.random()*6)]}</div><b>مفاجأتك من ميما</b><p>${surprises[Math.floor(Math.random()*surprises.length)]}</p><small>مفاجأة ترفيهية فقط وليست قسيمة خصم أو جائزة شراء.</small>`;
+            document.querySelectorAll('#memaGameArea .mema-game-options button').forEach(b=>b.disabled=true);
+        }
+        function startMemaMemory() {
+            clearMemaGameTimers(); prepareMemaGame('🧠 تحدّي ذاكرة ميما', 'اقلبي البطاقات وابحثي عن 6 أزواج متطابقة.');
+            const icons = ['🍪','🍫','🧁','🍩','🍰','🥛'];
+            const cards = [...icons,...icons].sort(()=>Math.random()-.5);
+            memaMemoryState = {first:null, lock:false, matches:0, moves:0};
+            const area = document.getElementById('memaGameArea');
+            area.innerHTML = '<div style="text-align:center;font-weight:800;margin:8px">المحاولات: <span id="memaMemoryMoves">0</span></div><div id="memaMemoryGrid" class="mema-memory-grid"></div>';
+            const grid = document.getElementById('memaMemoryGrid');
+            cards.forEach((icon,index)=>{
+                const btn=document.createElement('button'); btn.type='button'; btn.className='mema-memory-card'; btn.textContent='❔'; btn.dataset.icon=icon; btn.dataset.index=index; btn.setAttribute('aria-label','بطاقة مخفية');
+                btn.onclick=()=>flipMemaMemory(btn); grid.appendChild(btn);
+            });
+        }
+        function flipMemaMemory(btn) {
+            const state=memaMemoryState; if (!state || state.lock || btn.disabled || btn.dataset.matched==='yes' || btn.textContent!=='❔') return;
+            btn.textContent=btn.dataset.icon; btn.setAttribute('aria-label',btn.dataset.icon);
+            if (!state.first) { state.first=btn; return; }
+            state.moves++; document.getElementById('memaMemoryMoves').textContent=state.moves;
+            if (state.first.dataset.icon===btn.dataset.icon) {
+                state.first.dataset.matched=btn.dataset.matched='yes'; state.first.disabled=btn.disabled=true; state.first=null; state.matches++;
+                if(state.matches===6) document.getElementById('memaGameStatus').textContent=`🎉 برافو! طابقتِ كل البطاقات في ${state.moves} محاولات.`;
+            } else {
+                const first=state.first; state.first=null; state.lock=true;
+                memaGameTimer=setTimeout(()=>{ if(first.isConnected && btn.isConnected){first.textContent=btn.textContent='❔'; first.setAttribute('aria-label','بطاقة مخفية'); btn.setAttribute('aria-label','بطاقة مخفية');} state.lock=false; memaGameTimer=null; },750);
+            }
+        }
+        ['memaGiftModal','memaGameModal'].forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('click', e => { if (e.target === el) el.style.display = 'none'; }); });
+
         function filterMenu(cat, btn) { 
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active')); 
             btn.classList.add('active');
@@ -1751,6 +2063,9 @@ if (input === "روري") {
         }
         
         renderMenu(products);
+        updateCartUI();
+        updateMemaGiftTypeFields();
+        if (memaGiftData) updateMemaGiftPreview();
 
         // احتياطي لضمان حفظ الموضع حتى لو فُتح المنتج من كود مختلف
         document.addEventListener('click', function(e) {
