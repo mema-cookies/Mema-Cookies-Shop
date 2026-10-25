@@ -1385,7 +1385,7 @@
         function showAddedToast(name) {
             const toast = document.getElementById('cartToast');
             if (!toast) return;
-            toast.textContent = `🍪 تمت إضافة ${name || 'المنتج'} إلى سلتك بنجاح 🤎`;
+            toast.textContent = `✅ تم إضافة ${name || 'المنتج'} إلى السلة بنجاح 🤎`;
             toast.classList.add('show');
             clearTimeout(cartToastTimer);
             cartToastTimer = setTimeout(() => toast.classList.remove('show'), 2100);
@@ -2017,5 +2017,6 @@ if (input === "روري") {
     })();
     </script>
 
+    <div id="cartToast" role="status" aria-live="polite">✅ تم إضافة المنتج إلى السلة بنجاح 🤎</div>
 </body>
 </html>
