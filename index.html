@@ -81,7 +81,7 @@
             border-radius: 20px;
         }
         
-        header { background-color: var(--soft-pink); background-image: none; width: 100%; height: 260px; border-bottom: 3px solid var(--main-pink); position: relative; isolation: isolate; overflow: hidden; }
+        header { background-color: var(--soft-pink); background-image: none; width: 100%; height: 190px; border-bottom: 3px solid var(--main-pink); position: relative; isolation: isolate; overflow: hidden; }
         /* دمج خلفية صورة الشعار البيضاء مع خلفية الموقع الوردية لتبدو شفافة */
         header::before { content: ""; position: absolute; inset: 0; background-image: url('logo.jpg'); background-size: contain; background-position: center top; background-repeat: no-repeat; mix-blend-mode: multiply; pointer-events: none; z-index: -1; }
         
@@ -541,7 +541,7 @@
         body::after { content:"🍪"; position:fixed; left:-12px; bottom:17%; font-size:66px; opacity:.075; transform:rotate(-24deg); pointer-events:none; z-index:0; filter:grayscale(.15); }
         @keyframes mema-sugar-drift { from{background-position:0 0,0 0,0 0} to{background-position:0 180px,0 -230px,0 200px} }
         #mainView { position:relative; z-index:1; }
-        .mema-home-intro { margin:16px 14px 18px; padding:20px 18px; border-radius:22px; color:#fffaf6; background:linear-gradient(125deg,#654536,#8b6251 65%,#bd8976); box-shadow:0 9px 22px rgba(101,69,54,.17); position:relative; overflow:hidden; text-align:right; }
+        .mema-home-intro { margin:10px 14px 12px; padding:20px 18px; border-radius:22px; color:#fffaf6; background:linear-gradient(125deg,#654536,#8b6251 65%,#bd8976); box-shadow:0 9px 22px rgba(101,69,54,.17); position:relative; overflow:hidden; text-align:right; }
         .mema-home-intro::after { content:"🍪"; position:absolute; left:16px; bottom:-13px; font-size:68px; opacity:.18; transform:rotate(-18deg); }
         .mema-home-intro .eyebrow { display:inline-block; font-size:11px; padding:5px 10px; border:1px solid rgba(255,255,255,.35); border-radius:20px; margin-bottom:9px; }
         .mema-home-intro h2 { margin:0 0 6px; font-size:23px; line-height:1.5; }
@@ -776,7 +776,6 @@
 
         <section class="mema-feature-strip" aria-label="تجارب ميما الإضافية">
             <button class="mema-feature-btn" type="button" onclick="openMemaGift()"><span class="feature-icon">🎁</span><span>فاجئي صديقتك من ميما<small>قسيمة شراء أو مفاجأة حلوة توصلها بكل حب</small></span></button>
-            <button class="mema-feature-btn" type="button" onclick="openMemaGame()"><span class="feature-icon">🪄</span><span>عالم كوكيز ميما<small>العبي تحدي الكوكيز واجمعي النقاط</small></span></button>
         </section>
         
         <section class="order-policy-box" aria-label="سياسة الطلب">
@@ -931,30 +930,7 @@
             <p class="mema-cart-saved-note">لن يتم إرسال الهدية تلقائيًا من الموقع؛ ستُرسل تفاصيلها إلى واتساب المتجر للتأكيد والتنسيق معك أولًا.</p>
         </div>
     </div>
-
-    <!-- ألعاب ميما التفاعلية الثلاث -->
-    <div id="memaGameModal" class="mema-tool-modal" role="dialog" aria-modal="true" aria-labelledby="memaGameTitle">
-        <div class="mema-tool-card">
-            <h2 id="memaGameTitle">🍪 استراحة حلوة مع ميما</h2>
-            <p class="tool-intro">اختاري لعبتك المفضلة وخذي استراحة لطيفة مع ميما 🤎</p>
-            <div id="memaGameHub" class="mema-game-hub">
-                <button class="mema-game-card" type="button" onclick="startMemaCatch()"><span class="game-emoji">🍪</span><span><b>اصطادي الكوكيز</b><small>اجمعي أكبر عدد من الحبات خلال 30 ثانية.</small></span></button>
-                <button class="mema-game-card" type="button" onclick="openMemaBox()"><span class="game-emoji">🎁</span><span><b>افتحي صندوق ميما</b><small>اختاري صندوقًا واكتشفي مفاجأة لطيفة.</small></span></button>
-                <button class="mema-game-card" type="button" onclick="startMemaMemory()"><span class="game-emoji">🧠</span><span><b>تحدّي ذاكرة ميما</b><small>طابقي صور الكوكيز بأقل عدد من المحاولات.</small></span></button>
-            </div>
-            <div id="memaGamePlay" hidden>
-                <div id="memaGameStage" style="text-align:center;font-size:17px;font-weight:900;line-height:1.8"></div>
-                <div id="memaGameStatus" class="mema-game-status" aria-live="polite"></div>
-                <div id="memaGameArea"></div>
-                <button id="memaGameBackBtn" class="mema-tool-secondary" type="button" onclick="showMemaGameHub()">العودة للألعاب</button>
-            </div>
-            <button class="mema-tool-secondary" type="button" onclick="closeMemaGame()">إغلاق</button>
-            <p class="mema-cart-saved-note">الألعاب للتسلية فقط، ولا تمنح خصومات أو جوائز شراء فعلية.</p>
-        </div>
-    </div>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         function hideWelcome() {
             const screen = document.getElementById('welcome-screen');
@@ -1085,9 +1061,6 @@
         let sliderIntervals = [];
         let memaGiftData = null;
         let memaOrderNumber = '';
-        let memaGameQuestion = 0;
-        let memaGameScore = 0;
-        let memaGameTimer = null;
         let memaCatchInterval = null;
         let memaCatchTime = null;
         let memaMemoryState = null;
@@ -2006,98 +1979,6 @@ if (input === "روري") {
             document.addEventListener('input', e => { if (e.target && e.target.id === id) { if (id === 'memaGiftType') updateMemaGiftTypeFields(); else updateMemaGiftPreview(); } });
             document.addEventListener('change', e => { if (e.target && e.target.id === id) { if (id === 'memaGiftType') updateMemaGiftTypeFields(); else updateMemaGiftPreview(); } });
         });
-
-        // ألعاب ميما: اصطياد الكوكيز، صندوق المفاجآت، وتحدي الذاكرة.
-        function openMemaGame() {
-            clearMemaGameTimers();
-            document.getElementById('memaGameModal').style.display = 'block';
-            showMemaGameHub();
-        }
-        function clearMemaGameTimers() {
-            if (memaGameTimer) clearTimeout(memaGameTimer);
-            if (memaCatchInterval) clearInterval(memaCatchInterval);
-            if (memaCatchTime) clearInterval(memaCatchTime);
-            memaGameTimer = memaCatchInterval = memaCatchTime = null;
-        }
-        function closeMemaGame() { clearMemaGameTimers(); document.getElementById('memaGameModal').style.display = 'none'; }
-        function showMemaGameHub() {
-            clearMemaGameTimers();
-            document.getElementById('memaGameHub').hidden = false;
-            document.getElementById('memaGamePlay').hidden = true;
-            document.getElementById('memaGameArea').innerHTML = '';
-        }
-        function prepareMemaGame(title, status) {
-            document.getElementById('memaGameHub').hidden = true;
-            document.getElementById('memaGamePlay').hidden = false;
-            document.getElementById('memaGameStage').textContent = title;
-            document.getElementById('memaGameStatus').textContent = status || '';
-            document.getElementById('memaGameArea').innerHTML = '';
-        }
-        function startMemaCatch() {
-            clearMemaGameTimers(); prepareMemaGame('🍪 اصطادي الكوكيز!', 'اضغطي على أكبر عدد من حبات الكوكيز خلال 30 ثانية.');
-            let score = 0, time = 30;
-            const status = document.getElementById('memaGameStatus');
-            const area = document.getElementById('memaGameArea');
-            area.innerHTML = '<div style="text-align:center;font-weight:900;margin:8px">النقاط: <span id="memaCatchScore">0</span> · الوقت: <span id="memaCatchClock">30</span> ث</div><div id="memaCatchField" class="mema-catch-area" aria-label="منطقة اصطياد الكوكيز"></div>';
-            const field = document.getElementById('memaCatchField');
-            function spawn() {
-                if (!field.isConnected) return;
-                const cookie = document.createElement('button'); cookie.type = 'button'; cookie.className = 'mema-catch-cookie'; cookie.textContent = ['🍪','🍪','🍫','🧁'][Math.floor(Math.random()*4)];
-                cookie.style.left = Math.max(0, Math.random() * Math.max(1, field.clientWidth - 58)) + 'px';
-                cookie.style.top = Math.max(0, Math.random() * Math.max(1, field.clientHeight - 58)) + 'px';
-                cookie.setAttribute('aria-label','اجمعي حبة');
-                cookie.onclick = () => { score++; document.getElementById('memaCatchScore').textContent = score; cookie.remove(); };
-                field.appendChild(cookie); while (field.children.length > 7) field.firstElementChild.remove();
-            }
-            spawn(); memaCatchInterval = setInterval(spawn, 550);
-            memaCatchTime = setInterval(() => {
-                time--; const clock = document.getElementById('memaCatchClock'); if (clock) clock.textContent = time;
-                if (time <= 0) {
-                    clearMemaGameTimers(); field.innerHTML = '<div style="text-align:center;padding:55px 8px;font-size:20px;font-weight:900">🍪 انتهى الوقت!</div>';
-                    status.textContent = `جمعتي ${score} حبة كوكيز! ${score >= 20 ? 'سرعة رائعة!' : 'جربي مرة ثانية لتحطمي رقمك.'}`;
-                    try { const old = Number(localStorage.getItem('memaCatchBest') || 0); if (score > old) localStorage.setItem('memaCatchBest', String(score)); status.textContent += ` أعلى نتيجة محفوظة: ${Math.max(score,old)}.`; } catch(e) {}
-                }
-            }, 1000);
-        }
-        function openMemaBox() {
-            clearMemaGameTimers(); prepareMemaGame('🎁 افتحي صندوق ميما', 'اختاري صندوقًا واحدًا لتكتشفي رسالتك الحلوة!');
-            const area = document.getElementById('memaGameArea');
-            area.innerHTML = '<div class="mema-game-options">' + [1,2,3].map((n)=>`<button type="button" onclick="revealMemaBox(${n},this)">🎁 الصندوق ${n}</button>`).join('') + '</div><div id="memaBoxResult" class="mema-gift-preview" aria-live="polite">أي صندوق يخفي مفاجأتك؟ 🤎</div>';
-        }
-        function revealMemaBox(n, btn) {
-            const surprises = ['🍪 أنتِ مثل الكوكيز: تضيفين الحلاوة لكل يوم!','🤎 أرسلي كلمة حلوة لشخص تحبينه اليوم.','✨ تستاهلين لحظة راحة وشيئًا لذيذًا من اختيارك!','🌷 تذكّري: التفاصيل الصغيرة تصنع سعادة كبيرة.','🧁 يومك أحلى بابتسامتك!','💌 شاركي الحب، فالحلاوة تكبر بالمشاركة.'];
-            const result = document.getElementById('memaBoxResult');
-            if (!result || result.dataset.opened) return;
-            result.dataset.opened = 'yes'; result.innerHTML = `<div style="font-size:36px">${['🍪','🤎','✨','🌷','🧁','💌'][Math.floor(Math.random()*6)]}</div><b>مفاجأتك من ميما</b><p>${surprises[Math.floor(Math.random()*surprises.length)]}</p><small>مفاجأة ترفيهية فقط وليست قسيمة خصم أو جائزة شراء.</small>`;
-            document.querySelectorAll('#memaGameArea .mema-game-options button').forEach(b=>b.disabled=true);
-        }
-        function startMemaMemory() {
-            clearMemaGameTimers(); prepareMemaGame('🧠 تحدّي ذاكرة ميما', 'اقلبي البطاقات وابحثي عن 6 أزواج متطابقة.');
-            const icons = ['🍪','🍫','🧁','🍩','🍰','🥛'];
-            const cards = [...icons,...icons].sort(()=>Math.random()-.5);
-            memaMemoryState = {first:null, lock:false, matches:0, moves:0};
-            const area = document.getElementById('memaGameArea');
-            area.innerHTML = '<div style="text-align:center;font-weight:800;margin:8px">المحاولات: <span id="memaMemoryMoves">0</span></div><div id="memaMemoryGrid" class="mema-memory-grid"></div>';
-            const grid = document.getElementById('memaMemoryGrid');
-            cards.forEach((icon,index)=>{
-                const btn=document.createElement('button'); btn.type='button'; btn.className='mema-memory-card'; btn.textContent='❔'; btn.dataset.icon=icon; btn.dataset.index=index; btn.setAttribute('aria-label','بطاقة مخفية');
-                btn.onclick=()=>flipMemaMemory(btn); grid.appendChild(btn);
-            });
-        }
-        function flipMemaMemory(btn) {
-            const state=memaMemoryState; if (!state || state.lock || btn.disabled || btn.dataset.matched==='yes' || btn.textContent!=='❔') return;
-            btn.textContent=btn.dataset.icon; btn.setAttribute('aria-label',btn.dataset.icon);
-            if (!state.first) { state.first=btn; return; }
-            state.moves++; document.getElementById('memaMemoryMoves').textContent=state.moves;
-            if (state.first.dataset.icon===btn.dataset.icon) {
-                state.first.dataset.matched=btn.dataset.matched='yes'; state.first.disabled=btn.disabled=true; state.first=null; state.matches++;
-                if(state.matches===6) document.getElementById('memaGameStatus').textContent=`🎉 برافو! طابقتِ كل البطاقات في ${state.moves} محاولات.`;
-            } else {
-                const first=state.first; state.first=null; state.lock=true;
-                memaGameTimer=setTimeout(()=>{ if(first.isConnected && btn.isConnected){first.textContent=btn.textContent='❔'; first.setAttribute('aria-label','بطاقة مخفية'); btn.setAttribute('aria-label','بطاقة مخفية');} state.lock=false; memaGameTimer=null; },750);
-            }
-        }
-        ['memaGiftModal','memaGameModal'].forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('click', e => { if (e.target === el) el.style.display = 'none'; }); });
 
         function filterMenu(cat, btn) { 
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active')); 
