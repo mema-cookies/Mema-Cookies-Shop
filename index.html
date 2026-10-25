@@ -913,6 +913,7 @@
             <input id="memaGiftSender" class="mema-form-control" maxlength="60" placeholder="من صديقتك المحبة..."></input>
             <div id="memaGiftPreview" class="mema-gift-preview" aria-live="polite"><div style="font-size:28px">🍪 🤎 💌</div><b>مفاجأة حلوة من ميما</b><p>لأنك تستاهلين كل شيء حلو.</p><div class="gift-from">كوكيز ميما · MADE WITH LOVE</div></div>
             <button class="mema-tool-primary" type="button" onclick="saveMemaGift()">حفظ تفاصيل الهدية مع الطلب</button>
+            <button class="mema-tool-secondary" type="button" id="memaGiftShareBtn" onclick="shareMemaGift()" style="background:#25d366;color:#fff;border:none;margin-top:9px">💌 إرسال / مشاركة المفاجأة</button>
             <button class="mema-tool-secondary" type="button" onclick="closeMemaGift()">إغلاق</button>
             <p class="mema-cart-saved-note">لن يتم إرسال الهدية تلقائيًا من الموقع؛ ستُرسل تفاصيلها إلى واتساب المتجر للتأكيد والتنسيق معك أولًا.</p>
         </div>
@@ -1940,6 +1941,36 @@ if (input === "روري") {
             const preview = document.getElementById('memaGiftPreview');
             if (preview) preview.innerHTML = `<div style="font-size:28px">🎁 🍪 🤎</div><b>مفاجأة حلوة إلى ${escapeInvoiceText(recipient)}</b><div style="font-size:11px;color:#98796d">${escapeInvoiceText(occasion)} · ${escapeInvoiceText(typeLabel)}</div><p>${escapeInvoiceText(message)}</p>${sender ? `<div class="gift-from">بكل حب، ${escapeInvoiceText(sender)}</div>` : '<div class="gift-from">من صديقة تحبك 🤫</div>'}<div class="gift-from">كوكيز ميما · MADE WITH LOVE</div>`;
         }
+        async function shareMemaGift() {
+            const type = document.getElementById('memaGiftType').value;
+            const recipient = document.getElementById('memaGiftRecipient').value.trim();
+            const occasion = document.getElementById('memaGiftOccasion').value;
+            const message = document.getElementById('memaGiftMessage').value.trim() || 'لأنك تستاهلين كل شيء حلو 🤎';
+            const sender = document.getElementById('memaGiftSender').value.trim();
+            const voucherAmount = document.getElementById('memaGiftVoucherAmount').value.trim();
+            const budget = document.getElementById('memaGiftBudget').value.trim();
+            if (!recipient) { alert('اكتبي اسم صديقتك أولاً 🤎'); document.getElementById('memaGiftRecipient').focus(); return; }
+            if (type === 'قسيمة شراء' && (!voucherAmount || Number(voucherAmount) < 10)) { alert('اكتبي قيمة القسيمة أولاً، على ألا تقل عن 10 ريالات.'); document.getElementById('memaGiftVoucherAmount').focus(); return; }
+            if (type === 'مفاجأة من ميما' && (!budget || Number(budget) < 10)) { alert('حددي ميزانية المفاجأة أولاً، على ألا تقل عن 10 ريالات.'); document.getElementById('memaGiftBudget').focus(); return; }
+            const giftDescription = type === 'قسيمة شراء'
+                ? `قسيمة شراء مقترحة بقيمة ${voucherAmount} ريال من كوكيز ميما (تحتاج تأكيد وتفعيل المتجر)`
+                : type === 'مفاجأة من ميما'
+                    ? `مفاجأة من ميما بميزانية مقترحة ${budget} ريال (تحتاج تأكيد المتجر)`
+                    : 'هدية منتجات مختارة من كوكيز ميما';
+            const textToShare = `🎁 مفاجأة حلوة لك يا ${recipient}!\n\n${giftDescription}\nالمناسبة: ${occasion}\n\n💌 ${message}\n\n${sender ? `بكل حب، ${sender}` : 'من صديقة تحبك 🤫'}\n\n🍪 كوكيز ميما · MADE WITH LOVE\nملاحظة: هذه رسالة إهداء وليست قسيمة مفعّلة؛ يلزم تأكيد القسيمة وشروط استخدامها مع المتجر.`;
+            try {
+                if (navigator.share) {
+                    await navigator.share({ title: 'مفاجأة حلوة من كوكيز ميما', text: textToShare });
+                } else {
+                    window.open('https://wa.me/?text=' + encodeURIComponent(textToShare), '_blank', 'noopener');
+                }
+            } catch (error) {
+                if (error && error.name !== 'AbortError') {
+                    window.open('https://wa.me/?text=' + encodeURIComponent(textToShare), '_blank', 'noopener');
+                }
+            }
+        }
+
         function saveMemaGift() {
             const type = document.getElementById('memaGiftType').value;
             const recipient = document.getElementById('memaGiftRecipient').value.trim();
