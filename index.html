@@ -739,13 +739,6 @@
         .mema-cart-saved-note{font-size:10px;color:#98796d;text-align:center;margin:8px 0 0}
         @media(max-width:360px){.mema-feature-btn{padding:10px 7px;gap:7px}.mema-feature-btn .feature-icon{width:34px;height:34px;flex-basis:34px;font-size:19px}.mema-tool-card{padding:18px 13px}}
 
-
-        .mema-payday-banner{margin:14px;padding:16px 18px;border-radius:18px;text-align:center;color:#fffaf6;background:linear-gradient(115deg,#8e3d5a,#d65d8a 55%,#c28d78);box-shadow:0 7px 18px rgba(142,61,90,.18);display:flex;flex-direction:column;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.7)}
-        .mema-payday-banner .payday-badge{font-size:11px;font-weight:900;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.45);padding:4px 12px;border-radius:99px}
-        .mema-payday-banner strong{font-size:21px;line-height:1.5}
-        .mema-payday-banner span:last-child{font-size:12px;line-height:1.7}
-        @media(min-width:700px){.mema-payday-banner{max-width:900px;margin:16px auto}}
-
 </style>
 </head>
 <body>
@@ -767,13 +760,6 @@
             <p>اختاري حلاك المفضل من ميما، وخلّي لحظاتك ألذ بتفاصيل صُنعت بحب.</p>
             <a class="intro-cta" href="#moodSection">اكتشفي اختيارات ميما ↓</a>
         </section>
-
-        <div class="mema-payday-banner" role="note" aria-label="خصم الراتب">
-            <span class="payday-badge">🎉 خصم الراتب</span>
-            <strong>خصم ٥٪ على جميع المنيو</strong>
-            <span>دلّعي نفسك بحلا ميما 🤎 الخصم يُحتسب تلقائيًا عند الطلب</span>
-        </div>
-
         <section class="mema-feature-strip" aria-label="تجارب ميما الإضافية">
             <button class="mema-feature-btn" type="button" onclick="openMemaGift()"><span class="feature-icon">🎁</span><span>فاجئي صديقتك من ميما<small>قسيمة شراء أو مفاجأة حلوة توصلها بكل حب</small></span></button>
         </section>
@@ -859,7 +845,7 @@
             <div class="discount-section">
                 <label style="font-size: 12px; font-weight: bold; color: var(--main-brown);">هل لديك كوبون تخفيض ؟</label>
                 <div class="discount-input-group">
-                    <input type="text" id="couponInput" class="discount-input" placeholder="خصم 5% مفعّل تلقائيًا">
+                    <input type="text" id="couponInput" class="discount-input" placeholder="أدخل كود الخصم">
                     <button class="btn-apply-discount" onclick="applyCoupon()">تطبيق</button>
                 </div>
                 <span id="couponMsg" class="discount-msg"></span>
@@ -1051,8 +1037,8 @@
         ];
 
         let cart = {};
-        let isDiscountApplied = true; // خصم الراتب 5% يُطبّق تلقائيًا على جميع المنتجات
-        let discountRate = 0.05;
+        let isDiscountApplied = false; // لا يوجد خصم راتب تلقائي
+        let discountRate = 0;
         const COOKIE_GIFT_THRESHOLD = 100;
         const FREE_GIFT_THRESHOLD = 180;
         const FREE_GIFT_ID = "gift_p4";
