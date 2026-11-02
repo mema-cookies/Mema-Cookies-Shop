@@ -201,6 +201,12 @@
         .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; }
         
         .product-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; flex-direction: column; border: 1px solid #fce4ec; transition: 0.3s; }
+        .product-card.sold-out { position: relative; }
+        .product-card.sold-out .image-container img { filter: grayscale(.25) brightness(.82); }
+        .sold-out-badge { position: absolute; top: 12px; right: 12px; z-index: 8; background: rgba(101,69,54,.94); color: #fff; padding: 7px 12px; border-radius: 12px; font-size: 12px; font-weight: 900; box-shadow: 0 4px 12px rgba(0,0,0,.18); }
+        .sold-out-overlay { position: absolute; inset: 0; z-index: 7; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.16); pointer-events: none; }
+        .sold-out-overlay span { background: rgba(101,69,54,.9); color: #fff; padding: 8px 16px; border-radius: 14px; font-weight: 900; font-size: 15px; transform: rotate(-6deg); }
+        .product-card.sold-out .btn-main { opacity: .45; cursor: not-allowed; }
         .image-container { width: 100%; height: 150px; overflow: hidden; position: relative; background: #f9f9f9; cursor: pointer; }
         .image-container img { width: 100%; height: 100%; object-fit: cover; position: absolute; opacity:0; transition: opacity 0.5s ease; }
         .image-container img.active { opacity: 1; }
@@ -965,7 +971,7 @@
 {
     id: "k5",
     name: "كيكة دورين (8 و 5 انش)",
-    price: 125,
+    price: 135,
     cat: "cakes",
     imgs: ["k5.jpg","433333.jpg"],
     desc: "كيكة دورين فاخرة بتصميم مميز - متعة لكل لقمة",
@@ -985,7 +991,7 @@
             {
     "id": "k7",
     "name": "كيكة 3 ادوار (8 و 5 و 2 انش)",
-    "price": 145,
+    "price": 150,
     "cat": "cakes",
     "imgs": ["333333.jpg"],
     "desc": "كيكة 3 ادوار فاخرة - متعة لكل لقمة",
@@ -1012,7 +1018,7 @@
             { id: "b4", name: "بوكس المرح (8 حبات)", cat: "boxes", price: 88, desc: "كل الأدوات بيدك والابداع عليك", imgs: ["20.jpg"], extras: [{name:"زيادة كريمة", price:5}, {name:"زيادة كوكيز", price:6}, {name:"زيادة سبرنكلز", price:1}] },
             
             { id: "g_print", name: "طباعة صور", cat: "glow", price: 5, desc: "اهدي صديقك صوراً تبقى ذكرى جميلة بينكما _ لحظات لا تنسى!", imgs: ["5555.jpg"] },
-            { id: "g1", name: "مجموعة شموع مبتكرة (3 حبات)", cat: "glow", price: 2.50, desc: "أحمر - شكل مميز", imgs: ["4444.jpg"] },
+            { id: "g1", name: "مجموعة شموع مبتكرة (3 حبات)", cat: "glow", price: 2.50, desc: "أحمر - شكل مميز", imgs: ["4444.jpg"], soldOut: true },
             { id: "g3", name: "شمعة قبعة احتفال (أحمر وأبيض)", cat: "glow", price: 2.50, desc: "تصميم قبعة ملونة", imgs: ["4442.jpg"] },
             { id: "g4", name: "شمعة قبعة احتفال (أبيض ووردي)", cat: "glow", price: 2.50, desc: "تصميم قبعة ملونة", imgs: ["4443.jpg"] },
             { id: "g5", name: "شمعة قبعة احتفال (أحمر وأصفر)", cat: "glow", price: 2.50, desc: "تصميم قبعة ملونة", imgs: ["4445.jpg"] },
@@ -1146,8 +1152,9 @@
                     });
                     extrasHtml += `</div>`;
                 }
-                return `<div class="product-card" data-product-id="${item.id}">
-                    <div class="image-container" onclick="openProductPage('${item.id}')">${imgsHtml}</div>
+                return `<div class="product-card ${item.soldOut ? 'sold-out' : ''}" data-product-id="${item.id}">
+                    ${item.soldOut ? '<div class="sold-out-badge">نفذت الكمية</div>' : ''}
+                    <div class="image-container" onclick="openProductPage('${item.id}')">${imgsHtml}${item.soldOut ? '<div class="sold-out-overlay"><span>نفذت من المخزون</span></div>' : ''}</div>
                     <div class="product-info" onclick="openProductPage('${item.id}')">
                         <h3>${item.bestSeller ? '<span class="best-seller-badge">🔥 الأكثر مبيعاً</span><br>' : ''}${item.name}</h3>
                         <div class="product-desc">${item.desc}</div>
@@ -1155,9 +1162,9 @@
                     </div>
                     ${extrasHtml}
                     <div class="main-controls">
-                        <button class="btn-main" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, 1)">+</button>
+                        <button class="btn-main" ${item.soldOut ? 'disabled' : ''} onclick="changeQty('${item.id}', '${item.name}', ${item.price}, 1)">+</button>
                         <span class="main-qty" id="mq-${item.id}">${cart[item.id]?.qty || 0}</span>
-                        <button class="btn-main" style="background:#eee; color:#333" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, -1)">-</button>
+                        <button class="btn-main" ${item.soldOut ? 'disabled' : ''} style="background:#eee; color:#333" onclick="changeQty('${item.id}', '${item.name}', ${item.price}, -1)">-</button>
                     </div>
                 </div>`;
             }
@@ -1294,16 +1301,17 @@
                     <h2 style="color:var(--main-brown); margin:0; font-size:22px;">${item.name}</h2>
                     <p style="color:var(--main-pink); font-size:14px; font-weight:bold; margin:10px 0">${item.desc}</p>
                     <span style="font-size:28px; font-weight:900; color:${item.cat === 'national' ? '#0b6b3a' : 'var(--main-pink)'};">${item.price} ريال ${item.oldPrice ? `<span class="old-price" style="font-size:16px">${item.oldPrice} ريال</span>` : ``}</span>
+                    ${item.soldOut ? '<div style="margin-top:14px; display:inline-block; background:#654536; color:#fff; padding:8px 16px; border-radius:12px; font-weight:900;">نفذت الكمية</div>' : ''}
                 </div>
 
                 ${extrasHtml}
                 <div class="page-action-container">
-                    <div class="btn-add-product">
-                        <span>التحكم بالطلب</span>
+                    <div class="btn-add-product" style="${item.soldOut ? 'opacity:.75;' : ''}">
+                        <span>${item.soldOut ? 'المنتج غير متوفر حالياً' : 'التحكم بالطلب'}</span>
                         <div style="display:flex; align-items:center; gap:20px">
-                            <button class="btn-main" onclick="event.stopPropagation(); changeQty('${item.id}', '${item.name}', ${item.price}, 1)" style="background:white; color:var(--main-brown);">+</button>
+                            <button class="btn-main" ${item.soldOut ? 'disabled' : ''} onclick="event.stopPropagation(); changeQty('${item.id}', '${item.name}', ${item.price}, 1)" style="background:white; color:var(--main-brown);">+</button>
                             <span id="q-${item.id}" style="font-weight:800; font-size:24px">${cart[item.id]?.qty || 0}</span>
-                            <button class="btn-main" onclick="event.stopPropagation(); changeQty('${item.id}', '${item.name}', ${item.price}, -1)" style="background:white; color:var(--main-brown);">-</button>
+                            <button class="btn-main" ${item.soldOut ? 'disabled' : ''} onclick="event.stopPropagation(); changeQty('${item.id}', '${item.name}', ${item.price}, -1)" style="background:white; color:var(--main-brown);">-</button>
                         </div>
                     </div>
                 </div>`;
@@ -1387,6 +1395,11 @@
         }
 
         function changeQty(id, name, price, delta, parentId = null) {
+            const linkedProductForStock = [...products].find(p => p.id === (parentId || id));
+            if (delta > 0 && linkedProductForStock?.soldOut) {
+                alert("عذراً، هذا المنتج نفذ من المخزون حالياً.");
+                return;
+            }
             if (id === "c6" && delta > 0 && !cart["ex_c6_سادةبدونصوصخارجي(فقطحشوةشوكلتبلجيكي)"]) {
                 alert("يرجى اختيار إضافة الدونات أولاً");
                 return;
