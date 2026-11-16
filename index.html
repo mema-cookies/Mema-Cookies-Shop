@@ -771,12 +771,38 @@
             <button class="mema-feature-btn" type="button" onclick="openMemaGift()"><span class="feature-icon">🎁</span><span>فاجئي صديقتك من ميما<small>قسيمة شراء أو مفاجأة حلوة توصلها بكل حب</small></span></button>
         </section>
         
-        <section class="kidsday-promo" style="margin:18px auto 14px;max-width:1100px;padding:12px;border-radius:22px;background:linear-gradient(135deg,#fff0f7,#ffe0ed);border:1px solid #f3bfd4;text-align:center;box-shadow:0 5px 18px #b85c8520;">
-            <img src="./kidsday-banner.jpg" alt="عالم الصغار - بوكسات يوم الطفل" loading="lazy" style="display:block;width:100%;max-height:340px;object-fit:contain;border-radius:16px;">
-            <div style="font-weight:800;color:#a51c60;font-size:clamp(18px,4vw,25px);margin:10px 0 4px;">🎈 عالم الصغار | بوكسات يوم الطفل</div>
-            <div style="color:#795548;font-size:14px;">فرحة صغيرة.. وذكريات حلوة كبيرة 💗 — تشكيلة خاصة لفترة محدودة</div>
-            <button type="button" onclick="jumpToCategory('kidsday')" style="margin-top:12px;border:0;border-radius:22px;padding:10px 24px;background:#d63384;color:white;font-weight:800;font-size:15px;">تسوقي بوكسات يوم الطفل 🎁</button>
-        </section>
+<style>
+#kidsDaySection{margin:18px 0 24px;padding:14px;border:1px solid #f2bfd4;border-radius:24px;background:linear-gradient(145deg,#fff1f7,#fffafc);box-shadow:0 5px 18px #9b42651a}
+#kidsDaySection .kids-banner{width:100%;max-height:420px;object-fit:contain;border-radius:18px;display:block;margin:0 auto 12px;background:#fff4f8}
+#kidsDaySection .kids-heading{text-align:center;color:#8b234b;font-size:clamp(21px,5vw,30px);font-weight:900;margin:8px 0 4px}
+#kidsDaySection .kids-sub{text-align:center;color:#9a5a73;margin:0 0 14px;font-size:14px}
+#kidsDaySection .kids-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#kidsDaySection .kids-card{background:#fff;border:1px solid #f4d4e0;border-radius:17px;overflow:hidden;text-align:center;padding-bottom:10px;min-width:0}
+#kidsDaySection .kids-card img{width:100%;height:165px;object-fit:contain;background:#fff7fa;display:block}
+#kidsDaySection .kids-card h4{font-size:15px;color:#713d42;margin:9px 5px 4px}
+#kidsDaySection .kids-card p{font-size:12px;color:#98717d;margin:0 4px 5px;line-height:1.6}
+#kidsDaySection .kids-price{font-weight:900;color:#c52b72;font-size:18px;margin:4px}
+#kidsDaySection .kids-old{font-size:12px;color:#999;text-decoration:line-through;margin-inline-start:5px}
+#kidsDaySection .kids-add{border:0;border-radius:20px;background:#81594d;color:white;padding:8px 18px;font-weight:bold;font-size:14px;margin-top:5px;cursor:pointer}
+#kidsDaySection .kids-limited{display:inline-block;background:#ffe0ed;color:#a6245c;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:bold;margin:5px auto 10px}
+#kidsDaySection .kids-discount-note{background:#fff;border:1px dashed #e8a8c4;border-radius:14px;color:#8b234b;text-align:center;padding:10px;margin:12px 0 2px;font-size:12px;line-height:1.8}
+@media(max-width:380px){#kidsDaySection{padding:9px}#kidsDaySection .kids-card img{height:125px} #kidsDaySection .kids-card h4{font-size:13px}}
+</style>
+<section id="kidsDaySection" aria-label="عالم الصغار بوكسات يوم الطفل">
+<img class="kids-banner" src="tu7=.jpg" alt="فعالية يوم الطفل من ميما" loading="lazy">
+<h2 class="kids-heading">🎈 عالم الصغار</h2>
+<p class="kids-sub">بوكسات يوم الطفل العالمي — فرحة صغيرة وذكريات حلوة كبيرة 💗</p>
+<div style="text-align:center"><span class="kids-limited">✨ تشكيلة خاصة لفترة محدودة ✨</span></div>
+<div class="kids-grid">
+<article class="kids-card"><img src="don0.jpg" alt="بوكس الدونات المرح" loading="lazy"><h4>🍩 بوكس الدونات المرح – 6 حبات</h4><p>دونات سادة مع صوصات وزينة خارجية ليبدع طفلك بتزيينها</p><div class="kids-price">34 ريال <span class="kids-old">38 ريال</span></div><button class="kids-add" onclick="changeQty('kd_donut6','بوكس الدونات المرح – 6 حبات',38,1)">+ أضيفي للسلة</button></article>
+<article class="kids-card"><img src="don0.jpg" alt="بوكس الدونات المرح 12 حبة" loading="lazy"><h4>🍩 بوكس الدونات المرح – 12 حبة</h4><p>دونات سادة مع صوصات وزينة خارجية ليبدع طفلك بتزيينها</p><div class="kids-price">68 ريال <span class="kids-old">76 ريال</span></div><button class="kids-add" onclick="changeQty('kd_donut12','بوكس الدونات المرح – 12 حبة',76,1)">+ أضيفي للسلة</button></article>
+<article class="kids-card"><img src="189h.jpg" alt="بوكس المرح 5 حبات" loading="lazy"><h4>🍪 بوكس المرح – 5 حبات</h4><p>كوكيز جاهزة للتزيين مع الشوكولاتة والزينة</p><div class="kids-price">49 ريال <span class="kids-old">55 ريال</span></div><button class="kids-add" onclick="changeQty('kd_fun5','بوكس المرح – 5 حبات',55,1)">+ أضيفي للسلة</button></article>
+<article class="kids-card"><img src="189h.jpg" alt="بوكس المرح 8 حبات" loading="lazy"><h4>🍪 بوكس المرح – 8 حبات</h4><p>كوكيز جاهزة للتزيين مع الشوكولاتة والزينة</p><div class="kids-price">79 ريال <span class="kids-old">88 ريال</span></div><button class="kids-add" onclick="changeQty('kd_fun8','بوكس المرح – 8 حبات',88,1)">+ أضيفي للسلة</button></article>
+<article class="kids-card" style="grid-column:1/-1"><img src="jut6.jpg" alt="كيكتي وأنا أزينها" loading="lazy"><h4>🎂 كيكتي.. وأنا أزينها!</h4><p>كيكة 5 إنش سادة، وتأتي الشوكولاتة والزينة بشكل منفصل ليزينها طفلك بنفسه</p><div class="kids-price">36 ريال <span class="kids-old">40 ريال</span></div><button class="kids-add" onclick="changeQty('kd_cake','كيكتي.. وأنا أزينها!',40,1)">+ أضيفي للسلة</button></article>
+</div>
+<div class="kids-discount-note">🎉 <b>خصم 10% تلقائيًا</b> على بوكسات يوم الطفل عند إضافتها إلى السلة.<br>🎁 وعند إضافة بوكس ثانٍ من قسم يوم الطفل أو أكثر، تحصلين على <b>خصم إضافي 5%</b> على البوكس الثاني وكل بوكس إضافي بعده.</div>
+</section>
+
         <section class="order-policy-box" aria-label="سياسة الطلب">
             <div class="order-policy-icon">📋</div>
             <div class="order-policy-content">
@@ -788,7 +814,6 @@
         </section>
 
         <nav class="categories-nav">
-            <button class="cat-btn" onclick="filterMenu('kidsday', this)">🎈 عالم الصغار</button>
             <button class="cat-btn active" onclick="filterMenu('all', this)">الكل</button>
             <button class="cat-btn" onclick="filterMenu('cookies', this)">كوكيز</button>
             <button class="cat-btn" onclick="filterMenu('pudding', this)">بودينق</button>
@@ -806,6 +831,9 @@
                 <button class="mood-tile" onclick="jumpToCategory('glow')"><span class="mood-emoji">✨</span><span><b>أكمل زينة كيكتي</b><small>تفاصيل تكمل الفرحة</small></span></button>
             </div>
         </section>
+
+
+
         <div id="menuContent"></div>
         <div style="text-align: center; padding: 40px 0; color: var(--main-brown); font-weight: bold; font-size: 18px;">يُصنع بكل حُب | MADE WITH LOVE💕</div>
     </div>
@@ -865,6 +893,7 @@
 <div id="priceDetails" style="text-align:center; margin:20px 0; border-top:1px solid #eee; padding-top:15px;">
                 <div id="subtotalRow" style="display:none; color:#777; font-size:14px; margin-bottom:5px;">الإجمالي قبل الخصم: <span id="modalSubtotal">0</span> ريال</div>
                 <div id="discountRow" style="display:none; color:green; font-size:14px; margin-bottom:5px;">قيمة الخصم (<span id="discountPercentText">0</span>%): -<span id="modalDiscountVal">0</span> ريال</div>
+                <div id="kidsExtraDiscountRow" style="display:none;color:#b02b70;font-size:13px;margin-bottom:6px">خصم إضافي على بوكسات الطفل (5%): -<span id="kidsExtraDiscountVal">0</span> ريال</div>
                 <div style="font-weight:800; font-size:22px; color:var(--main-brown);">الإجمالي النهائي: <span id="modalTotal" style="color:var(--main-pink)">0</span> ريال</div>
             </div>
 
@@ -1044,13 +1073,6 @@
             { id: "ki9", name: "زينة للكعك شكل نجمة", cat: "glow", price: 1, desc: "زينة نجمة مميزة لإطلالة أجمل للكيك", imgs: ["ki9.jpg"] },
             { id: "h01", name: "زينة للكعك شكل تاج", cat: "glow", price: 1, desc: "زينة تاج فاخرة لمظهر مميز للكيك", imgs: ["h01.jpg"] },
             
-
-            // تشكيلة يوم الطفل العالمي - منتجات موسمية لفترة محدودة
-            { id: "kd_donut6", name: "بوكس الدونات المَرِح - 6 حبات", cat: "kidsday", price: 38, desc: "6 دونات سادة مع صوصات وتزيينات متنوعة ليزينها طفلك بنفسه 🍩", imgs: ["kidsday-donuts.jpg"] },
-            { id: "kd_donut12", name: "بوكس الدونات المَرِح - 12 حبة", cat: "kidsday", price: 76, desc: "12 دونات سادة مع صوصات وتزيينات متنوعة ليزينها طفلك بنفسه 🍩", imgs: ["kidsday-donuts.jpg"] },
-            { id: "kd_cookie5", name: "بوكس المرح - 5 حبات", cat: "kidsday", price: 55, desc: "5 كوكيز مع كريمة ملونة وزينة وشوكولاتة للرسم والتزيين 🍪", imgs: ["kidsday-cookies.jpg"] },
-            { id: "kd_cookie8", name: "بوكس المرح - 8 حبات", cat: "kidsday", price: 88, desc: "8 كوكيز مع كريمة ملونة وزينة وشوكولاتة للرسم والتزيين 🍪", imgs: ["kidsday-cookies.jpg"] },
-            { id: "kd_cake", name: "كيكتي.. وأنا أزينها! 🎂", cat: "kidsday", price: 40, desc: "كيكة 5 إنش سادة مع شوكولاتة وزينة منفصلة ليزينها طفلك بنفسه 🎨", imgs: ["kidsday-cake.jpg"] },
         ];
 
         let cart = {};
@@ -1102,7 +1124,7 @@
             container.innerHTML = "";
             const moodSection = document.getElementById('moodSection');
             if (moodSection) moodSection.style.display = items.length === products.length ? 'block' : 'none';
-            const cats = { kidsday: "🎈 عالم الصغار | بوكسات يوم الطفل (لفترة محدودة)", cookies: "كوكيز ميما", pudding: "بودينق ميما", cakes: "كيكات ميما", areeka: "عريكة كوكيز", boxes: "بوكسات ميما", glow: "✨ لمسات مضيئة" };
+            const cats = { cookies: "كوكيز ميما", pudding: "بودينق ميما", cakes: "كيكات ميما", areeka: "عريكة كوكيز", boxes: "بوكسات ميما", glow: "✨ لمسات مضيئة" };
 
             // ترتيب المنتجات داخل "لمسات مضيئة" حتى تكون الشموع المتشابهة بجانب بعضها.
             const glowGroups = [
@@ -1489,6 +1511,31 @@
             });
         }
         
+        // خصم إضافي 5% على بوكس الطفل الثاني وما بعده، مع خصم المتجر العام 10%.
+        function getKidsSecondBoxDiscount() {
+            let remainingFirstBox = true;
+            let eligibleSubtotal = 0;
+            for (const id of Object.keys(cart)) {
+                const item = cart[id];
+                if (!id.startsWith('kd_') || !item || item.isGift || item.parentId || item.qty <= 0) continue;
+                const qty = Number(item.qty) || 0;
+                const price = Number(item.price) || 0;
+                if (remainingFirstBox) {
+                    eligibleSubtotal += Math.max(0, qty - 1) * price;
+                    remainingFirstBox = false;
+                } else {
+                    eligibleSubtotal += qty * price;
+                }
+            }
+            return eligibleSubtotal * 0.05;
+        }
+
+        function getDiscountBreakdown(subtotal) {
+            const generalDiscount = isDiscountApplied ? subtotal * discountRate : 0;
+            const kidsExtraDiscount = getKidsSecondBoxDiscount();
+            return { generalDiscount, kidsExtraDiscount, finalTotal: Math.max(0, subtotal - generalDiscount - kidsExtraDiscount) };
+        }
+
         function updateCartUI() { 
             let count = 0, total = 0; 
             for (let id in cart) { 
@@ -1499,7 +1546,8 @@
             } 
             document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none'; 
             document.getElementById('itemsCount').innerText = count; 
-            document.getElementById('totalPrice').innerText = total + " ريال"; 
+            const cartDiscounts = getDiscountBreakdown(total);
+            document.getElementById('totalPrice').innerText = cartDiscounts.finalTotal.toFixed(2).replace(/\.00$/, '') + " ريال"; 
             saveMemaState();
         }
 
@@ -1617,20 +1665,18 @@
                 giftProgress.innerHTML = `${giftText}<div class="gift-progress-track"><div class="gift-progress-fill" style="width:${progress}%"></div></div><div class="gift-milestones"><span>${cookieGiftEarned ? '✓ كوكيز مجاني' : '100 ر.س ← كوكيز مجاني'}</span><span>${puddingGiftEarned ? '✓ بودينق مجاني' : '180 ر.س ← بودينق ميني'}</span></div>`;
             }
 
-            let finalTotal = subtotal;
-            if(isDiscountApplied && subtotal > 0) {
-                let discountAmount = subtotal * discountRate;
-                finalTotal = subtotal - discountAmount;
-                document.getElementById('subtotalRow').style.display = "block";
-                document.getElementById('discountRow').style.display = "block";
-                document.getElementById('modalSubtotal').innerText = subtotal.toFixed(2);
-                document.getElementById('modalDiscountVal').innerText = discountAmount.toFixed(2);
-                document.getElementById('discountPercentText').innerText = (discountRate * 100).toString();
-            } else {
-                document.getElementById('subtotalRow').style.display = "none";
-                document.getElementById('discountRow').style.display = "none";
+            const discountBreakdown = getDiscountBreakdown(subtotal);
+            const finalTotal = discountBreakdown.finalTotal;
+            document.getElementById('subtotalRow').style.display = subtotal > 0 ? "block" : "none";
+            document.getElementById('modalSubtotal').innerText = subtotal.toFixed(2);
+            document.getElementById('discountRow').style.display = discountBreakdown.generalDiscount > 0 ? "block" : "none";
+            document.getElementById('modalDiscountVal').innerText = discountBreakdown.generalDiscount.toFixed(2);
+            document.getElementById('discountPercentText').innerText = (discountRate * 100).toString();
+            const kidsDiscountRow = document.getElementById('kidsExtraDiscountRow');
+            if (kidsDiscountRow) {
+                kidsDiscountRow.style.display = discountBreakdown.kidsExtraDiscount > 0 ? "block" : "none";
+                document.getElementById('kidsExtraDiscountVal').innerText = discountBreakdown.kidsExtraDiscount.toFixed(2);
             }
-
             document.getElementById('modalTotal').innerText = finalTotal.toFixed(2);
         }
 
@@ -1669,16 +1715,12 @@
                 msg += 'طلب هدية مستقل — لا توجد منتجات محددة في السلة.\n';
             }
 
-            if(isDiscountApplied) {
-                let discountVal = subtotal * discountRate;
-                let final = subtotal - discountVal;
-                msg += `--------------------------\n`;
-                msg += `💰 الإجمالي قبل الخصم: ${subtotal.toFixed(2)} ريال\n`;
-                msg += `🎟️ كود الخصم (${discountRate * 100}%): -${discountVal.toFixed(2)} ريال\n`;
-                msg += `✨ *الإجمالي النهائي للطلب: ${final.toFixed(2)} ريال*`;
-            } else {
-                msg += `✨ *الإجمالي النهائي للطلب: ${subtotal.toFixed(2)} ريال*`;
-            }
+            const discountBreakdown = getDiscountBreakdown(subtotal);
+            msg += `--------------------------\n`;
+            msg += `💰 الإجمالي قبل الخصم: ${subtotal.toFixed(2)} ريال\n`;
+            if (discountBreakdown.generalDiscount > 0) msg += `🎉 خصم المتجر التلقائي (${discountRate * 100}%): -${discountBreakdown.generalDiscount.toFixed(2)} ريال\n`;
+            if (discountBreakdown.kidsExtraDiscount > 0) msg += `🎁 خصم إضافي على بوكسات يوم الطفل (5% على البوكس الثاني وما بعده): -${discountBreakdown.kidsExtraDiscount.toFixed(2)} ريال\n`;
+            msg += `✨ *الإجمالي النهائي للطلب: ${discountBreakdown.finalTotal.toFixed(2)} ريال*`;
 
             msg += `\nرقم الطلب: ${getMemaOrderNumber()}\n`;
             if (memaGiftData) {
@@ -1742,8 +1784,10 @@
                 alert('السلة فارغة. أضيفي المنتجات أولاً ثم أنشئي الفاتورة.');
                 return;
             }
-            const discount = isDiscountApplied ? subtotal * discountRate : 0;
-            const finalTotal = subtotal - discount;
+            const discountBreakdown = getDiscountBreakdown(subtotal);
+            const discount = discountBreakdown.generalDiscount;
+            const kidsExtraDiscount = discountBreakdown.kidsExtraDiscount;
+            const finalTotal = discountBreakdown.finalTotal;
             content.innerHTML = `
                 <div class="mema-invoice-national-banner mema-national-header" role="img" aria-label="بالغوا بالدفاع عن وطنكم، فالأوطان لا تحيا إلا بأبنائها">
                     <div class="mema-national-palm">🇸🇦</div>
@@ -1760,7 +1804,8 @@
                 ${rows}
                 <div class="mema-invoice-total">
                     <div><span>الإجمالي قبل الخصم</span><b>${subtotal.toFixed(2)} ريال</b></div>
-                    ${discount > 0 ? `<div><span>الخصم (${discountRate * 100}%)</span><b>− ${discount.toFixed(2)} ريال</b></div>` : ''}
+                    ${discount > 0 ? `<div><span>خصم المتجر (${discountRate * 100}%)</span><b>− ${discount.toFixed(2)} ريال</b></div>` : ''}
+                    ${kidsExtraDiscount > 0 ? `<div><span>خصم إضافي بوكسات الطفل (5%)</span><b>− ${kidsExtraDiscount.toFixed(2)} ريال</b></div>` : ''}
                     <div class="grand"><span>الإجمالي النهائي</span><span>${finalTotal.toFixed(2)} ريال</span></div>
                 </div>
                 <div style="margin:12px 0;padding:10px 12px;border:1px solid #eadbd2;border-radius:12px;background:#fff"><div style="font-size:11px;color:#98796d">رقم الطلب</div><b>${escapeInvoiceText(getMemaOrderNumber())}</b></div>
