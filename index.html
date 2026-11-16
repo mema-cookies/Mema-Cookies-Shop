@@ -668,6 +668,91 @@
         .mema-cart-saved-note{font-size:10px;color:#98796d;text-align:center;margin:8px 0 0}
         @media(max-width:360px){.mema-feature-btn{padding:10px 7px;gap:7px}.mema-feature-btn .feature-icon{width:34px;height:34px;flex-basis:34px;font-size:19px}.mema-tool-card{padding:18px 13px}}
 
+
+        /* سلة مختصرة: إظهار سعر القطعة مع تفاصيل المنتج وتقليل الارتفاع */
+        #reviewModal .modal-body { padding:15px 13px 13px; max-height:calc(100dvh - 16px); margin:0 auto; }
+        #reviewModal h3 { margin-top:29px !important; margin-bottom:7px !important; font-size:19px !important; }
+        #reviewModal .cart-subtitle { margin:0 0 10px; font-size:11px; }
+        #reviewItems { display:flex; flex-direction:column; gap:7px; }
+        #reviewModal .cart-item-row { padding:9px 10px; margin:0; border-radius:13px; box-shadow:0 2px 8px rgba(91,62,47,.035); }
+        #reviewModal .cart-product-summary { display:flex; align-items:center; gap:9px; margin:0; }
+        #reviewModal .cart-product-thumb, #reviewModal .cart-product-thumb-fallback { width:52px; height:52px; flex:0 0 52px; border-radius:10px; }
+        #reviewModal .cart-product-details { min-width:0; }
+        #reviewModal .cart-product-name { font-size:13px; line-height:1.4; margin:0 0 2px; }
+        #reviewModal .cart-unit-price { display:block; color:#98796d; font-size:10px; line-height:1.35; margin-bottom:4px; }
+        #reviewModal .cart-item-header { flex-wrap:nowrap; gap:6px; align-items:center; }
+        #reviewModal .cart-item-ctrl { gap:4px; }
+        #reviewModal .btn-cart-qty { width:25px; height:25px; border-radius:7px; font-size:15px; line-height:1; }
+        #reviewModal .extra-row-invoice { padding:6px 8px; margin:5px 0 0; font-size:10px; }
+        #reviewModal .cart-recommendations { margin:8px 0; padding:9px; }
+        #reviewModal .cart-recommendations h4 { font-size:13px; margin-bottom:2px; }
+        #reviewModal .cart-recommendations > p { font-size:10px; margin-bottom:7px; }
+        #reviewModal .cart-recommendation { padding:6px 4px; }
+        #reviewModal .cart-recommendation .rec-emoji { font-size:18px; margin-bottom:2px; }
+        #reviewModal .cart-recommendation b { font-size:9px; min-height:25px; }
+        #reviewModal .cart-recommendation small { font-size:9px; margin:2px 0 5px; }
+        #reviewModal .cart-recommendation button { padding:5px 4px; font-size:9px; }
+        #reviewModal .store-shipping-badge-box { margin:8px 0; padding:8px 6px; }
+        #reviewModal .discount-section { margin:8px 0; padding:9px; }
+        #reviewModal #giftProgress { margin:8px 0 !important; padding:9px 10px !important; font-size:11px !important; line-height:1.6; }
+        #reviewModal #priceDetails { margin:9px 0 !important; padding:10px !important; }
+        #reviewModal #priceDetails > div:last-child { font-size:19px !important; }
+        #reviewModal button[onclick="sendWhatsApp()"] { padding:12px !important; font-size:16px !important; }
+        #reviewModal button[onclick="openMemaInvoice()"] { padding:11px !important; font-size:14px !important; }
+        #reviewModal .modal-body > button:last-child { margin-top:8px !important; padding:9px !important; }
+        @media (max-width:380px) {
+            #reviewModal .modal-body { width:94%; padding:13px 10px 11px; }
+            #reviewModal .cart-product-thumb, #reviewModal .cart-product-thumb-fallback { width:46px; height:46px; flex-basis:46px; }
+            #reviewModal .cart-product-name { font-size:12px; }
+        }
+
+
+        /* تصغير إضافي للسلة مع الإبقاء على جميع الوظائف */
+        #reviewModal .modal-body {
+            width:96%; max-width:430px; max-height:calc(100dvh - 10px);
+            overflow-y:auto; margin:5px auto; padding:9px 8px 9px;
+            border-radius:20px;
+        }
+        #reviewModal h3 { margin:25px 0 3px !important; font-size:16px !important; }
+        #reviewModal .cart-subtitle { font-size:9px; margin:0 0 6px; }
+        #reviewModal #reviewItems { gap:4px; }
+        #reviewModal .cart-item-row { padding:5px 7px; border-radius:10px; }
+        #reviewModal .cart-product-summary { gap:6px; }
+        #reviewModal .cart-product-thumb, #reviewModal .cart-product-thumb-fallback {
+            width:36px; height:36px; flex:0 0 36px; border-radius:7px;
+        }
+        #reviewModal .cart-product-name { font-size:11px; line-height:1.25; margin-bottom:1px; }
+        #reviewModal .cart-unit-price { font-size:9px; margin:0; line-height:1.2; }
+        #reviewModal .cart-item-header { gap:3px; }
+        #reviewModal .cart-item-header > b { font-size:10px; }
+        #reviewModal .cart-item-ctrl { gap:2px; }
+        #reviewModal .btn-cart-qty { width:21px; height:21px; font-size:13px; border-radius:5px; }
+        #reviewModal .cart-item-ctrl span { font-size:10px; }
+        #reviewModal .extra-row-invoice { padding:4px 6px; margin:3px 0 0; font-size:9px; }
+        #reviewModal .cart-recommendations { margin:5px 0; padding:6px; border-radius:11px; }
+        #reviewModal .cart-recommendations h4 { font-size:11px; }
+        #reviewModal .cart-recommendations > p { font-size:9px; margin-bottom:4px; }
+        #reviewModal .cart-recommendation-grid { gap:4px; }
+        #reviewModal .cart-recommendation { padding:4px 3px; border-radius:8px; }
+        #reviewModal .cart-recommendation .rec-emoji { font-size:15px; }
+        #reviewModal .cart-recommendation b { font-size:8px; min-height:20px; }
+        #reviewModal .cart-recommendation small { font-size:8px; }
+        #reviewModal .cart-recommendation button { padding:4px 2px; font-size:8px; }
+        #reviewModal .store-shipping-badge-box { margin:5px 0; padding:5px 4px; border-radius:11px; }
+        #reviewModal .badge-shipping-item { gap:3px; font-size:9px; }
+        #reviewModal .badge-shipping-item i { font-size:13px; }
+        #reviewModal .discount-section { margin:5px 0; padding:6px; border-radius:10px; }
+        #reviewModal .discount-section strong { font-size:11px !important; }
+        #reviewModal .discount-msg { font-size:9px; margin-top:2px; }
+        #reviewModal #giftProgress { margin:5px 0 !important; padding:6px 7px !important; font-size:9px !important; }
+        #reviewModal #priceDetails { margin:5px 0 !important; padding:6px 4px !important; }
+        #reviewModal #priceDetails > div { font-size:11px !important; margin-bottom:3px !important; }
+        #reviewModal #priceDetails > div:last-child { font-size:16px !important; }
+        #reviewModal button[onclick="sendWhatsApp()"] { padding:8px !important; font-size:13px !important; border-radius:10px !important; }
+        #reviewModal button[onclick="openMemaInvoice()"] { padding:7px !important; font-size:11px !important; border-radius:10px !important; }
+        #reviewModal .modal-body > button:last-child { margin-top:5px !important; padding:6px !important; font-size:11px; }
+        #reviewModal .btn-back-cart { top:8px; right:8px; padding:4px 7px; font-size:9px; }
+
 </style>
 </head>
 <body>
@@ -686,6 +771,12 @@
             <button class="mema-feature-btn" type="button" onclick="openMemaGift()"><span class="feature-icon">🎁</span><span>فاجئي صديقتك من ميما<small>قسيمة شراء أو مفاجأة حلوة توصلها بكل حب</small></span></button>
         </section>
         
+        <section class="kidsday-promo" style="margin:18px auto 14px;max-width:1100px;padding:12px;border-radius:22px;background:linear-gradient(135deg,#fff0f7,#ffe0ed);border:1px solid #f3bfd4;text-align:center;box-shadow:0 5px 18px #b85c8520;">
+            <img src="./kidsday-banner.jpg" alt="عالم الصغار - بوكسات يوم الطفل" loading="lazy" style="display:block;width:100%;max-height:340px;object-fit:contain;border-radius:16px;">
+            <div style="font-weight:800;color:#a51c60;font-size:clamp(18px,4vw,25px);margin:10px 0 4px;">🎈 عالم الصغار | بوكسات يوم الطفل</div>
+            <div style="color:#795548;font-size:14px;">فرحة صغيرة.. وذكريات حلوة كبيرة 💗 — تشكيلة خاصة لفترة محدودة</div>
+            <button type="button" onclick="jumpToCategory('kidsday')" style="margin-top:12px;border:0;border-radius:22px;padding:10px 24px;background:#d63384;color:white;font-weight:800;font-size:15px;">تسوقي بوكسات يوم الطفل 🎁</button>
+        </section>
         <section class="order-policy-box" aria-label="سياسة الطلب">
             <div class="order-policy-icon">📋</div>
             <div class="order-policy-content">
@@ -697,6 +788,7 @@
         </section>
 
         <nav class="categories-nav">
+            <button class="cat-btn" onclick="filterMenu('kidsday', this)">🎈 عالم الصغار</button>
             <button class="cat-btn active" onclick="filterMenu('all', this)">الكل</button>
             <button class="cat-btn" onclick="filterMenu('cookies', this)">كوكيز</button>
             <button class="cat-btn" onclick="filterMenu('pudding', this)">بودينق</button>
@@ -952,6 +1044,13 @@
             { id: "ki9", name: "زينة للكعك شكل نجمة", cat: "glow", price: 1, desc: "زينة نجمة مميزة لإطلالة أجمل للكيك", imgs: ["ki9.jpg"] },
             { id: "h01", name: "زينة للكعك شكل تاج", cat: "glow", price: 1, desc: "زينة تاج فاخرة لمظهر مميز للكيك", imgs: ["h01.jpg"] },
             
+
+            // تشكيلة يوم الطفل العالمي - منتجات موسمية لفترة محدودة
+            { id: "kd_donut6", name: "بوكس الدونات المَرِح - 6 حبات", cat: "kidsday", price: 38, desc: "6 دونات سادة مع صوصات وتزيينات متنوعة ليزينها طفلك بنفسه 🍩", imgs: ["kidsday-donuts.jpg"] },
+            { id: "kd_donut12", name: "بوكس الدونات المَرِح - 12 حبة", cat: "kidsday", price: 76, desc: "12 دونات سادة مع صوصات وتزيينات متنوعة ليزينها طفلك بنفسه 🍩", imgs: ["kidsday-donuts.jpg"] },
+            { id: "kd_cookie5", name: "بوكس المرح - 5 حبات", cat: "kidsday", price: 55, desc: "5 كوكيز مع كريمة ملونة وزينة وشوكولاتة للرسم والتزيين 🍪", imgs: ["kidsday-cookies.jpg"] },
+            { id: "kd_cookie8", name: "بوكس المرح - 8 حبات", cat: "kidsday", price: 88, desc: "8 كوكيز مع كريمة ملونة وزينة وشوكولاتة للرسم والتزيين 🍪", imgs: ["kidsday-cookies.jpg"] },
+            { id: "kd_cake", name: "كيكتي.. وأنا أزينها! 🎂", cat: "kidsday", price: 40, desc: "كيكة 5 إنش سادة مع شوكولاتة وزينة منفصلة ليزينها طفلك بنفسه 🎨", imgs: ["kidsday-cake.jpg"] },
         ];
 
         let cart = {};
@@ -1003,7 +1102,7 @@
             container.innerHTML = "";
             const moodSection = document.getElementById('moodSection');
             if (moodSection) moodSection.style.display = items.length === products.length ? 'block' : 'none';
-            const cats = { cookies: "كوكيز ميما", pudding: "بودينق ميما", cakes: "كيكات ميما", areeka: "عريكة كوكيز", boxes: "بوكسات ميما", glow: "✨ لمسات مضيئة" };
+            const cats = { kidsday: "🎈 عالم الصغار | بوكسات يوم الطفل (لفترة محدودة)", cookies: "كوكيز ميما", pudding: "بودينق ميما", cakes: "كيكات ميما", areeka: "عريكة كوكيز", boxes: "بوكسات ميما", glow: "✨ لمسات مضيئة" };
 
             // ترتيب المنتجات داخل "لمسات مضيئة" حتى تكون الشموع المتشابهة بجانب بعضها.
             const glowGroups = [
@@ -1479,6 +1578,7 @@
                             ${productImage}
                             <div class="cart-product-details">
                                 <b class="cart-product-name">${item.name} ${item.isGift ? '<span style="color:green;font-size:12px">🎁 مجانا</span>' : ''}</b>
+                                <small class="cart-unit-price">${item.isGift ? 'هدية مجانية' : `سعر القطعة: ${Number(item.price).toFixed(2).replace(/\.00$/, '')} ريال`}</small>
                                 <div class="cart-item-header">
                                     <div class="cart-item-ctrl">
                                         ${item.isGift ? `<span style="font-weight:800;color:#8a5d4a;background:#fff2e9;border-radius:8px;padding:6px 9px;font-size:11px">هدية مجانية 🎁</span>` : `<button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, 1)">+</button><span style="font-weight:bold; width:20px; text-align:center">${item.qty}</span><button class="btn-cart-qty" onclick="changeQty('${id}', '${item.name}', ${item.price}, -1)">-</button>`}
