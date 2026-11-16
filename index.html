@@ -632,83 +632,6 @@
         @media (max-width:380px) { #memaInvoiceContent { padding:16px 11px; } .mema-invoice-item img,.mema-invoice-fallback { width:62px;height:62px;flex-basis:62px; } }
 
     
-        /* إعلان ميما الوطني: ظهور عند فتح الموقع لمدة 6 ثوانٍ */
-        #memaNationalAd {
-            position: fixed;
-            inset: 0;
-            z-index: 20000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            box-sizing: border-box;
-            background: rgba(20, 25, 20, .48);
-            -webkit-backdrop-filter: blur(3px);
-            backdrop-filter: blur(3px);
-            opacity: 1;
-            visibility: visible;
-            transition: opacity .45s ease, visibility .45s ease;
-            overflow: hidden;
-        }
-        #memaNationalAd.mema-ad-hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-        #memaNationalAd > img {
-            display: block;
-            width: auto;
-            height: auto;
-            max-width: min(88vw, 440px);
-            max-height: 78vh;
-            object-fit: contain;
-            border-radius: 16px;
-            box-shadow: 0 16px 45px rgba(0,0,0,.3);
-        }
-        #memaNationalAdClose {
-            position: absolute;
-            top: max(14px, env(safe-area-inset-top));
-            left: 14px;
-            z-index: 2;
-            width: 42px;
-            height: 42px;
-            border: 1px solid rgba(255,255,255,.8);
-            border-radius: 50%;
-            background: rgba(40, 35, 30, .78);
-            color: white;
-            font: 32px/1 Arial, sans-serif;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .mema-ad-timer {
-            position: absolute;
-            bottom: max(14px, env(safe-area-inset-bottom));
-            left: 25%;
-            right: 25%;
-            height: 3px;
-            background: rgba(255,255,255,.6);
-            border-radius: 99px;
-            overflow: hidden;
-        }
-        .mema-ad-timer span {
-            display: block;
-            height: 100%;
-            width: 100%;
-            background: #fff;
-            transform-origin: right center;
-            animation: memaAdCountdown 6s linear forwards;
-        }
-        @keyframes memaAdCountdown {
-            from { transform: scaleX(1); }
-            to { transform: scaleX(0); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            #memaNationalAd, .mema-ad-timer span { transition: none; animation: none; }
-        }
-
-
         /* إضافات تجربة ميما: الإهداء، اللعبة، وحفظ السلة */
         .mema-feature-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px;padding:0}
         .mema-feature-btn{border:1px solid #ead8ce;border-radius:17px;padding:14px 10px;background:linear-gradient(145deg,#fffaf6,#fff0f4);color:#654536;font:inherit;font-weight:900;box-shadow:0 5px 15px rgba(101,69,54,.07);cursor:pointer;text-align:right;display:flex;align-items:center;gap:10px;min-height:76px}
@@ -748,13 +671,6 @@
 </style>
 </head>
 <body>
-
-    <!-- إعلان وطني يظهر عند فتح الموقع ويختفي تلقائياً بعد 6 ثوانٍ -->
-    <div id="memaNationalAd" role="dialog" aria-label="إعلان كوكيز ميما الوطني">
-        <button id="memaNationalAdClose" type="button" aria-label="إغلاق الإعلان">×</button>
-        <img src="national-ad.png" alt="إعلان كوكيز ميما بمناسبة المادة الرابعة والثلاثين">
-        <div class="mema-ad-timer" aria-hidden="true"><span></span></div>
-    </div>
 
     <div id="mainView">
         <a href="https://www.instagram.com/cookies_mema70/" class="instagram-float" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -848,13 +764,9 @@
                     <div class="badge-shipping-item"><i class="fas fa-gift"></i><span>يتوفر لدينا تنسيق هدايا مع طلباتكم</span></div>
                 </div>
 
-            <div class="discount-section">
-                <label style="font-size: 12px; font-weight: bold; color: var(--main-brown);">هل لديك كوبون تخفيض ؟</label>
-                <div class="discount-input-group">
-                    <input type="text" id="couponInput" class="discount-input" placeholder="أدخل كود الخصم">
-                    <button class="btn-apply-discount" onclick="applyCoupon()">تطبيق</button>
-                </div>
-                <span id="couponMsg" class="discount-msg"></span>
+            <div class="discount-section" style="text-align:center">
+                <strong style="display:block;color:var(--main-pink);font-size:15px">🎉 خصم 10% على جميع منتجات المتجر</strong>
+                <span class="discount-msg" style="color:green">✅ يتم تطبيق الخصم تلقائياً عند حساب طلبك</span>
             </div>
 
             <div id="giftProgress" style="text-align:center; margin:12px 0; padding:12px; border-radius:12px; background:#fff4f8; color:var(--main-brown); font-weight:bold; font-size:12px;"></div>
@@ -1018,7 +930,7 @@
             { id: "b4", name: "بوكس المرح (8 حبات)", cat: "boxes", price: 88, desc: "كل الأدوات بيدك والابداع عليك", imgs: ["20.jpg"], extras: [{name:"زيادة كريمة", price:5}, {name:"زيادة كوكيز", price:6}, {name:"زيادة سبرنكلز", price:1}] },
             
             { id: "g_print", name: "طباعة صور", cat: "glow", price: 5, desc: "اهدي صديقك صوراً تبقى ذكرى جميلة بينكما _ لحظات لا تنسى!", imgs: ["5555.jpg"] },
-            { id: "g1", name: "مجموعة شموع مبتكرة (3 حبات)", cat: "glow", price: 2.50, desc: "أحمر - شكل مميز", imgs: ["4444.jpg"], soldOut: true },
+            { id: "g1", name: "مجموعة شموع مبتكرة (3 حبات)", cat: "glow", price: 2.50, desc: "أحمر - شكل مميز", imgs: ["4444.jpg"] },
             { id: "g3", name: "شمعة قبعة احتفال (أحمر وأبيض)", cat: "glow", price: 2.50, desc: "تصميم قبعة ملونة", imgs: ["4442.jpg"] },
             { id: "g4", name: "شمعة قبعة احتفال (أبيض ووردي)", cat: "glow", price: 2.50, desc: "تصميم قبعة ملونة", imgs: ["4443.jpg"] },
             { id: "g5", name: "شمعة قبعة احتفال (أحمر وأصفر)", cat: "glow", price: 2.50, desc: "تصميم قبعة ملونة", imgs: ["4445.jpg"] },
@@ -1043,8 +955,8 @@
         ];
 
         let cart = {};
-        let isDiscountApplied = false; // لا يوجد خصم راتب تلقائي
-        let discountRate = 0;
+        let isDiscountApplied = true; // خصم 10% تلقائي على جميع المنتجات
+        let discountRate = 0.10;
         const COOKIE_GIFT_THRESHOLD = 100;
         const FREE_GIFT_THRESHOLD = 180;
         const FREE_GIFT_ID = "gift_p4";
@@ -1510,25 +1422,8 @@
         }
 
         function applyCoupon() {
-            const input = document.getElementById('couponInput').value.trim();
-            const msg = document.getElementById('couponMsg');
-            
-            // تم التعديل: تصفية وتحسين التحقق من الكوبون لضمان عدم رفضه بسبب الرموز التعبيرية أو المسافات
-if (input === "روري") {
-        isDiscountApplied = true;
-        discountRate = 0.1;
-        msg.innerText = "✅ تم تطبيق الخصم 10%";
-        msg.style.color = "green"} else if (input === "") {
-        isDiscountApplied = false;
-        discountRate = 0;
-        msg.innerText = "يرجى إدخال الكوبون";
-        msg.style.color = "orange";
-    } else {
-        isDiscountApplied = false;
-        discountRate = 0;
-        msg.innerText = "❌ كود غير صحيح أو انتهت صلاحيته";
-        msg.style.color = "red";
-    }
+            isDiscountApplied = true;
+            discountRate = 0.10;
             updateReviewOnly();
         }
 
@@ -1995,25 +1890,6 @@ if (input === "روري") {
             const trigger = e.target.closest('.product-card .image-container, .product-card .product-info');
             if (trigger) rememberMainScrollPosition();
         }, true);
-    </script>
-
-    <script>
-    (function () {
-        const ad = document.getElementById('memaNationalAd');
-        const closeButton = document.getElementById('memaNationalAdClose');
-        if (!ad) return;
-        let dismissed = false;
-        function dismissMemaAd() {
-            if (dismissed) return;
-            dismissed = true;
-            ad.classList.add('mema-ad-hidden');
-            window.setTimeout(function () {
-                if (ad && ad.parentNode) ad.parentNode.removeChild(ad);
-            }, 500);
-        }
-        closeButton && closeButton.addEventListener('click', dismissMemaAd);
-        window.setTimeout(dismissMemaAd, 6000);
-    })();
     </script>
 
     <div id="cartToast" role="status" aria-live="polite">✅ تم إضافة المنتج إلى السلة بنجاح 🤎</div>
